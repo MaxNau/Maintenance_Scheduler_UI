@@ -28,30 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.trigerStartTimeDtp = new System.Windows.Forms.DateTimePicker();
             this.jobMessageLb = new System.Windows.Forms.Label();
             this.jobNameLb = new System.Windows.Forms.Label();
             this.triggerNameLb = new System.Windows.Forms.Label();
             this.jobNameTb = new System.Windows.Forms.TextBox();
             this.triggerNameTb = new System.Windows.Forms.TextBox();
-            this.triggerTypeLb = new System.Windows.Forms.Label();
-            this.triggerTypeCb = new System.Windows.Forms.ComboBox();
-            this.reapeatCountLb = new System.Windows.Forms.Label();
-            this.repeatCountTb = new System.Windows.Forms.TextBox();
             this.addTriggerBtn = new System.Windows.Forms.Button();
             this.jobMessageTb = new System.Windows.Forms.TextBox();
             this.viewHolder = new System.Windows.Forms.TableLayoutPanel();
-            this.triggerStartTimeLb = new System.Windows.Forms.Label();
+            this.cronExpressionLb = new System.Windows.Forms.Label();
+            this.cronExpressionTb = new System.Windows.Forms.TextBox();
             this.viewHolder.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // trigerStartTimeDtp
-            // 
-            this.trigerStartTimeDtp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trigerStartTimeDtp.Location = new System.Drawing.Point(98, 55);
-            this.trigerStartTimeDtp.Name = "trigerStartTimeDtp";
-            this.trigerStartTimeDtp.Size = new System.Drawing.Size(216, 20);
-            this.trigerStartTimeDtp.TabIndex = 13;
             // 
             // jobMessageLb
             // 
@@ -74,7 +62,7 @@
             // triggerNameLb
             // 
             this.triggerNameLb.AutoSize = true;
-            this.triggerNameLb.Location = new System.Drawing.Point(3, 78);
+            this.triggerNameLb.Location = new System.Drawing.Point(3, 52);
             this.triggerNameLb.Name = "triggerNameLb";
             this.triggerNameLb.Size = new System.Drawing.Size(71, 13);
             this.triggerNameLb.TabIndex = 1;
@@ -82,7 +70,7 @@
             // 
             // jobNameTb
             // 
-            this.jobNameTb.Location = new System.Drawing.Point(98, 3);
+            this.jobNameTb.Location = new System.Drawing.Point(102, 3);
             this.jobNameTb.Name = "jobNameTb";
             this.jobNameTb.Size = new System.Drawing.Size(100, 20);
             this.jobNameTb.TabIndex = 10;
@@ -91,51 +79,14 @@
             // 
             this.triggerNameTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.triggerNameTb.Location = new System.Drawing.Point(98, 81);
+            this.triggerNameTb.Location = new System.Drawing.Point(102, 55);
             this.triggerNameTb.Name = "triggerNameTb";
-            this.triggerNameTb.Size = new System.Drawing.Size(216, 20);
+            this.triggerNameTb.Size = new System.Drawing.Size(227, 20);
             this.triggerNameTb.TabIndex = 2;
-            // 
-            // triggerTypeLb
-            // 
-            this.triggerTypeLb.AutoSize = true;
-            this.triggerTypeLb.Location = new System.Drawing.Point(3, 118);
-            this.triggerTypeLb.Name = "triggerTypeLb";
-            this.triggerTypeLb.Size = new System.Drawing.Size(63, 13);
-            this.triggerTypeLb.TabIndex = 3;
-            this.triggerTypeLb.Text = "Trigger type";
-            // 
-            // triggerTypeCb
-            // 
-            this.triggerTypeCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.triggerTypeCb.FormattingEnabled = true;
-            this.triggerTypeCb.Location = new System.Drawing.Point(98, 121);
-            this.triggerTypeCb.Name = "triggerTypeCb";
-            this.triggerTypeCb.Size = new System.Drawing.Size(216, 21);
-            this.triggerTypeCb.TabIndex = 4;
-            // 
-            // reapeatCountLb
-            // 
-            this.reapeatCountLb.AutoSize = true;
-            this.reapeatCountLb.Location = new System.Drawing.Point(3, 158);
-            this.reapeatCountLb.Name = "reapeatCountLb";
-            this.reapeatCountLb.Size = new System.Drawing.Size(73, 13);
-            this.reapeatCountLb.TabIndex = 5;
-            this.reapeatCountLb.Text = "Repeat Count";
-            // 
-            // repeatCountTb
-            // 
-            this.repeatCountTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.repeatCountTb.Location = new System.Drawing.Point(98, 161);
-            this.repeatCountTb.Name = "repeatCountTb";
-            this.repeatCountTb.Size = new System.Drawing.Size(216, 20);
-            this.repeatCountTb.TabIndex = 6;
             // 
             // addTriggerBtn
             // 
-            this.addTriggerBtn.Location = new System.Drawing.Point(98, 201);
+            this.addTriggerBtn.Location = new System.Drawing.Point(102, 175);
             this.addTriggerBtn.Name = "addTriggerBtn";
             this.addTriggerBtn.Size = new System.Drawing.Size(75, 23);
             this.addTriggerBtn.TabIndex = 7;
@@ -145,7 +96,7 @@
             // 
             // jobMessageTb
             // 
-            this.jobMessageTb.Location = new System.Drawing.Point(98, 29);
+            this.jobMessageTb.Location = new System.Drawing.Point(102, 29);
             this.jobMessageTb.Name = "jobMessageTb";
             this.jobMessageTb.Size = new System.Drawing.Size(100, 20);
             this.jobMessageTb.TabIndex = 9;
@@ -156,40 +107,45 @@
             this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.viewHolder.Controls.Add(this.jobMessageTb, 1, 1);
-            this.viewHolder.Controls.Add(this.addTriggerBtn, 1, 6);
-            this.viewHolder.Controls.Add(this.repeatCountTb, 1, 5);
-            this.viewHolder.Controls.Add(this.reapeatCountLb, 0, 5);
-            this.viewHolder.Controls.Add(this.triggerTypeCb, 1, 4);
-            this.viewHolder.Controls.Add(this.triggerTypeLb, 0, 4);
             this.viewHolder.Controls.Add(this.triggerNameTb, 1, 3);
             this.viewHolder.Controls.Add(this.jobNameTb, 1, 0);
             this.viewHolder.Controls.Add(this.triggerNameLb, 0, 3);
             this.viewHolder.Controls.Add(this.jobNameLb, 0, 0);
             this.viewHolder.Controls.Add(this.jobMessageLb, 0, 1);
-            this.viewHolder.Controls.Add(this.trigerStartTimeDtp, 1, 2);
-            this.viewHolder.Controls.Add(this.triggerStartTimeLb, 0, 2);
+            this.viewHolder.Controls.Add(this.cronExpressionLb, 0, 4);
+            this.viewHolder.Controls.Add(this.cronExpressionTb, 1, 4);
+            this.viewHolder.Controls.Add(this.addTriggerBtn, 1, 6);
             this.viewHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.viewHolder.Location = new System.Drawing.Point(0, 0);
             this.viewHolder.Name = "viewHolder";
-            this.viewHolder.RowCount = 7;
+            this.viewHolder.RowCount = 9;
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.viewHolder.Size = new System.Drawing.Size(317, 232);
+            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.viewHolder.Size = new System.Drawing.Size(332, 255);
             this.viewHolder.TabIndex = 0;
             // 
-            // triggerStartTimeLb
+            // cronExpressionLb
             // 
-            this.triggerStartTimeLb.AutoSize = true;
-            this.triggerStartTimeLb.Location = new System.Drawing.Point(3, 52);
-            this.triggerStartTimeLb.Name = "triggerStartTimeLb";
-            this.triggerStartTimeLb.Size = new System.Drawing.Size(85, 13);
-            this.triggerStartTimeLb.TabIndex = 14;
-            this.triggerStartTimeLb.Text = "Trigger start time";
+            this.cronExpressionLb.AutoSize = true;
+            this.cronExpressionLb.Location = new System.Drawing.Point(3, 92);
+            this.cronExpressionLb.Name = "cronExpressionLb";
+            this.cronExpressionLb.Size = new System.Drawing.Size(82, 13);
+            this.cronExpressionLb.TabIndex = 15;
+            this.cronExpressionLb.Text = "Cron expression";
+            // 
+            // cronExpressionTb
+            // 
+            this.cronExpressionTb.Location = new System.Drawing.Point(102, 95);
+            this.cronExpressionTb.Name = "cronExpressionTb";
+            this.cronExpressionTb.Size = new System.Drawing.Size(100, 20);
+            this.cronExpressionTb.TabIndex = 16;
             // 
             // AddMaintenanceScheduleView
             // 
@@ -197,7 +153,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.viewHolder);
             this.Name = "AddMaintenanceScheduleView";
-            this.Size = new System.Drawing.Size(317, 232);
+            this.Size = new System.Drawing.Size(332, 255);
             this.viewHolder.ResumeLayout(false);
             this.viewHolder.PerformLayout();
             this.ResumeLayout(false);
@@ -205,20 +161,15 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker trigerStartTimeDtp;
         private System.Windows.Forms.Label jobMessageLb;
         private System.Windows.Forms.Label jobNameLb;
         private System.Windows.Forms.Label triggerNameLb;
         private System.Windows.Forms.TextBox jobNameTb;
         private System.Windows.Forms.TextBox triggerNameTb;
-        private System.Windows.Forms.Label triggerTypeLb;
-        private System.Windows.Forms.ComboBox triggerTypeCb;
-        private System.Windows.Forms.Label reapeatCountLb;
-        private System.Windows.Forms.TextBox repeatCountTb;
         private System.Windows.Forms.Button addTriggerBtn;
         private System.Windows.Forms.TextBox jobMessageTb;
         private System.Windows.Forms.TableLayoutPanel viewHolder;
-        private System.Windows.Forms.Label triggerStartTimeLb;
+        private System.Windows.Forms.Label cronExpressionLb;
+        private System.Windows.Forms.TextBox cronExpressionTb;
     }
 }

@@ -49,8 +49,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,12 +61,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\DTOs\TriggerDTO.cs" />
+    <Compile Include="DataAccess\MaintenanceSchedulerDb.cs" />
+    <Compile Include="Entities\MaintenanceSchedulerContext.cs" />
+    <Compile Include="Entities\qrtz_blob_triggers.cs" />
+    <Compile Include="Entities\qrtz_calendars.cs" />
+    <Compile Include="Entities\qrtz_cron_triggers.cs" />
+    <Compile Include="Entities\qrtz_fired_triggers.cs" />
+    <Compile Include="Entities\qrtz_job_details.cs" />
+    <Compile Include="Entities\qrtz_locks.cs" />
+    <Compile Include="Entities\qrtz_paused_trigger_grps.cs" />
+    <Compile Include="Entities\qrtz_scheduler_state.cs" />
+    <Compile Include="Entities\qrtz_simple_triggers.cs" />
+    <Compile Include="Entities\qrtz_simprop_triggers.cs" />
+    <Compile Include="Entities\qrtz_triggers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

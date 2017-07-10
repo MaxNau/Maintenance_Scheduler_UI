@@ -1,8 +1,10 @@
 ﻿using Maintenance_Scheduler_BAL.SchedulerJobs;
 using Quartz;
 using Quartz.Impl;
+using Quartz.Impl.Matchers;
 using System;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Configuration;
 
 namespace Maintenance_Scheduler_BAL
@@ -70,13 +72,38 @@ namespace Maintenance_Scheduler_BAL
             scheduler.ScheduleJob(CreateJob(jobName, jobMessage), CreateDailyBasedtrigger(triggerName, startDate, daysInterval));
         }
 
-        public static ITrigger CreateDailyBasedtrigger(string triggerName, DateTime startDate, int daysInteval)
+        public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, string triggerName, string cronExpression)
+        {
+            scheduler.ScheduleJob(CreateJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression));
+        }
+
+        private static ITrigger CreateDailyBasedtrigger(string triggerName, DateTime startDate, int daysInteval)
         {
             return TriggerBuilder.Create()
                 .WithIdentity(triggerName)
                 .WithCalendarIntervalSchedule(x => x.WithIntervalInDays(daysInteval))
                 .StartAt(startDate)
                 .Build();
+        }
+
+        private static ITrigger CreateCronTrigger(string triggerName, string cronExpression)
+        {
+            return TriggerBuilder.Create()
+                .WithIdentity(triggerName)
+                .WithCronSchedule(cronExpression)
+                .Build();
+        }
+
+        public static BindingList<ITrigger> getAllTriggers()
+        {
+            BindingList<ITrigger> triggers = new BindingList<ITrigger>();
+            var allTriggerKeys = scheduler.GetTriggerKeys(GroupMatcher<TriggerKey>.AnyGroup());
+            foreach (var triggerKey in allTriggerKeys)
+            {
+                ITrigger trigger = scheduler.GetTrigger(triggerKey);
+                triggers.Add(scheduler.GetTrigger(triggerKey));
+            }
+            return triggers;
         }
     }
 }

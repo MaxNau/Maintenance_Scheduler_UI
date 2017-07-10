@@ -1,6 +1,4 @@
-﻿using Maintenance_Scheduler_BAL;
-using Maintenance_Scheduler_BAL.SchedulerJobs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +10,18 @@ using System.Windows.Forms;
 
 namespace Maintenance_Scheduler_UI
 {
-    public partial class Form1 : Form
+    public partial class Messanger : Form
     {
-        public Form1()
+        public Messanger(string message)
         {
-            MaintanceScheduler.Start();
             InitializeComponent();
+            messageRtb.Text = message;
+        }
+
+        private void okBtn_Click(object sender, EventArgs e)
+        {
+            Close();
+            Dispose();
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Maintenance_Scheduler_BAL;
+using Quartz;
 
 namespace Maintenance_Scheduler_UI
 {
@@ -16,15 +17,17 @@ namespace Maintenance_Scheduler_UI
         public AddMaintenanceScheduleView()
         {
             InitializeComponent();
-            trigerStartTimeDtp.Format = DateTimePickerFormat.Custom;
-            trigerStartTimeDtp.CustomFormat = "yyyy.MM.dd HH:mm";
         }
 
         // this method will save job details, trigger and will schedule the job 
         private void addTriggerBtn_Click(object sender, EventArgs e)
         {
             //MaintanceScheduler.ScheduleJob(jobNameTb.Text, jobMessageTb.Text, triggerNameTb.Text);
-            MaintanceScheduler.ScheduleDailyJob(jobNameTb.Text, jobMessageTb.Text, triggerNameTb.Text, trigerStartTimeDtp.Value, 1);
+            //MaintanceScheduler.ScheduleDailyJob(jobNameTb.Text, jobMessageTb.Text, triggerNameTb.Text, trigerStartTimeDtp.Value, 1);
+            if (CronExpression.IsValidExpression(cronExpressionTb.Text))
+            {
+                MaintanceScheduler.ScheduleJobWithCronTrigger(jobNameTb.Text, jobMessageTb.Text, triggerNameTb.Text, cronExpressionTb.Text);
+            }
         }
     }
 }
