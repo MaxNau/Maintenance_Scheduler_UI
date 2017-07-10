@@ -29,16 +29,27 @@
         private void InitializeComponent()
         {
             this.triggersDgv = new System.Windows.Forms.DataGridView();
+            this.removeTrigger = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.triggersDgv)).BeginInit();
             this.SuspendLayout();
             // 
             // triggersDgv
             // 
             this.triggersDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.triggersDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.removeTrigger});
             this.triggersDgv.Location = new System.Drawing.Point(3, 3);
             this.triggersDgv.Name = "triggersDgv";
             this.triggersDgv.Size = new System.Drawing.Size(408, 294);
             this.triggersDgv.TabIndex = 0;
+            this.triggersDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.triggersDgv_CellContentClick);
+            // 
+            // removeTrigger
+            // 
+            this.removeTrigger.HeaderText = "Remove";
+            this.removeTrigger.Name = "removeTrigger";
+            this.removeTrigger.Text = "Remove";
+            this.removeTrigger.UseColumnTextForButtonValue = true;
             // 
             // JobsAndTriggersView
             // 
@@ -56,5 +67,6 @@
         #endregion
 
         public System.Windows.Forms.DataGridView triggersDgv;
+        private System.Windows.Forms.DataGridViewButtonColumn removeTrigger;
     }
 }

@@ -105,5 +105,11 @@ namespace Maintenance_Scheduler_BAL
             }
             return triggers;
         }
+
+        public static void RemoveJob(string jobName)
+        {
+            JobKey jobKey = new JobKey(jobName);
+            scheduler.DeleteJob(jobKey);
+        }
     }
 }
