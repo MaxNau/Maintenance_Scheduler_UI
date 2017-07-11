@@ -1,6 +1,7 @@
 ﻿using Maintenance_Scheduler_BAL;
 using Maintenance_Scheduler_BAL.SchedulerJobs;
 using Maintenance_Scheduler_DAL.DataAccess;
+using Maintenance_Scheduler_UI.TestForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,12 @@ namespace Maintenance_Scheduler_UI
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+        }
+
+        private void showJobsAndTriggersInfoBtn_Click(object sender, EventArgs e)
+        {
+            JobsAndTriggersTestForm form = new JobsAndTriggersTestForm();
+            form.Show();
         }
     }
 }

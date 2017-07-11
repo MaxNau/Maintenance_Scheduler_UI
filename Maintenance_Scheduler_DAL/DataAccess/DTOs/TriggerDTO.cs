@@ -65,7 +65,7 @@ namespace Maintenance_Scheduler_DAL.DataAccess.DTOs
             {
                 nextFireTime = value;
                 if (nextFireTime != null)
-                    NextFireTimeDate = new DateTime(nextFireTime.Value);
+                    NextFireTimeDate = new DateTime(((long)nextFireTime.Value));
             }
         }
     }

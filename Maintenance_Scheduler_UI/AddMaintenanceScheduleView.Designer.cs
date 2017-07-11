@@ -44,51 +44,56 @@
             // jobMessageLb
             // 
             this.jobMessageLb.AutoSize = true;
+            this.jobMessageLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.jobMessageLb.Location = new System.Drawing.Point(3, 26);
             this.jobMessageLb.Name = "jobMessageLb";
-            this.jobMessageLb.Size = new System.Drawing.Size(69, 13);
+            this.jobMessageLb.Size = new System.Drawing.Size(103, 17);
             this.jobMessageLb.TabIndex = 12;
             this.jobMessageLb.Text = "Job message";
             // 
             // jobNameLb
             // 
             this.jobNameLb.AutoSize = true;
+            this.jobNameLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.jobNameLb.Location = new System.Drawing.Point(3, 0);
             this.jobNameLb.Name = "jobNameLb";
-            this.jobNameLb.Size = new System.Drawing.Size(53, 13);
+            this.jobNameLb.Size = new System.Drawing.Size(78, 17);
             this.jobNameLb.TabIndex = 11;
             this.jobNameLb.Text = "Job name";
             // 
             // triggerNameLb
             // 
             this.triggerNameLb.AutoSize = true;
+            this.triggerNameLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.triggerNameLb.Location = new System.Drawing.Point(3, 52);
             this.triggerNameLb.Name = "triggerNameLb";
-            this.triggerNameLb.Size = new System.Drawing.Size(71, 13);
+            this.triggerNameLb.Size = new System.Drawing.Size(107, 17);
             this.triggerNameLb.TabIndex = 1;
             this.triggerNameLb.Text = "Trigger Name";
             // 
             // jobNameTb
             // 
-            this.jobNameTb.Location = new System.Drawing.Point(102, 3);
+            this.jobNameTb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.jobNameTb.Location = new System.Drawing.Point(163, 3);
             this.jobNameTb.Name = "jobNameTb";
-            this.jobNameTb.Size = new System.Drawing.Size(100, 20);
+            this.jobNameTb.Size = new System.Drawing.Size(168, 20);
             this.jobNameTb.TabIndex = 10;
             // 
             // triggerNameTb
             // 
             this.triggerNameTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.triggerNameTb.Location = new System.Drawing.Point(102, 55);
+            this.triggerNameTb.Location = new System.Drawing.Point(163, 55);
             this.triggerNameTb.Name = "triggerNameTb";
-            this.triggerNameTb.Size = new System.Drawing.Size(227, 20);
+            this.triggerNameTb.Size = new System.Drawing.Size(168, 20);
             this.triggerNameTb.TabIndex = 2;
             // 
             // addTriggerBtn
             // 
-            this.addTriggerBtn.Location = new System.Drawing.Point(102, 175);
+            this.addTriggerBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.addTriggerBtn.Location = new System.Drawing.Point(256, 107);
             this.addTriggerBtn.Name = "addTriggerBtn";
-            this.addTriggerBtn.Size = new System.Drawing.Size(75, 23);
+            this.addTriggerBtn.Size = new System.Drawing.Size(75, 24);
             this.addTriggerBtn.TabIndex = 7;
             this.addTriggerBtn.Text = "Add";
             this.addTriggerBtn.UseVisualStyleBackColor = true;
@@ -96,64 +101,65 @@
             // 
             // jobMessageTb
             // 
-            this.jobMessageTb.Location = new System.Drawing.Point(102, 29);
+            this.jobMessageTb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.jobMessageTb.Location = new System.Drawing.Point(163, 29);
             this.jobMessageTb.Name = "jobMessageTb";
-            this.jobMessageTb.Size = new System.Drawing.Size(100, 20);
+            this.jobMessageTb.Size = new System.Drawing.Size(168, 20);
             this.jobMessageTb.TabIndex = 9;
             // 
             // viewHolder
             // 
+            this.viewHolder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.viewHolder.ColumnCount = 2;
-            this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.viewHolder.Controls.Add(this.jobMessageTb, 1, 1);
-            this.viewHolder.Controls.Add(this.triggerNameTb, 1, 3);
+            this.viewHolder.Controls.Add(this.triggerNameTb, 1, 2);
             this.viewHolder.Controls.Add(this.jobNameTb, 1, 0);
-            this.viewHolder.Controls.Add(this.triggerNameLb, 0, 3);
+            this.viewHolder.Controls.Add(this.triggerNameLb, 0, 2);
             this.viewHolder.Controls.Add(this.jobNameLb, 0, 0);
             this.viewHolder.Controls.Add(this.jobMessageLb, 0, 1);
-            this.viewHolder.Controls.Add(this.cronExpressionLb, 0, 4);
-            this.viewHolder.Controls.Add(this.cronExpressionTb, 1, 4);
-            this.viewHolder.Controls.Add(this.addTriggerBtn, 1, 6);
+            this.viewHolder.Controls.Add(this.cronExpressionLb, 0, 3);
+            this.viewHolder.Controls.Add(this.cronExpressionTb, 1, 3);
+            this.viewHolder.Controls.Add(this.addTriggerBtn, 1, 4);
             this.viewHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.viewHolder.Location = new System.Drawing.Point(0, 0);
             this.viewHolder.Name = "viewHolder";
-            this.viewHolder.RowCount = 9;
+            this.viewHolder.RowCount = 5;
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.viewHolder.Size = new System.Drawing.Size(332, 255);
+            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.viewHolder.Size = new System.Drawing.Size(334, 134);
             this.viewHolder.TabIndex = 0;
             // 
             // cronExpressionLb
             // 
             this.cronExpressionLb.AutoSize = true;
-            this.cronExpressionLb.Location = new System.Drawing.Point(3, 92);
+            this.cronExpressionLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cronExpressionLb.Location = new System.Drawing.Point(3, 78);
             this.cronExpressionLb.Name = "cronExpressionLb";
-            this.cronExpressionLb.Size = new System.Drawing.Size(82, 13);
+            this.cronExpressionLb.Size = new System.Drawing.Size(125, 17);
             this.cronExpressionLb.TabIndex = 15;
             this.cronExpressionLb.Text = "Cron expression";
             // 
             // cronExpressionTb
             // 
-            this.cronExpressionTb.Location = new System.Drawing.Point(102, 95);
+            this.cronExpressionTb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cronExpressionTb.Location = new System.Drawing.Point(163, 81);
             this.cronExpressionTb.Name = "cronExpressionTb";
-            this.cronExpressionTb.Size = new System.Drawing.Size(100, 20);
+            this.cronExpressionTb.Size = new System.Drawing.Size(168, 20);
             this.cronExpressionTb.TabIndex = 16;
             // 
             // AddMaintenanceScheduleView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.viewHolder);
             this.Name = "AddMaintenanceScheduleView";
-            this.Size = new System.Drawing.Size(332, 255);
+            this.Size = new System.Drawing.Size(334, 134);
             this.viewHolder.ResumeLayout(false);
             this.viewHolder.PerformLayout();
             this.ResumeLayout(false);

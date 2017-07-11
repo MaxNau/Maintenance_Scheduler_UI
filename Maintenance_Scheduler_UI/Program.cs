@@ -21,8 +21,7 @@ namespace Maintenance_Scheduler_UI
             Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter { Level = Common.Logging.LogLevel.Info };
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TestForm());
-            
+            Application.Run(new TestForm()); 
         }
     }
 }

@@ -13,20 +13,27 @@ namespace Maintenance_Scheduler_DAL.DataAccess
     {
         public static List<TriggerDTO> GetAllTriggers()
         {
-            List<TriggerDTO> triggers;
+            List<TriggerDTO> triggers = new List<TriggerDTO>();
             using (MaintenanceSchedulerContext context = new MaintenanceSchedulerContext())
             {
-
-                triggers = (from t in context.qrtz_triggers select new TriggerDTO()
+                try
                 {
-                    Name = t.TRIGGER_NAME,
-                    JobName = t.JOB_NAME,
-                    Type = t.TRIGGER_TYPE,
-                    NextFireTime = t.NEXT_FIRE_TIME,
-                    PreviousFireTime = t.PREV_FIRE_TIME,
-                    StartTime = t.START_TIME,
-                    EndTime = t.END_TIME
-                }).ToList();
+                    triggers = (from t in context.qrtz_triggers
+                                select new TriggerDTO()
+                                {
+                                    Name = t.TRIGGER_NAME,
+                                    JobName = t.JOB_NAME,
+                                    Type = t.TRIGGER_TYPE,
+                                    NextFireTime = t.NEXT_FIRE_TIME,
+                                    PreviousFireTime = t.PREV_FIRE_TIME,
+                                    StartTime = t.START_TIME,
+                                    EndTime = t.END_TIME
+                                }).ToList();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
             return triggers;
         }

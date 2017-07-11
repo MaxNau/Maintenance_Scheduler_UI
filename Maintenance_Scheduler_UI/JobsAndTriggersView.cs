@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
-using Maintenance_Scheduler_BAL;
 using Maintenance_Scheduler_UI.ViewModels;
 using Maintenance_Scheduler_DAL.DataAccess.DTOs;
 
@@ -13,19 +12,34 @@ namespace Maintenance_Scheduler_UI
         JobsAndTriggersViewModel viewModel;
         public JobsAndTriggersView()
         {
-            InitializeComponent();
             viewModel = new JobsAndTriggersViewModel();
+            InitializeComponent();
         }
 
         private void JobsAndTriggersView_Load(object sender, EventArgs e)
         {
             triggersDgv.DataSource = viewModel.Triggers;
+            AddRemoveColumnToTriggersDgv();
         }
 
         private void triggersDgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var selectedTrigger = (TriggerDTO)((sender as DataGridView).CurrentRow.DataBoundItem);
-            MaintanceScheduler.RemoveJob(selectedTrigger.JobName);
+            var dgv = sender as DataGridView;
+            if (dgv.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0 && dgv.Columns[e.ColumnIndex].Name == "Remove")
+            {
+                var selectedTrigger = (TriggerDTO)(dgv.CurrentRow.DataBoundItem);
+                viewModel.RemoveJob(selectedTrigger.JobName);
+            }
+        }
+
+        private void AddRemoveColumnToTriggersDgv()
+        {
+            DataGridViewButtonColumn removeButton = new DataGridViewButtonColumn();
+            removeButton.Name = "Remove";
+            removeButton.Text = "Remove";
+            removeButton.UseColumnTextForButtonValue = true;
+
+            triggersDgv.Columns.Add(removeButton);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Maintenance_Scheduler_DAL.Entities
     public partial class MaintenanceSchedulerContext : DbContext
     {
         public MaintenanceSchedulerContext()
-            : base("name=MaintenanceSchedulerContext")
+            : base("MaintenanceSchedulerContext")
         {
         }
 

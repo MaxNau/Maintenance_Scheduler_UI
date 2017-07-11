@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maintenance_Scheduler_UI", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maintenance_Scheduler_DAL", "Maintenance_Scheduler_DAL\Maintenance_Scheduler_DAL.csproj", "{EBC03B0E-3B9B-4393-9509-DC4FDF2291D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailingModule", "MailingModule\MailingModule.csproj", "{21C8B2E2-B6BC-42BD-847A-32EC4475C5B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{EBC03B0E-3B9B-4393-9509-DC4FDF2291D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBC03B0E-3B9B-4393-9509-DC4FDF2291D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBC03B0E-3B9B-4393-9509-DC4FDF2291D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21C8B2E2-B6BC-42BD-847A-32EC4475C5B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21C8B2E2-B6BC-42BD-847A-32EC4475C5B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21C8B2E2-B6BC-42BD-847A-32EC4475C5B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21C8B2E2-B6BC-42BD-847A-32EC4475C5B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

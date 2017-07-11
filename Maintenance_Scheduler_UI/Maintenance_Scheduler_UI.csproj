@@ -109,6 +109,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestForms\JobsAndTriggersTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForms\JobsAndTriggersTestForm.Designer.cs">
+      <DependentUpon>JobsAndTriggersTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\JobsAndTriggersViewModel.cs" />
     <EmbeddedResource Include="AddMaintenanceScheduleView.resx">
       <DependentUpon>AddMaintenanceScheduleView.cs</DependentUpon>
@@ -135,6 +141,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TestForms\JobsAndTriggersTestForm.resx">
+      <DependentUpon>JobsAndTriggersTestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -150,15 +159,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MailingModule\MailingModule.csproj">
+      <Project>{21c8b2e2-b6bc-42bd-847a-32ec4475c5b6}</Project>
+      <Name>MailingModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Maintenance_Scheduler_BAL\Maintenance_Scheduler_BAL.csproj">
       <Project>{c2212c35-89f3-4ed0-83c4-7812c04ee3a0}</Project>
       <Name>Maintenance_Scheduler_BAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Maintenance_Scheduler_DAL\Maintenance_Scheduler_DAL.csproj">
-      <Project>{EBC03B0E-3B9B-4393-9509-DC4FDF2291D6}</Project>
+      <Project>{ebc03b0e-3b9b-4393-9509-dc4fdf2291d6}</Project>
       <Name>Maintenance_Scheduler_DAL</Name>
     </ProjectReference>
   </ItemGroup>

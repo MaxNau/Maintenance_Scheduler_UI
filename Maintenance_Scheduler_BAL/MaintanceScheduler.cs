@@ -91,6 +91,7 @@ namespace Maintenance_Scheduler_BAL
             return TriggerBuilder.Create()
                 .WithIdentity(triggerName)
                 .WithCronSchedule(cronExpression)
+                .StartAt(DateTimeOffset.Now)
                 .Build();
         }
 
