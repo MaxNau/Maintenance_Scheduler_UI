@@ -115,6 +115,7 @@
     <Compile Include="TestForms\JobsAndTriggersTestForm.Designer.cs">
       <DependentUpon>JobsAndTriggersTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddMaintenanceSchedulerViewModel.cs" />
     <Compile Include="ViewModels\JobsAndTriggersViewModel.cs" />
     <EmbeddedResource Include="AddMaintenanceScheduleView.resx">
       <DependentUpon>AddMaintenanceScheduleView.cs</DependentUpon>

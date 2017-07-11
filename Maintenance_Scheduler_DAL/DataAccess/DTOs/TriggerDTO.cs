@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Maintenance_Scheduler_DAL.DataAccess.DTOs
 {
@@ -16,6 +12,7 @@ namespace Maintenance_Scheduler_DAL.DataAccess.DTOs
 
         public string Name { get; set; }
         public string JobName { get; set; }
+        public string Message { get; set; }
         public string Type { get; set; }
         public DateTime PreviousFireTimeDate { get; set; }
         public DateTime NextFireTimeDate { get; set; }

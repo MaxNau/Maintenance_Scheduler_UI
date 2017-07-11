@@ -22,10 +22,10 @@ namespace Maintenance_Scheduler_UI
             
             InitializeComponent();
             MaintanceScheduler.Start();
-            MaintenanceJob.JobDone += ReplaceFanucBatteries_JobDone;
+            MaintenanceJob.JobDone += OnJobDone;
         }
 
-        private void ReplaceFanucBatteries_JobDone(object sender, EventArgs e)
+        private void OnJobDone(object sender, EventArgs e)
         {
             Invoke((MethodInvoker)delegate
             {
@@ -41,6 +41,7 @@ namespace Maintenance_Scheduler_UI
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            MaintanceScheduler.Stop();
         }
 
         private void showJobsAndTriggersInfoBtn_Click(object sender, EventArgs e)

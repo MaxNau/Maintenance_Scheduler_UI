@@ -25,6 +25,11 @@ namespace Maintenance_Scheduler_BAL
             scheduler.Start();
         }
 
+        public static void Stop()
+        {
+            scheduler.Shutdown();
+        }
+
         /// <summary>
         /// Creates job
         /// </summary>
