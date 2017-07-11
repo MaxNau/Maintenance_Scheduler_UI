@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="EmailServerConfiguration.cs" />
     <Compile Include="IMailingModule.cs" />
-    <Compile Include="MailingModule.cs" />
+    <Compile Include="EmailModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

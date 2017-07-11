@@ -29,8 +29,7 @@ namespace Maintenance_Scheduler_DAL.DataAccess
                                     NextFireTime = t.NEXT_FIRE_TIME,
                                     PreviousFireTime = t.PREV_FIRE_TIME,
                                     StartTime = t.START_TIME,
-                                    EndTime = t.END_TIME,
-                                    JobMessageC = jd.JOB_DATA
+                                    EndTime = t.END_TIME
                                 }).ToList();
                 }
                 catch(Exception e)

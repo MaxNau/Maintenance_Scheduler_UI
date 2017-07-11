@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchedulerJobs\MaintenanceJob.cs" />
     <Compile Include="SchedulerJobs\IMaintanenceJob.cs" />
+    <Compile Include="SchedulerJobs\MaintenanceMailingJob.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -75,6 +76,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MailingModule\MailingModule.csproj">
+      <Project>{21c8b2e2-b6bc-42bd-847a-32ec4475c5b6}</Project>
+      <Name>MailingModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Maintenance_Scheduler_DAL\Maintenance_Scheduler_DAL.csproj">
       <Project>{EBC03B0E-3B9B-4393-9509-DC4FDF2291D6}</Project>
       <Name>Maintenance_Scheduler_DAL</Name>

@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace MailingModule
 {
-    public class MailingModule : IMailingModule
+    public class EmailModule : IMailingModule
     {
         private EmailServerConfiguration configuration;
 
@@ -12,7 +12,7 @@ namespace MailingModule
         /// Creates mailing object instance 
         /// </summary>
         /// <param name="configuration"> Email server configureation </param>
-        public MailingModule(EmailServerConfiguration configuration)
+        public EmailModule(EmailServerConfiguration configuration)
         {
             this.configuration = configuration;
         }
