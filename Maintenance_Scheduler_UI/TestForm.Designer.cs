@@ -55,7 +55,7 @@
             this.addMaintenanceScheduleView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.addMaintenanceScheduleView1.Location = new System.Drawing.Point(18, 107);
             this.addMaintenanceScheduleView1.Name = "addMaintenanceScheduleView1";
-            this.addMaintenanceScheduleView1.Size = new System.Drawing.Size(757, 140);
+            this.addMaintenanceScheduleView1.Size = new System.Drawing.Size(757, 161);
             this.addMaintenanceScheduleView1.TabIndex = 3;
             // 
             // TestForm

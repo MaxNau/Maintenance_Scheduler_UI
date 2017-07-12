@@ -34,12 +34,14 @@
             this.triggerNameLb = new System.Windows.Forms.Label();
             this.jobNameTb = new System.Windows.Forms.TextBox();
             this.triggerNameTb = new System.Windows.Forms.TextBox();
-            this.addTriggerBtn = new System.Windows.Forms.Button();
             this.jobMessageTb = new System.Windows.Forms.TextBox();
             this.viewHolder = new System.Windows.Forms.TableLayoutPanel();
             this.cronExpressionLb = new System.Windows.Forms.Label();
             this.cronExpressionTb = new System.Windows.Forms.TextBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.addTriggerBtn = new System.Windows.Forms.Button();
+            this.jobTypeLb = new System.Windows.Forms.Label();
+            this.jobTypesCb = new System.Windows.Forms.ComboBox();
             this.viewHolder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -79,7 +81,7 @@
             this.jobNameTb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.jobNameTb.Location = new System.Drawing.Point(163, 3);
             this.jobNameTb.Name = "jobNameTb";
-            this.jobNameTb.Size = new System.Drawing.Size(138, 20);
+            this.jobNameTb.Size = new System.Drawing.Size(140, 20);
             this.jobNameTb.TabIndex = 10;
             this.jobNameTb.Validating += new System.ComponentModel.CancelEventHandler(this.jobNameTb_Validating);
             // 
@@ -89,27 +91,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.triggerNameTb.Location = new System.Drawing.Point(163, 55);
             this.triggerNameTb.Name = "triggerNameTb";
-            this.triggerNameTb.Size = new System.Drawing.Size(138, 20);
+            this.triggerNameTb.Size = new System.Drawing.Size(140, 20);
             this.triggerNameTb.TabIndex = 2;
             this.triggerNameTb.Validating += new System.ComponentModel.CancelEventHandler(this.triggerNameTb_Validating);
-            // 
-            // addTriggerBtn
-            // 
-            this.addTriggerBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.addTriggerBtn.Location = new System.Drawing.Point(226, 107);
-            this.addTriggerBtn.Name = "addTriggerBtn";
-            this.addTriggerBtn.Size = new System.Drawing.Size(75, 24);
-            this.addTriggerBtn.TabIndex = 7;
-            this.addTriggerBtn.Text = "Add";
-            this.addTriggerBtn.UseVisualStyleBackColor = true;
-            this.addTriggerBtn.Click += new System.EventHandler(this.addTriggerBtn_Click);
             // 
             // jobMessageTb
             // 
             this.jobMessageTb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.jobMessageTb.Location = new System.Drawing.Point(163, 29);
             this.jobMessageTb.Name = "jobMessageTb";
-            this.jobMessageTb.Size = new System.Drawing.Size(138, 20);
+            this.jobMessageTb.Size = new System.Drawing.Size(140, 20);
             this.jobMessageTb.TabIndex = 9;
             this.jobMessageTb.Validating += new System.ComponentModel.CancelEventHandler(this.jobMessageTb_Validating);
             // 
@@ -122,6 +113,7 @@
             this.viewHolder.ColumnCount = 2;
             this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
             this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.viewHolder.Controls.Add(this.addTriggerBtn, 1, 5);
             this.viewHolder.Controls.Add(this.jobMessageTb, 1, 1);
             this.viewHolder.Controls.Add(this.triggerNameTb, 1, 2);
             this.viewHolder.Controls.Add(this.jobNameTb, 1, 0);
@@ -130,17 +122,19 @@
             this.viewHolder.Controls.Add(this.jobMessageLb, 0, 1);
             this.viewHolder.Controls.Add(this.cronExpressionLb, 0, 3);
             this.viewHolder.Controls.Add(this.cronExpressionTb, 1, 3);
-            this.viewHolder.Controls.Add(this.addTriggerBtn, 1, 4);
+            this.viewHolder.Controls.Add(this.jobTypeLb, 0, 4);
+            this.viewHolder.Controls.Add(this.jobTypesCb, 1, 4);
             this.viewHolder.Location = new System.Drawing.Point(0, 0);
             this.viewHolder.Name = "viewHolder";
             this.viewHolder.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
-            this.viewHolder.RowCount = 5;
+            this.viewHolder.RowCount = 6;
+            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.viewHolder.Size = new System.Drawing.Size(334, 134);
+            this.viewHolder.Size = new System.Drawing.Size(336, 161);
             this.viewHolder.TabIndex = 0;
             // 
             // cronExpressionLb
@@ -158,13 +152,43 @@
             this.cronExpressionTb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cronExpressionTb.Location = new System.Drawing.Point(163, 81);
             this.cronExpressionTb.Name = "cronExpressionTb";
-            this.cronExpressionTb.Size = new System.Drawing.Size(138, 20);
+            this.cronExpressionTb.Size = new System.Drawing.Size(140, 20);
             this.cronExpressionTb.TabIndex = 16;
             this.cronExpressionTb.Validating += new System.ComponentModel.CancelEventHandler(this.cronExpressionTb_Validating);
             // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
+            // 
+            // addTriggerBtn
+            // 
+            this.addTriggerBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.addTriggerBtn.Location = new System.Drawing.Point(228, 134);
+            this.addTriggerBtn.Name = "addTriggerBtn";
+            this.addTriggerBtn.Size = new System.Drawing.Size(75, 24);
+            this.addTriggerBtn.TabIndex = 17;
+            this.addTriggerBtn.Text = "Add";
+            this.addTriggerBtn.UseVisualStyleBackColor = true;
+            this.addTriggerBtn.Click += new System.EventHandler(this.addTriggerBtn_Click);
+            // 
+            // jobTypeLb
+            // 
+            this.jobTypeLb.AutoSize = true;
+            this.jobTypeLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.jobTypeLb.Location = new System.Drawing.Point(3, 104);
+            this.jobTypeLb.Name = "jobTypeLb";
+            this.jobTypeLb.Size = new System.Drawing.Size(70, 17);
+            this.jobTypeLb.TabIndex = 18;
+            this.jobTypeLb.Text = "Job type";
+            // 
+            // jobTypesCb
+            // 
+            this.jobTypesCb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.jobTypesCb.FormattingEnabled = true;
+            this.jobTypesCb.Location = new System.Drawing.Point(163, 107);
+            this.jobTypesCb.Name = "jobTypesCb";
+            this.jobTypesCb.Size = new System.Drawing.Size(140, 21);
+            this.jobTypesCb.TabIndex = 19;
             // 
             // AddMaintenanceScheduleView
             // 
@@ -173,7 +197,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.viewHolder);
             this.Name = "AddMaintenanceScheduleView";
-            this.Size = new System.Drawing.Size(334, 134);
+            this.Size = new System.Drawing.Size(336, 164);
             this.viewHolder.ResumeLayout(false);
             this.viewHolder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
@@ -188,11 +212,13 @@
         private System.Windows.Forms.Label triggerNameLb;
         private System.Windows.Forms.TextBox jobNameTb;
         private System.Windows.Forms.TextBox triggerNameTb;
-        private System.Windows.Forms.Button addTriggerBtn;
         private System.Windows.Forms.TextBox jobMessageTb;
         private System.Windows.Forms.TableLayoutPanel viewHolder;
         private System.Windows.Forms.Label cronExpressionLb;
         private System.Windows.Forms.TextBox cronExpressionTb;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Button addTriggerBtn;
+        private System.Windows.Forms.Label jobTypeLb;
+        private System.Windows.Forms.ComboBox jobTypesCb;
     }
 }

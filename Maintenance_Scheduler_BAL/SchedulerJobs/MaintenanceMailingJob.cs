@@ -8,6 +8,7 @@ namespace Maintenance_Scheduler_BAL.SchedulerJobs
     {
         public void Execute(IJobExecutionContext context)
         {
+            string a = "a";
             /*
              foreach(string email in EmailListFromDatabase)
             {

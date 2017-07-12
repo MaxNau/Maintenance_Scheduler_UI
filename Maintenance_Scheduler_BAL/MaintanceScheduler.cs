@@ -44,9 +44,16 @@ namespace Maintenance_Scheduler_BAL
         /// <param name="jobMessage"> Message that will be sent to notify 
         /// all interested users </param>
         /// <returns> Returns created job </returns>
-        private static IJobDetail CreateJob(string jobName, string jobMessage)
+        private static IJobDetail CreateLocalNotifierJob(string jobName, string jobMessage)
         {
             IJobDetail job = JobBuilder.Create<MaintenanceJob>().WithIdentity(jobName).Build();
+            job.JobDataMap["Message"] = jobMessage;
+            return job;
+        }
+
+        private static IJobDetail CreateMailingNotifierJob(string jobName, string jobMessage)
+        {
+            IJobDetail job = JobBuilder.Create<MailingJob>().WithIdentity(jobName).Build();
             job.JobDataMap["Message"] = jobMessage;
             return job;
         }
@@ -74,14 +81,17 @@ namespace Maintenance_Scheduler_BAL
         /// <param name="jobMessage"> Message that will be sent to notify
         /// all interested users</param>
         /// <param name="triggerName"> Name of the trigger </param>
-        public static void ScheduleJob(string jobName, string jobMessage, string triggerName)
+        public static void ScheduleJob(string jobName, string jobMessage, MaintenanceJobType jobType, string triggerName)
         {
-            scheduler.ScheduleJob(CreateJob(jobName, jobMessage), CreateTrigger(triggerName));
+            if (jobType == MaintenanceJobType.Local)
+                scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateTrigger(triggerName));
+            else if (jobType == MaintenanceJobType.Mailing)
+                scheduler.ScheduleJob(CreateMailingNotifierJob(jobName, jobMessage), CreateTrigger(triggerName));
         }
 
         public static void ScheduleDailyJob(string jobName, string jobMessage, string triggerName, DateTime startDate, int daysInterval)
         {
-            scheduler.ScheduleJob(CreateJob(jobName, jobMessage), CreateDailyBasedtrigger(triggerName, startDate, daysInterval));
+            scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateDailyBasedtrigger(triggerName, startDate, daysInterval));
         }
 
         /// <summary>
@@ -91,9 +101,12 @@ namespace Maintenance_Scheduler_BAL
         /// <param name="jobMessage"></param>
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
-        public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, string triggerName, string cronExpression)
+        public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, MaintenanceJobType jobType, string triggerName, string cronExpression)
         {
-            scheduler.ScheduleJob(CreateJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression));
+            if (jobType == MaintenanceJobType.Local)
+                scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression));
+            else if (jobType == MaintenanceJobType.Mailing)
+                scheduler.ScheduleJob(CreateMailingNotifierJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression));
         }
 
         private static ITrigger CreateDailyBasedtrigger(string triggerName, DateTime startDate, int daysInteval)

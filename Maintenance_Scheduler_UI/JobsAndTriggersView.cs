@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 using Maintenance_Scheduler_UI.ViewModels;
 using Maintenance_Scheduler_DAL.DataAccess.DTOs;
@@ -32,6 +30,9 @@ namespace Maintenance_Scheduler_UI
             }
         }
 
+        /// <summary>
+        /// Adds DataGridViewButtonColumn that removes job
+        /// </summary>
         private void AddRemoveColumnToTriggersDgv()
         {
             DataGridViewButtonColumn removeButton = new DataGridViewButtonColumn();

@@ -16,6 +16,8 @@ namespace Maintenance_Scheduler_UI
             InitializeComponent();
             errorProvider.ContainerControl = this;
             viewModel = new AddMaintenanceSchedulerViewModel();
+            jobTypesCb.DataSource = viewModel.JobTypes;
+
         }
 
         // this method will save job details, trigger and will schedule the job 
@@ -23,10 +25,11 @@ namespace Maintenance_Scheduler_UI
         {
             if (validate() == true)
             {
-                viewModel.ScheduleJobWithCronTrigger(jobNameTb.Text, jobMessageTb.Text, triggerNameTb.Text, cronExpressionTb.Text);
+                viewModel.ScheduleJobWithCronTrigger(jobNameTb.Text, jobMessageTb.Text, viewModel.ConvertStringToJobTypeE(jobTypesCb.SelectedValue.ToString()), triggerNameTb.Text, cronExpressionTb.Text);
             }
         }
-#region Validating events
+
+        #region Validating events
         private void jobNameTb_Validating(object sender, CancelEventArgs e)
         {
             validateJobName();

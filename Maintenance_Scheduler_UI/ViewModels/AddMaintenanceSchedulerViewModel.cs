@@ -1,10 +1,18 @@
 ﻿using Maintenance_Scheduler_BAL;
+using Maintenance_Scheduler_BAL.SchedulerJobs;
 using Maintenance_Scheduler_DAL.DataAccess;
+using System;
 
 namespace Maintenance_Scheduler_UI.ViewModels
 {
     public class AddMaintenanceSchedulerViewModel
     {
+
+        public AddMaintenanceSchedulerViewModel()
+        {
+            GetJobTypes();
+        }
+
         /// <summary>
         /// Checks if trigger name already exists in database
         /// </summary>
@@ -32,9 +40,23 @@ namespace Maintenance_Scheduler_UI.ViewModels
         /// <param name="jobMessage"></param>
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
-        public void ScheduleJobWithCronTrigger(string jobName, string jobMessage, string triggerName, string cronExpression)
+        public void ScheduleJobWithCronTrigger(string jobName, string jobMessage, MaintenanceJobType jobType, string triggerName, string cronExpression)
         {
-            MaintanceScheduler.ScheduleJobWithCronTrigger(jobName, jobMessage, triggerName, cronExpression);
+            MaintanceScheduler.ScheduleJobWithCronTrigger(jobName, jobMessage, jobType, triggerName, cronExpression);
+        }
+
+        public Array JobTypes { get; set; }
+
+        private void GetJobTypes()
+        {
+            JobTypes = Enum.GetValues(typeof(MaintenanceJobType));
+        }
+
+        public MaintenanceJobType ConvertStringToJobTypeE(string jobType)
+        {
+            MaintenanceJobType jobT;
+            Enum.TryParse(jobType, out jobT);
+            return jobT;
         }
     }
 }
