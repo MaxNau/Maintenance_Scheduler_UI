@@ -42,9 +42,9 @@ namespace Maintenance_Scheduler_UI.ViewModels
         /// <param name="jobMessage"></param>
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
-        public void ScheduleJobWithCronTrigger(string jobName, string jobMessage, MaintenanceJobType jobType, string triggerName, string cronExpression)
+        public void ScheduleJobWithCronTrigger(string jobName, string jobMessage, MaintenanceJobType jobType, string triggerName, string cronExpression, string jobMailSubject = "", string jobMailBody = "")
         {
-            MaintanceScheduler.ScheduleJobWithCronTrigger(jobName, jobMessage, jobType, triggerName, cronExpression);
+            MaintanceScheduler.ScheduleJobWithCronTrigger(jobName, jobMessage, jobType, triggerName, cronExpression, jobMailSubject, jobMailBody);
         }
 
         public Array JobTypes { get; set; }

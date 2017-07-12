@@ -1,13 +1,8 @@
 ﻿using Maintenance_Scheduler_BAL;
 using Maintenance_Scheduler_DAL.DataAccess;
 using Maintenance_Scheduler_DAL.DataAccess.DTOs;
-using Maintenance_Scheduler_DAL.Entities;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Maintenance_Scheduler_UI.ViewModels
 {

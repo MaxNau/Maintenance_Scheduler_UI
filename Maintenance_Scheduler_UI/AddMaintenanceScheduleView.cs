@@ -25,7 +25,22 @@ namespace Maintenance_Scheduler_UI
         {
             if (validate() == true)
             {
-                viewModel.ScheduleJobWithCronTrigger(jobNameTb.Text, jobMessageTb.Text, viewModel.ConvertStringToJobTypeE(jobTypesCb.SelectedValue.ToString()), triggerNameTb.Text, cronExpressionTb.Text);
+                if (viewModel.SelectedJobType == Maintenance_Scheduler_BAL.SchedulerJobs.MaintenanceJobType.Local)
+                    viewModel.ScheduleJobWithCronTrigger(
+                        jobNameTb.Text,
+                        jobMessageTb.Text,
+                        viewModel.ConvertStringToJobTypeE(jobTypesCb.SelectedValue.ToString()),
+                        triggerNameTb.Text,
+                        cronExpressionTb.Text);
+                else if (viewModel.SelectedJobType == Maintenance_Scheduler_BAL.SchedulerJobs.MaintenanceJobType.Mailing)
+                    viewModel.ScheduleJobWithCronTrigger(
+                        jobNameTb.Text,
+                        jobMessageTb.Text,
+                        viewModel.ConvertStringToJobTypeE(jobTypesCb.SelectedValue.ToString()),
+                        triggerNameTb.Text,
+                        cronExpressionTb.Text,
+                        mailSubjectTb.Text,
+                        mailBodyRtb.Text);
             }
         }
 

@@ -8,7 +8,15 @@ namespace Maintenance_Scheduler_BAL.SchedulerJobs
     {
         public void Execute(IJobExecutionContext context)
         {
-            string a = "a";
+            /*EmailServerConfiguration configuration = new EmailServerConfiguration(
+                "test@email.com",
+                "smtp.mail.test.com",
+                 587,
+                 true,
+                 "password");
+            EmailModule mailingModule = new EmailModule(configuration);
+            mailingModule.Send("simensjohn@yahoo.com", context.JobDetail.JobDataMap.GetString("MailSubject"), context.JobDetail.JobDataMap.GetString("MailBody"));
+            */
             /*
              foreach(string email in EmailListFromDatabase)
             {

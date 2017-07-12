@@ -190,6 +190,7 @@
             this.addTriggerBtn.TabIndex = 22;
             this.addTriggerBtn.Text = "Add";
             this.addTriggerBtn.UseVisualStyleBackColor = true;
+            this.addTriggerBtn.Click += new System.EventHandler(this.addTriggerBtn_Click);
             // 
             // cronExpressionTb
             // 

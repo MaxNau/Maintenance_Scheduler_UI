@@ -69,6 +69,7 @@
             this.showJobsAndTriggersInfoBtn.TabIndex = 5;
             this.showJobsAndTriggersInfoBtn.Text = "View jobs and triggers";
             this.showJobsAndTriggersInfoBtn.UseVisualStyleBackColor = true;
+            this.showJobsAndTriggersInfoBtn.Click += new System.EventHandler(this.showJobsAndTriggersInfoBtn_Click);
             // 
             // maintanceMessager1
             // 
