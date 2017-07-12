@@ -119,5 +119,24 @@ namespace Maintenance_Scheduler_UI
             return true; 
         }
         #endregion
+
+        private void jobTypesCb_SelectedValueChanged(object sender, EventArgs e)
+        {
+            viewModel.SelectedJobType = viewModel.ConvertStringToJobTypeE((sender as ComboBox).SelectedValue.ToString());
+            if (viewModel.SelectedJobType == Maintenance_Scheduler_BAL.SchedulerJobs.MaintenanceJobType.Local)
+            {
+                IsMailingJobDetailsShown(false);
+            }
+            else
+            {
+                IsMailingJobDetailsShown(true);
+            }
+        }
+
+        private void IsMailingJobDetailsShown(bool isShown)
+        {
+            mailBody.Visible = mailBodyRtb.Visible = mailSubjectLb.Visible =
+            mailSubjectTb.Visible = isShown;
+        }
     }
 }

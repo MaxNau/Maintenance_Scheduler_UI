@@ -13,6 +13,8 @@ namespace Maintenance_Scheduler_UI.ViewModels
             GetJobTypes();
         }
 
+        public MaintenanceJobType SelectedJobType { get; set; }
+
         /// <summary>
         /// Checks if trigger name already exists in database
         /// </summary>
