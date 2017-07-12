@@ -115,6 +115,9 @@
             // 
             // viewHolder
             // 
+            this.viewHolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewHolder.AutoSize = true;
             this.viewHolder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.viewHolder.ColumnCount = 2;
             this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
@@ -128,7 +131,6 @@
             this.viewHolder.Controls.Add(this.cronExpressionLb, 0, 3);
             this.viewHolder.Controls.Add(this.cronExpressionTb, 1, 3);
             this.viewHolder.Controls.Add(this.addTriggerBtn, 1, 4);
-            this.viewHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.viewHolder.Location = new System.Drawing.Point(0, 0);
             this.viewHolder.Name = "viewHolder";
             this.viewHolder.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
@@ -176,6 +178,7 @@
             this.viewHolder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

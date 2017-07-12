@@ -11,6 +11,11 @@ namespace Maintenance_Scheduler_DAL.DataAccess
 {
     public class MaintenanceSchedulerDb
     {
+        /// <summary>
+        /// Gets all trigers from the triggers table of the database
+        /// and converts them to the TriggerDTO
+        /// </summary>
+        /// <returns> Returns List<TriggerDTO> </TriggerDTO></returns>
         public static List<TriggerDTO> GetAllTriggers()
         {
             List<TriggerDTO> triggers = new List<TriggerDTO>();
@@ -55,6 +60,11 @@ namespace Maintenance_Scheduler_DAL.DataAccess
             return triggerNameExists;
         }
 
+        /// <summary>
+        /// Checks if the job name exists in the triggers table of the database
+        /// </summary>
+        /// <param name="jobName"></param>
+        /// <returns> Returns true if exists </returns>
         public static bool JobNameExists(string jobName)
         {
             bool jobNameExists;

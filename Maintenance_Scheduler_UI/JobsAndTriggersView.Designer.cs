@@ -37,6 +37,8 @@
             this.triggersDgv.AllowUserToAddRows = false;
             this.triggersDgv.AllowUserToDeleteRows = false;
             this.triggersDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.triggersDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.triggersDgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.triggersDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.triggersDgv.Location = new System.Drawing.Point(3, 3);
             this.triggersDgv.Name = "triggersDgv";

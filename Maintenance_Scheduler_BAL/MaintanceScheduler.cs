@@ -15,6 +15,10 @@ namespace Maintenance_Scheduler_BAL
     public static class MaintanceScheduler
     {
         private static IScheduler scheduler;
+
+        /// <summary>
+        /// Starts the scheduler
+        /// </summary>
         public static void Start()
         {
             var config = (NameValueCollection)ConfigurationManager.GetSection("quartz");
@@ -25,6 +29,9 @@ namespace Maintenance_Scheduler_BAL
             scheduler.Start();
         }
 
+        /// <summary>
+        /// Stops the scheduler
+        /// </summary>
         public static void Stop()
         {
             scheduler.Shutdown();
@@ -77,6 +84,13 @@ namespace Maintenance_Scheduler_BAL
             scheduler.ScheduleJob(CreateJob(jobName, jobMessage), CreateDailyBasedtrigger(triggerName, startDate, daysInterval));
         }
 
+        /// <summary>
+        /// Schedules job using assigned cron trigger
+        /// </summary>
+        /// <param name="jobName"></param>
+        /// <param name="jobMessage"></param>
+        /// <param name="triggerName"></param>
+        /// <param name="cronExpression"></param>
         public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, string triggerName, string cronExpression)
         {
             scheduler.ScheduleJob(CreateJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression));
@@ -91,6 +105,12 @@ namespace Maintenance_Scheduler_BAL
                 .Build();
         }
 
+        /// <summary>
+        /// Creates cron trigger 
+        /// </summary>
+        /// <param name="triggerName"></param>
+        /// <param name="cronExpression"></param>
+        /// <returns></returns>
         private static ITrigger CreateCronTrigger(string triggerName, string cronExpression)
         {
             return TriggerBuilder.Create()
@@ -112,6 +132,10 @@ namespace Maintenance_Scheduler_BAL
             return triggers;
         }
 
+        /// <summary>
+        /// Removes job by its name from the scheduler
+        /// </summary>
+        /// <param name="jobName"></param>
         public static void RemoveJob(string jobName)
         {
             JobKey jobKey = new JobKey(jobName);
