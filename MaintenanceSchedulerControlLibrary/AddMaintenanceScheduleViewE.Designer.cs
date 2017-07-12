@@ -1,11 +1,10 @@
-﻿using Maintenance_Scheduler_UI.ViewModels;
+﻿
+using System;
 
 namespace Maintenance_Scheduler_UI
 {
-    partial class AddMaintenanceScheduleView
+    partial class AddMaintenanceScheduleViewE
     {
-        public AddMaintenanceSchedulerViewModel viewModel;
-
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -242,7 +241,7 @@ namespace Maintenance_Scheduler_UI
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // AddMaintenanceScheduleView
+            // AddMaintenanceScheduleViewE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -250,7 +249,7 @@ namespace Maintenance_Scheduler_UI
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.viewHolder);
-            this.Name = "AddMaintenanceScheduleView";
+            this.Name = "AddMaintenanceScheduleViewE";
             this.Size = new System.Drawing.Size(348, 496);
             this.viewHolder.ResumeLayout(false);
             this.viewHolder.PerformLayout();

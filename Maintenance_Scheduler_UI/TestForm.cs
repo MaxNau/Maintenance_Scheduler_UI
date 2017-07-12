@@ -1,27 +1,19 @@
 ﻿using Maintenance_Scheduler_BAL;
 using Maintenance_Scheduler_BAL.SchedulerJobs;
-using Maintenance_Scheduler_DAL.DataAccess;
 using Maintenance_Scheduler_UI.TestForms;
+using Maintenance_Scheduler_UI.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Maintenance_Scheduler_UI
 {
     public partial class TestForm : Form
     { 
-
         public TestForm()
         {
-            
             InitializeComponent();
             MaintanceScheduler.Start();
+            addMaintenanceScheduleViewE1.InitializeViewModel(new AddMaintenanceSchedulerViewModel());
             MaintenanceJob.JobDone += OnJobDone;
         }
 

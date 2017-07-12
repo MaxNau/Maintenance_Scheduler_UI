@@ -1,11 +1,13 @@
 ﻿using Maintenance_Scheduler_BAL;
 using Maintenance_Scheduler_BAL.SchedulerJobs;
 using Maintenance_Scheduler_DAL.DataAccess;
+using Quartz;
 using System;
+using StringsConstantsAndEnumerations;
 
 namespace Maintenance_Scheduler_UI.ViewModels
 {
-    public class AddMaintenanceSchedulerViewModel
+    public class AddMaintenanceSchedulerViewModel : IAddMaintenanceSchedulerViewModel
     {
 
         public AddMaintenanceSchedulerViewModel()
@@ -13,7 +15,7 @@ namespace Maintenance_Scheduler_UI.ViewModels
             GetJobTypes();
         }
 
-        public MaintenanceJobType SelectedJobType { get; set; }
+        public StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType SelectedJobType { get; set; }
 
         /// <summary>
         /// Checks if trigger name already exists in database
@@ -42,23 +44,34 @@ namespace Maintenance_Scheduler_UI.ViewModels
         /// <param name="jobMessage"></param>
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
-        public void ScheduleJobWithCronTrigger(string jobName, string jobMessage, MaintenanceJobType jobType, string triggerName, string cronExpression, string jobMailSubject = "", string jobMailBody = "")
+        public void ScheduleJobWithCronTrigger(string jobName, string jobMessage, StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType jobType, string triggerName, string cronExpression, string jobMailSubject = "", string jobMailBody = "")
         {
             MaintanceScheduler.ScheduleJobWithCronTrigger(jobName, jobMessage, jobType, triggerName, cronExpression, jobMailSubject, jobMailBody);
         }
 
         public Array JobTypes { get; set; }
 
-        private void GetJobTypes()
+        public void GetJobTypes()
         {
             JobTypes = Enum.GetValues(typeof(MaintenanceJobType));
         }
 
-        public MaintenanceJobType ConvertStringToJobTypeE(string jobType)
+        public Enumerations.MaintenanceJobType ConvertStringToJobTypeE(string jobType)
         {
-            MaintenanceJobType jobT;
+            Enumerations.MaintenanceJobType jobT;
             Enum.TryParse(jobType, out jobT);
             return jobT;
+        }
+
+        public bool IsValidCronExpression(string cronExpression)
+        {
+            return CronExpression.IsValidExpression(cronExpression);
+        }
+
+        public bool CheckJobType()
+        {
+            //throw new NotImplementedException();
+            return true;
         }
     }
 }

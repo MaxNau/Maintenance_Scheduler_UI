@@ -84,6 +84,10 @@
       <Project>{EBC03B0E-3B9B-4393-9509-DC4FDF2291D6}</Project>
       <Name>Maintenance_Scheduler_DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StringsConstantsAndEnumerations\StringsConstantsAndEnumerations.csproj">
+      <Project>{f606990b-db4f-43c6-857d-832bdb465b9d}</Project>
+      <Name>StringsConstantsAndEnumerations</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

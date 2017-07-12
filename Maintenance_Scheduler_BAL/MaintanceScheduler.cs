@@ -92,7 +92,7 @@ namespace Maintenance_Scheduler_BAL
         /// all interested users</param>
         /// <param name="triggerName"> Name of the trigger </param>
         /// <param name="jobMailSubject"> email subject </param>
-        /// <param name="jobMailBody"> html email body </param>
+        /// <param name="jobMailBody"> html body </param>
         public static void ScheduleJob(string jobName, string jobMessage, MaintenanceJobType jobType, string triggerName, string jobMailSubject = "", string jobMailBody = "")
         {
             if (jobType == MaintenanceJobType.Local)
@@ -113,11 +113,11 @@ namespace Maintenance_Scheduler_BAL
         /// <param name="jobMessage"></param>
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
-        public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, MaintenanceJobType jobType, string triggerName, string cronExpression, string jobMailSubject = "", string jobMailBody = "")
+        public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType jobType, string triggerName, string cronExpression, string jobMailSubject = "", string jobMailBody = "")
         {
-            if (jobType == MaintenanceJobType.Local)
+            if (jobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Local)
                 scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression));
-            else if (jobType == MaintenanceJobType.Mailing)
+            else if (jobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Mailing)
                 scheduler.ScheduleJob(CreateMailingNotifierJob(jobName, jobMessage, jobMailSubject, jobMailBody), CreateCronTrigger(triggerName, cronExpression));
         }
 

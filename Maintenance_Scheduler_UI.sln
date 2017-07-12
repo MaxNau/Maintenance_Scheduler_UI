@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maintenance_Scheduler_DAL",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailingModule", "MailingModule\MailingModule.csproj", "{21C8B2E2-B6BC-42BD-847A-32EC4475C5B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintenanceSchedulerControlLibrary", "MaintenanceSchedulerControlLibrary\MaintenanceSchedulerControlLibrary.csproj", "{2EA45306-AAD4-44B4-BC4F-1B31C517469A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringsConstantsAndEnumerations", "StringsConstantsAndEnumerations\StringsConstantsAndEnumerations.csproj", "{F606990B-DB4F-43C6-857D-832BDB465B9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{21C8B2E2-B6BC-42BD-847A-32EC4475C5B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21C8B2E2-B6BC-42BD-847A-32EC4475C5B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21C8B2E2-B6BC-42BD-847A-32EC4475C5B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EA45306-AAD4-44B4-BC4F-1B31C517469A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EA45306-AAD4-44B4-BC4F-1B31C517469A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EA45306-AAD4-44B4-BC4F-1B31C517469A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EA45306-AAD4-44B4-BC4F-1B31C517469A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F606990B-DB4F-43C6-857D-832BDB465B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F606990B-DB4F-43C6-857D-832BDB465B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F606990B-DB4F-43C6-857D-832BDB465B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F606990B-DB4F-43C6-857D-832BDB465B9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
