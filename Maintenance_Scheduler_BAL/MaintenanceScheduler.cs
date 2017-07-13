@@ -1,8 +1,10 @@
-﻿using Maintenance_Scheduler_BAL.SchedulerJobs;
+﻿using Maintenance_Scheduler_BAL.Models;
+using Maintenance_Scheduler_BAL.SchedulerJobs;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Impl.Matchers;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Configuration;
@@ -12,7 +14,7 @@ namespace Maintenance_Scheduler_BAL
     /// <summary>
     /// Getts the configuration and scheduler and then starts the scheduler
     /// </summary>
-    public static class MaintanceScheduler
+    public static class MaintenanceScheduler
     {
         private static IScheduler scheduler;
 
@@ -36,6 +38,8 @@ namespace Maintenance_Scheduler_BAL
         {
             scheduler.Shutdown();
         }
+
+        #region Scheduler Specification
 
         /// <summary>
         /// Creates job
@@ -166,5 +170,35 @@ namespace Maintenance_Scheduler_BAL
             JobKey jobKey = new JobKey(jobName);
             scheduler.DeleteJob(jobKey);
         }
+
+        /// <summary>
+        /// Gets all triggers 
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection<TriggerModel> GetAllTriggers()
+        {
+            List<TriggerModel> triggers = new List<TriggerModel>();
+            var triggerKeys = scheduler.GetTriggerKeys(GroupMatcher<TriggerKey>.AnyGroup());
+            foreach (TriggerKey key in triggerKeys)
+            {
+                ITrigger trigger = scheduler.GetTrigger(key);
+
+                triggers.Add(new TriggerModel()
+                {
+                    JobName = trigger.JobKey.Name,
+                    Name = trigger.Key.Name,
+                    Type = trigger.GetType().Name,
+                    StartTimeDate = trigger.StartTimeUtc,
+                    EndTimeDate = trigger.EndTimeUtc,
+                    PreviousFireTimeDate = trigger.GetPreviousFireTimeUtc(),
+                    NextFireTimeDate = trigger.GetNextFireTimeUtc(),
+                    Message = scheduler.GetJobDetail(trigger.JobKey).JobDataMap.GetString("Message")
+                });
+            }
+
+            return triggers;
+        }
+
+        #endregion
     }
 }

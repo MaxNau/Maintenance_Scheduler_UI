@@ -31,7 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.maintanceMessager1 = new Maintenance_Scheduler_UI.MaintanceMessager();
             this.showJobsAndTriggersInfoBtn = new System.Windows.Forms.Button();
-            this.addMaintenanceScheduleViewE1 = new Maintenance_Scheduler_UI.AddMaintenanceScheduleViewE();
+            this.addMaintenanceScheduleViewE1 = new Maintenance_Scheduler_UI.AddMaintenanceSchedulerView();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +101,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private MaintanceMessager maintanceMessager1;
         private System.Windows.Forms.Button showJobsAndTriggersInfoBtn;
-        private AddMaintenanceScheduleViewE addMaintenanceScheduleViewE1;
+        private AddMaintenanceSchedulerView addMaintenanceScheduleViewE1;
     }
 }
 

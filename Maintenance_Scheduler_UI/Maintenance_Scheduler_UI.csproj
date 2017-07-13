@@ -77,10 +77,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddMaintenanceScheduleView.cs">
+    <Compile Include="ConsideredToBeDeleted\AddMaintenanceScheduleView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddMaintenanceScheduleView.Designer.cs">
+    <Compile Include="ConsideredToBeDeleted\AddMaintenanceScheduleView.Designer.cs">
       <DependentUpon>AddMaintenanceScheduleView.cs</DependentUpon>
     </Compile>
     <Compile Include="TestForm.cs">
@@ -89,10 +89,10 @@
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="JobsAndTriggersView.cs">
+    <Compile Include="ConsideredToBeDeleted\JobsAndTriggersView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="JobsAndTriggersView.Designer.cs">
+    <Compile Include="ConsideredToBeDeleted\JobsAndTriggersView.Designer.cs">
       <DependentUpon>JobsAndTriggersView.cs</DependentUpon>
     </Compile>
     <Compile Include="MaintanceMessager.cs">
@@ -100,12 +100,6 @@
     </Compile>
     <Compile Include="MaintanceMessager.Designer.cs">
       <DependentUpon>MaintanceMessager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Messanger.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Messanger.Designer.cs">
-      <DependentUpon>Messanger.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,20 +111,18 @@
     </Compile>
     <Compile Include="ViewModels\AddMaintenanceSchedulerViewModel.cs" />
     <Compile Include="ViewModels\JobsAndTriggersViewModel.cs" />
-    <EmbeddedResource Include="AddMaintenanceScheduleView.resx">
+    <Compile Include="ViewModels\TriggerViewModel.cs" />
+    <EmbeddedResource Include="ConsideredToBeDeleted\AddMaintenanceScheduleView.resx">
       <DependentUpon>AddMaintenanceScheduleView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="JobsAndTriggersView.resx">
+    <EmbeddedResource Include="ConsideredToBeDeleted\JobsAndTriggersView.resx">
       <DependentUpon>JobsAndTriggersView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaintanceMessager.resx">
       <DependentUpon>MaintanceMessager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Messanger.resx">
-      <DependentUpon>Messanger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -176,10 +168,6 @@
     <ProjectReference Include="..\Maintenance_Scheduler_BAL\Maintenance_Scheduler_BAL.csproj">
       <Project>{c2212c35-89f3-4ed0-83c4-7812c04ee3a0}</Project>
       <Name>Maintenance_Scheduler_BAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Maintenance_Scheduler_DAL\Maintenance_Scheduler_DAL.csproj">
-      <Project>{ebc03b0e-3b9b-4393-9509-dc4fdf2291d6}</Project>
-      <Name>Maintenance_Scheduler_DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\StringsConstantsAndEnumerations\StringsConstantsAndEnumerations.csproj">
       <Project>{F606990B-DB4F-43C6-857D-832BDB465B9D}</Project>

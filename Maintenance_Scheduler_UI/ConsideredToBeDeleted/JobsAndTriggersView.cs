@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
 using Maintenance_Scheduler_UI.ViewModels;
-using Maintenance_Scheduler_DAL.DataAccess.DTOs;
 
 namespace Maintenance_Scheduler_UI
 {
-    public partial class JobsAndTriggersView : UserControl
+    public partial class JobsAndTriggersViewD : UserControl
     {
         JobsAndTriggersViewModel viewModel;
-        public JobsAndTriggersView()
+        public JobsAndTriggersViewD()
         {
             viewModel = new JobsAndTriggersViewModel();
             InitializeComponent();
@@ -25,7 +24,7 @@ namespace Maintenance_Scheduler_UI
             var dgv = sender as DataGridView;
             if (dgv.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0 && dgv.Columns[e.ColumnIndex].Name == "Remove")
             {
-                var selectedTrigger = (TriggerDTO)(dgv.CurrentRow.DataBoundItem);
+                var selectedTrigger = (TriggerViewModel)(dgv.CurrentRow.DataBoundItem);
                 viewModel.RemoveJob(selectedTrigger.JobName);
             }
         }

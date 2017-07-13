@@ -12,8 +12,9 @@ namespace Maintenance_Scheduler_UI
         public TestForm()
         {
             InitializeComponent();
-            MaintanceScheduler.Start();
+            MaintenanceScheduler.Start();
             addMaintenanceScheduleViewE1.InitializeViewModel(new AddMaintenanceSchedulerViewModel());
+            var triggers = MaintenanceScheduler.GetAllTriggers();
             MaintenanceJob.JobDone += OnJobDone;
         }
 
@@ -33,7 +34,7 @@ namespace Maintenance_Scheduler_UI
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MaintanceScheduler.Stop();
+            MaintenanceScheduler.Stop();
         }
 
         private void showJobsAndTriggersInfoBtn_Click(object sender, EventArgs e)

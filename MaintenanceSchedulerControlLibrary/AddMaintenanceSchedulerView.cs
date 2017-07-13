@@ -6,11 +6,11 @@ using static StringsConstantsAndEnumerations.Enumerations;
 
 namespace Maintenance_Scheduler_UI
 {
-    public partial class AddMaintenanceScheduleViewE : UserControl
+    public partial class AddMaintenanceSchedulerView : UserControl
     {
         private IAddMaintenanceSchedulerViewModel viewModel;
 
-        public AddMaintenanceScheduleViewE()
+        public AddMaintenanceSchedulerView()
         {
             InitializeComponent();
             errorProvider.ContainerControl = this;

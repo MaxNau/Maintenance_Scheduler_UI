@@ -42,21 +42,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddMaintenanceScheduleViewE.cs">
+    <Compile Include="AddMaintenanceSchedulerView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddMaintenanceScheduleViewE.Designer.cs">
-      <DependentUpon>AddMaintenanceScheduleViewE.cs</DependentUpon>
+    <Compile Include="AddMaintenanceSchedulerView.Designer.cs">
+      <DependentUpon>AddMaintenanceSchedulerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JobsAndTriggersView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JobsAndTriggersView.Designer.cs">
+      <DependentUpon>JobsAndTriggersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messanger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messanger.Designer.cs">
+      <DependentUpon>Messanger.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AddMaintenanceScheduleViewE.resx">
-      <DependentUpon>AddMaintenanceScheduleViewE.cs</DependentUpon>
+    <EmbeddedResource Include="AddMaintenanceSchedulerView.resx">
+      <DependentUpon>AddMaintenanceSchedulerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobsAndTriggersView.resx">
+      <DependentUpon>JobsAndTriggersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messanger.resx">
+      <DependentUpon>Messanger.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Maintenance_Scheduler_DAL\Maintenance_Scheduler_DAL.csproj">
+      <Project>{EBC03B0E-3B9B-4393-9509-DC4FDF2291D6}</Project>
+      <Name>Maintenance_Scheduler_DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StringsConstantsAndEnumerations\StringsConstantsAndEnumerations.csproj">
       <Project>{f606990b-db4f-43c6-857d-832bdb465b9d}</Project>
       <Name>StringsConstantsAndEnumerations</Name>

@@ -1,11 +1,4 @@
-﻿using Maintenance_Scheduler_BAL;
-using Maintenance_Scheduler_BAL.SchedulerJobs;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Maintenance_Scheduler_UI

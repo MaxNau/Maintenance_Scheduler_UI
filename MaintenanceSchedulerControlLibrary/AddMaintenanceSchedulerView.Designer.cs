@@ -3,7 +3,7 @@ using System;
 
 namespace Maintenance_Scheduler_UI
 {
-    partial class AddMaintenanceScheduleViewE
+    partial class AddMaintenanceSchedulerView
     {
         /// <summary> 
         /// Required designer variable.

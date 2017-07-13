@@ -1,9 +1,9 @@
 ﻿using Maintenance_Scheduler_BAL;
 using Maintenance_Scheduler_BAL.SchedulerJobs;
-using Maintenance_Scheduler_DAL.DataAccess;
 using Quartz;
 using System;
 using StringsConstantsAndEnumerations;
+using System.Linq;
 
 namespace Maintenance_Scheduler_UI.ViewModels
 {
@@ -24,7 +24,8 @@ namespace Maintenance_Scheduler_UI.ViewModels
         /// <returns></returns>
         public bool TriggerNameExists(string triggerName)
         {
-            return MaintenanceSchedulerDb.TriggerNameExists(triggerName);
+            return MaintenanceScheduler.GetAllTriggers().Any(t => t.Name == triggerName);
+            //return MaintenanceSchedulerDb.TriggerNameExists(triggerName);
         }
 
         /// <summary>
@@ -34,7 +35,8 @@ namespace Maintenance_Scheduler_UI.ViewModels
         /// <returns></returns>
         public bool JobNameExists(string jobName)
         {
-            return MaintenanceSchedulerDb.JobNameExists(jobName);
+            return MaintenanceScheduler.GetAllTriggers().Any(t => t.JobName == jobName);
+            //return MaintenanceSchedulerDb.JobNameExists(jobName);
         }
 
         /// <summary>
@@ -46,7 +48,7 @@ namespace Maintenance_Scheduler_UI.ViewModels
         /// <param name="cronExpression"></param>
         public void ScheduleJobWithCronTrigger(string jobName, string jobMessage, StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType jobType, string triggerName, string cronExpression, string jobMailSubject = "", string jobMailBody = "")
         {
-            MaintanceScheduler.ScheduleJobWithCronTrigger(jobName, jobMessage, jobType, triggerName, cronExpression, jobMailSubject, jobMailBody);
+            MaintenanceScheduler.ScheduleJobWithCronTrigger(jobName, jobMessage, jobType, triggerName, cronExpression, jobMailSubject, jobMailBody);
         }
 
         public Array JobTypes { get; set; }
