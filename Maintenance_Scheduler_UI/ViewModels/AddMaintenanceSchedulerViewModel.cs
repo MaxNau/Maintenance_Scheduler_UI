@@ -3,63 +3,79 @@ using Quartz;
 using System;
 using StringsConstantsAndEnumerations;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Maintenance_Scheduler_UI.ViewModels
 {
-    public class AddMaintenanceSchedulerViewModel : IAddMaintenanceSchedulerViewModel
+    public class AddMaintenanceSchedulerViewModel : IAddMaintenanceSchedulerViewModel, INotifyPropertyChanged
     {
         public AddMaintenanceSchedulerViewModel()
         {
             JobAndTrigger = new TriggerViewModel();
         }
 
-        public Enumerations.MaintenanceJobType SelectedJobType { get; set; }
         public ITriggerViewModel JobAndTrigger { get; set; }
 
-        /// <summary>
-        /// Checks if trigger name already exists in database
-        /// </summary>
-        /// <param name="triggerName"></param>
-        /// <returns></returns>
         public bool TriggerNameExists(string triggerName)
         {
             return MaintenanceScheduler.GetAllTriggers().Any(t => t.Name == triggerName);
             //return MaintenanceSchedulerDb.TriggerNameExists(triggerName);
         }
 
-        /// <summary>
-        /// Cheks if job name  already exists in database
-        /// </summary>
-        /// <param name="jobName"></param>
-        /// <returns></returns>
         public bool JobNameExists(string jobName)
         {
             return MaintenanceScheduler.GetAllTriggers().Any(t => t.JobName == jobName);
             //return MaintenanceSchedulerDb.JobNameExists(jobName);
         }
 
-        /// <summary>
-        /// Schedules the job to be executed using assigned cron trigger
-        /// </summary>
-        /// <param name="jobName"></param>
-        /// <param name="jobMessage"></param>
-        /// <param name="triggerName"></param>
-        /// <param name="cronExpression"></param>
-        public void ScheduleJobWithCronTrigger(string jobName, string jobMessage, StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType jobType, string triggerName, string cronExpression, string jobMailSubject = "", string jobMailBody = "")
+        public void ScheduleJobWithCronTrigger()
         {
-            MaintenanceScheduler.ScheduleJobWithCronTrigger(jobName, jobMessage, jobType, triggerName, cronExpression, jobMailSubject, jobMailBody);
+            CheckAndResetMailSubjectAndBody();
+            MaintenanceScheduler.ScheduleJobWithCronTrigger(JobAndTrigger.JobName, JobAndTrigger.Message, JobAndTrigger.SelectedJobType, JobAndTrigger.Name, JobAndTrigger.CronExpression, JobAndTrigger.MailSubject, JobAndTrigger.MailBody);
         }
 
-        public Enumerations.MaintenanceJobType ConvertStringToJobTypeE(string jobType)
+        private void CheckAndResetMailSubjectAndBody()
         {
-            Enumerations.MaintenanceJobType jobT;
-            Enum.TryParse(jobType, out jobT);
-            return jobT;
+            if (JobAndTrigger.SelectedJobType == Enumerations.MaintenanceJobType.Local)
+            {
+                JobAndTrigger.MailSubject = null;
+                JobAndTrigger.MailBody = null;
+            }
         }
 
         public bool IsValidCronExpression(string cronExpression)
         {
             return CronExpression.IsValidExpression(cronExpression);
+        }
+
+        private bool showJobMailPart;
+
+        public bool ShowJobMailPart
+        {
+            get { return showJobMailPart; }
+            set
+            {
+                showJobMailPart = value;
+                NotifyPropertyChanged("ShowJobMailPart");
+            }
+        }
+
+        public void CheckIfShowJobMailPart()
+        {
+            if (JobAndTrigger.SelectedJobType == Enumerations.MaintenanceJobType.Local)
+            {
+                ShowJobMailPart = false;
+            }
+            else
+            {
+                ShowJobMailPart = true;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String info)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
         }
     }
 }

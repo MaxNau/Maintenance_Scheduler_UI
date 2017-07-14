@@ -100,6 +100,5 @@ namespace MaintenanceSchedulerControlLibrary
         {
             SelectedValueChanged?.Invoke();
         }
-
     }
 }

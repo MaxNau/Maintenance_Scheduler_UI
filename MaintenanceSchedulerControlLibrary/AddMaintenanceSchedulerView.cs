@@ -32,6 +32,10 @@ namespace Maintenance_Scheduler_UI
             jobTypesCb.DataBindings.Add("SelectedValue", viewModel.JobAndTrigger, "SelectedJobType", true, DataSourceUpdateMode.OnPropertyChanged);
             triggerNameTb.DataBindings.Add("Text", viewModel.JobAndTrigger, "Name", false, DataSourceUpdateMode.OnPropertyChanged);
             cronExpressionTb.DataBindings.Add("Text", viewModel.JobAndTrigger, "CronExpression", false, DataSourceUpdateMode.OnPropertyChanged);
+            mailBody.DataBindings.Add("Visible", viewModel, "ShowJobMailPart", false, DataSourceUpdateMode.OnPropertyChanged);
+            mailBodyRtb.DataBindings.Add("Visible", viewModel, "ShowJobMailPart", false, DataSourceUpdateMode.OnPropertyChanged);
+            mailSubjectLb.DataBindings.Add("Visible", viewModel, "ShowJobMailPart", false, DataSourceUpdateMode.OnPropertyChanged);
+            mailSubjectTb.DataBindings.Add("Visible", viewModel, "ShowJobMailPart", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         // this method will save job details, trigger and will schedule the job 
@@ -39,31 +43,7 @@ namespace Maintenance_Scheduler_UI
         {
             if (validate() == true)
             {
-                if (viewModel.SelectedJobType == MaintenanceJobType.Local)
-                {
-                    viewModel.ScheduleJobWithCronTrigger(
-                        jobNameTb.Text,
-                        jobMessageTb.Text,
-                        viewModel.ConvertStringToJobTypeE(jobTypesCb.SelectedValue.ToString()),
-                        triggerNameTb.Text,
-                        cronExpressionTb.Text);
-                }
-                else if (viewModel.SelectedJobType == MaintenanceJobType.Mailing)
-                {
-                    viewModel.ScheduleJobWithCronTrigger(
-                        jobNameTb.Text,
-                        jobMessageTb.Text,
-                        viewModel.ConvertStringToJobTypeE(jobTypesCb.SelectedValue.ToString()),
-                        triggerNameTb.Text,
-                        cronExpressionTb.Text,
-                        mailSubjectTb.Text,
-                        mailBodyRtb.Text);
-                }
-                else
-                {
-                    MessageBox.Show("Can't add job");
-                    return;
-                }
+                viewModel.ScheduleJobWithCronTrigger();
                 MessageBox.Show("Job successfully added");
             }
         }
@@ -159,23 +139,15 @@ namespace Maintenance_Scheduler_UI
         }
         #endregion
 
-        private void jobTypesCb_SelectedValueChanged(object sender, EventArgs e)
-        {
-            viewModel.SelectedJobType = viewModel.ConvertStringToJobTypeE((sender as ComboBox).SelectedValue.ToString());
-            if (viewModel.SelectedJobType == MaintenanceJobType.Local)
-            {
-                IsMailingJobDetailsShown(false);
-            }
-            else
-            {
-                IsMailingJobDetailsShown(true);
-            }
-        }
-
         private void IsMailingJobDetailsShown(bool isShown)
         {
             mailBody.Visible = mailBodyRtb.Visible = mailSubjectLb.Visible =
             mailSubjectTb.Visible = isShown;
+        }
+
+        private void jobTypesCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            viewModel.CheckIfShowJobMailPart();
         }
     }
 
@@ -185,11 +157,6 @@ namespace Maintenance_Scheduler_UI
         /// User controls job and trigger instance
         /// </summary>
         ITriggerViewModel JobAndTrigger { get; set; }
-
-        /// <summary>
-        /// Currently selected job type in the ComboBox
-        /// </summary>
-        MaintenanceJobType SelectedJobType { get; set; }
 
         /// <summary>
         /// Checks if trigger name already exists in database
@@ -213,14 +180,7 @@ namespace Maintenance_Scheduler_UI
         /// <param name="jobMessage"></param>
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
-        void ScheduleJobWithCronTrigger(string jobName, string jobMessage, MaintenanceJobType jobType, string triggerName, string cronExpression, string jobMailSubject = "", string jobMailBody = "");
-
-        /// <summary>
-        /// Converts string into the coresponing enum Job Type 
-        /// </summary>
-        /// <param name="jobType"></param>
-        /// <returns></returns>
-        MaintenanceJobType ConvertStringToJobTypeE(string jobType);
+        void ScheduleJobWithCronTrigger();
 
         /// <summary>
         /// Checks if the passed cron expression is valid
@@ -228,5 +188,15 @@ namespace Maintenance_Scheduler_UI
         /// <param name="cronExpression"></param>
         /// <returns></returns>
         bool IsValidCronExpression(string cronExpression);
+
+        /// <summary>
+        /// Sets weither the job mail part should be visible
+        /// </summary>
+        bool ShowJobMailPart { get; set; }
+
+        /// <summary>
+        /// Checks if the job mail part should be visible
+        /// </summary>
+        void CheckIfShowJobMailPart();
     }
 }

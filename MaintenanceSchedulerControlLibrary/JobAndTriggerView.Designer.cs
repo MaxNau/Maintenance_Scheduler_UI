@@ -115,6 +115,7 @@
             this.jobTypesCb.Name = "jobTypesCb";
             this.jobTypesCb.Size = new System.Drawing.Size(192, 21);
             this.jobTypesCb.TabIndex = 20;
+            this.jobTypesCb.SelectedValueChanged += new System.EventHandler(this.jobTypesCb_SelectedValueChanged);
             // 
             // jobMessageTb
             // 
@@ -232,12 +233,12 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // UpdateJobAndTriggerView
+            // JobAndTriggerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.viewHolder);
-            this.Name = "UpdateJobAndTriggerView";
+            this.Name = "JobAndTriggerView";
             this.Size = new System.Drawing.Size(388, 293);
             this.viewHolder.ResumeLayout(false);
             this.viewHolder.PerformLayout();

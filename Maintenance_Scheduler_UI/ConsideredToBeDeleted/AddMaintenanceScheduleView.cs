@@ -21,9 +21,9 @@ namespace Maintenance_Scheduler_UI
         // this method will save job details, trigger and will schedule the job 
         private void addTriggerBtn_Click(object sender, EventArgs e)
         {
-            if (validate() == true)
+           /* if (validate() == true)
             {
-                if (viewModel.SelectedJobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Local)
+                if (viewModel.JobAndTrigger.SelectedJobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Local)
                 {
                     viewModel.ScheduleJobWithCronTrigger(
                         jobNameTb.Text,
@@ -32,7 +32,7 @@ namespace Maintenance_Scheduler_UI
                         triggerNameTb.Text,
                         cronExpressionTb.Text);
                 }
-                else if (viewModel.SelectedJobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Mailing)
+                else if (viewModel.JobAndTrigger.SelectedJobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Mailing)
                 {
                     viewModel.ScheduleJobWithCronTrigger(
                         jobNameTb.Text,
@@ -49,7 +49,7 @@ namespace Maintenance_Scheduler_UI
                     return;
                 }
                 MessageBox.Show("Job successfully added");
-            }
+            }*/
         }
 
         #region Validating events
@@ -145,15 +145,15 @@ namespace Maintenance_Scheduler_UI
 
         private void jobTypesCb_SelectedValueChanged(object sender, EventArgs e)
         {
-            viewModel.SelectedJobType = viewModel.ConvertStringToJobTypeE((sender as ComboBox).SelectedValue.ToString());
-            if (viewModel.SelectedJobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Local)
+            /*viewModel.JobAndTrigger.SelectedJobType = viewModel.ConvertStringToJobTypeE((sender as ComboBox).SelectedValue.ToString());
+            if (viewModel.JobAndTrigger.SelectedJobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Local)
             {
                 IsMailingJobDetailsShown(false);
             }
             else
             {
                 IsMailingJobDetailsShown(true);
-            }
+            }*/
         }
 
         private void IsMailingJobDetailsShown(bool isShown)

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.maintanceMessager1 = new Maintenance_Scheduler_UI.MaintanceMessager();
             this.showJobsAndTriggersInfoBtn = new System.Windows.Forms.Button();
             this.addMaintenanceScheduleViewE1 = new Maintenance_Scheduler_UI.AddMaintenanceSchedulerView();
+            this.maintanceMessager1 = new Maintenance_Scheduler_UI.MaintanceMessager();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,15 +49,10 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(787, 400);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // maintanceMessager1
-            // 
-            this.maintanceMessager1.Location = new System.Drawing.Point(3, 3);
-            this.maintanceMessager1.Name = "maintanceMessager1";
-            this.maintanceMessager1.Size = new System.Drawing.Size(304, 43);
-            this.maintanceMessager1.TabIndex = 7;
             // 
             // showJobsAndTriggersInfoBtn
             // 
@@ -80,6 +75,13 @@
             this.addMaintenanceScheduleViewE1.Size = new System.Drawing.Size(781, 294);
             this.addMaintenanceScheduleViewE1.TabIndex = 8;
             // 
+            // maintanceMessager1
+            // 
+            this.maintanceMessager1.Location = new System.Drawing.Point(3, 3);
+            this.maintanceMessager1.Name = "maintanceMessager1";
+            this.maintanceMessager1.Size = new System.Drawing.Size(304, 43);
+            this.maintanceMessager1.TabIndex = 7;
+            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -99,9 +101,9 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private MaintanceMessager maintanceMessager1;
         private System.Windows.Forms.Button showJobsAndTriggersInfoBtn;
         private AddMaintenanceSchedulerView addMaintenanceScheduleViewE1;
+        private MaintanceMessager maintanceMessager1;
     }
 }
 
