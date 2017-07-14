@@ -20,6 +20,18 @@ namespace Maintenance_Scheduler_UI
         {
             this.viewModel = viewModel;
             jobTypesCb.DataSource = viewModel.JobAndTrigger.JobTypes;
+            AddBindings();
+        }
+
+        private void AddBindings()
+        {
+            jobNameTb.DataBindings.Add("Text", viewModel.JobAndTrigger, "JobName", false, DataSourceUpdateMode.OnPropertyChanged);
+            jobMessageTb.DataBindings.Add("Text", viewModel.JobAndTrigger, "Message", false, DataSourceUpdateMode.OnPropertyChanged);
+            mailSubjectTb.DataBindings.Add("Text", viewModel.JobAndTrigger, "MailSubject", false, DataSourceUpdateMode.OnPropertyChanged);
+            mailBodyRtb.DataBindings.Add("Text", viewModel.JobAndTrigger, "MailBody", false, DataSourceUpdateMode.OnPropertyChanged);
+            jobTypesCb.DataBindings.Add("SelectedValue", viewModel.JobAndTrigger, "SelectedJobType", true, DataSourceUpdateMode.OnPropertyChanged);
+            triggerNameTb.DataBindings.Add("Text", viewModel.JobAndTrigger, "Name", false, DataSourceUpdateMode.OnPropertyChanged);
+            cronExpressionTb.DataBindings.Add("Text", viewModel.JobAndTrigger, "CronExpression", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         // this method will save job details, trigger and will schedule the job 
