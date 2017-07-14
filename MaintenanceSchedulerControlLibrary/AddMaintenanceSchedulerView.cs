@@ -19,7 +19,7 @@ namespace Maintenance_Scheduler_UI
         public void InitializeViewModel(IAddMaintenanceSchedulerViewModel viewModel)
         {
             this.viewModel = viewModel;
-            jobTypesCb.DataSource = viewModel.JobTypes;
+            jobTypesCb.DataSource = viewModel.JobAndTrigger.JobTypes;
         }
 
         // this method will save job details, trigger and will schedule the job 
@@ -27,7 +27,7 @@ namespace Maintenance_Scheduler_UI
         {
             if (validate() == true)
             {
-                if (viewModel.SelectedJobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Local)
+                if (viewModel.SelectedJobType == MaintenanceJobType.Local)
                 {
                     viewModel.ScheduleJobWithCronTrigger(
                         jobNameTb.Text,
@@ -36,7 +36,7 @@ namespace Maintenance_Scheduler_UI
                         triggerNameTb.Text,
                         cronExpressionTb.Text);
                 }
-                else if (viewModel.SelectedJobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Mailing)
+                else if (viewModel.SelectedJobType == MaintenanceJobType.Mailing)
                 {
                     viewModel.ScheduleJobWithCronTrigger(
                         jobNameTb.Text,
@@ -170,6 +170,11 @@ namespace Maintenance_Scheduler_UI
     public interface IAddMaintenanceSchedulerViewModel
     {
         /// <summary>
+        /// User controls job and trigger instance
+        /// </summary>
+        ITriggerViewModel JobAndTrigger { get; set; }
+
+        /// <summary>
         /// Currently selected job type in the ComboBox
         /// </summary>
         MaintenanceJobType SelectedJobType { get; set; }
@@ -199,21 +204,11 @@ namespace Maintenance_Scheduler_UI
         void ScheduleJobWithCronTrigger(string jobName, string jobMessage, MaintenanceJobType jobType, string triggerName, string cronExpression, string jobMailSubject = "", string jobMailBody = "");
 
         /// <summary>
-        /// Array of Job Types
-        /// </summary>
-        Array JobTypes { get; set; }
-
-        /// <summary>
-        /// Populates the Array of the job types from the Job Type enum
-        /// </summary>
-        void GetJobTypes();
-
-        /// <summary>
         /// Converts string into the coresponing enum Job Type 
         /// </summary>
         /// <param name="jobType"></param>
         /// <returns></returns>
-        StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType ConvertStringToJobTypeE(string jobType);
+        MaintenanceJobType ConvertStringToJobTypeE(string jobType);
 
         /// <summary>
         /// Checks if the passed cron expression is valid
@@ -221,7 +216,5 @@ namespace Maintenance_Scheduler_UI
         /// <param name="cronExpression"></param>
         /// <returns></returns>
         bool IsValidCronExpression(string cronExpression);
-
-        bool CheckJobType();
     }
 }

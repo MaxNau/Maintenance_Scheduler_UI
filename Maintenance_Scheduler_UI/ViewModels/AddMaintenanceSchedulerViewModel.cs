@@ -1,5 +1,4 @@
 ﻿using Maintenance_Scheduler_BAL;
-using Maintenance_Scheduler_BAL.SchedulerJobs;
 using Quartz;
 using System;
 using StringsConstantsAndEnumerations;
@@ -9,13 +8,13 @@ namespace Maintenance_Scheduler_UI.ViewModels
 {
     public class AddMaintenanceSchedulerViewModel : IAddMaintenanceSchedulerViewModel
     {
-
         public AddMaintenanceSchedulerViewModel()
         {
-            GetJobTypes();
+            JobAndTrigger = new TriggerViewModel();
         }
 
-        public StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType SelectedJobType { get; set; }
+        public Enumerations.MaintenanceJobType SelectedJobType { get; set; }
+        public ITriggerViewModel JobAndTrigger { get; set; }
 
         /// <summary>
         /// Checks if trigger name already exists in database
@@ -51,13 +50,6 @@ namespace Maintenance_Scheduler_UI.ViewModels
             MaintenanceScheduler.ScheduleJobWithCronTrigger(jobName, jobMessage, jobType, triggerName, cronExpression, jobMailSubject, jobMailBody);
         }
 
-        public Array JobTypes { get; set; }
-
-        public void GetJobTypes()
-        {
-            JobTypes = Enum.GetValues(typeof(MaintenanceJobType));
-        }
-
         public Enumerations.MaintenanceJobType ConvertStringToJobTypeE(string jobType)
         {
             Enumerations.MaintenanceJobType jobT;
@@ -68,12 +60,6 @@ namespace Maintenance_Scheduler_UI.ViewModels
         public bool IsValidCronExpression(string cronExpression)
         {
             return CronExpression.IsValidExpression(cronExpression);
-        }
-
-        public bool CheckJobType()
-        {
-            //throw new NotImplementedException();
-            return true;
         }
     }
 }

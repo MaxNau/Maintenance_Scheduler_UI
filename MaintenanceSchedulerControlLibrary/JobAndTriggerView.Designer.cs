@@ -1,9 +1,6 @@
-﻿
-using System;
-
-namespace Maintenance_Scheduler_UI
+﻿namespace MaintenanceSchedulerControlLibrary
 {
-    partial class AddMaintenanceSchedulerView
+    partial class JobAndTriggerView
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,18 +29,18 @@ namespace Maintenance_Scheduler_UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.jobMessageLb = new System.Windows.Forms.Label();
-            this.jobNameLb = new System.Windows.Forms.Label();
-            this.triggerNameLb = new System.Windows.Forms.Label();
-            this.jobNameTb = new System.Windows.Forms.TextBox();
-            this.triggerNameTb = new System.Windows.Forms.TextBox();
-            this.jobMessageTb = new System.Windows.Forms.TextBox();
             this.viewHolder = new System.Windows.Forms.TableLayoutPanel();
             this.cronExpressionTb = new System.Windows.Forms.TextBox();
-            this.addTriggerBtn = new System.Windows.Forms.Button();
+            this.jobsAndTriggerBtn = new System.Windows.Forms.Button();
             this.jobTypesCb = new System.Windows.Forms.ComboBox();
+            this.jobMessageTb = new System.Windows.Forms.TextBox();
+            this.jobNameTb = new System.Windows.Forms.TextBox();
+            this.jobNameLb = new System.Windows.Forms.Label();
+            this.jobMessageLb = new System.Windows.Forms.Label();
             this.jobTypeLb = new System.Windows.Forms.Label();
             this.cronExpressionLb = new System.Windows.Forms.Label();
+            this.triggerNameLb = new System.Windows.Forms.Label();
+            this.triggerNameTb = new System.Windows.Forms.TextBox();
             this.mailSubjectLb = new System.Windows.Forms.Label();
             this.mailSubjectTb = new System.Windows.Forms.TextBox();
             this.mailBody = new System.Windows.Forms.Label();
@@ -53,75 +50,15 @@ namespace Maintenance_Scheduler_UI
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
-            // jobMessageLb
-            // 
-            this.jobMessageLb.AutoSize = true;
-            this.jobMessageLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jobMessageLb.Location = new System.Drawing.Point(3, 26);
-            this.jobMessageLb.Name = "jobMessageLb";
-            this.jobMessageLb.Size = new System.Drawing.Size(103, 17);
-            this.jobMessageLb.TabIndex = 12;
-            this.jobMessageLb.Text = "Job message";
-            // 
-            // jobNameLb
-            // 
-            this.jobNameLb.AutoSize = true;
-            this.jobNameLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jobNameLb.Location = new System.Drawing.Point(3, 0);
-            this.jobNameLb.Name = "jobNameLb";
-            this.jobNameLb.Size = new System.Drawing.Size(78, 17);
-            this.jobNameLb.TabIndex = 11;
-            this.jobNameLb.Text = "Job name";
-            // 
-            // triggerNameLb
-            // 
-            this.triggerNameLb.AutoSize = true;
-            this.triggerNameLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.triggerNameLb.Location = new System.Drawing.Point(3, 411);
-            this.triggerNameLb.Name = "triggerNameLb";
-            this.triggerNameLb.Size = new System.Drawing.Size(107, 17);
-            this.triggerNameLb.TabIndex = 1;
-            this.triggerNameLb.Text = "Trigger Name";
-            // 
-            // jobNameTb
-            // 
-            this.jobNameTb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.jobNameTb.Location = new System.Drawing.Point(163, 3);
-            this.jobNameTb.Name = "jobNameTb";
-            this.jobNameTb.Size = new System.Drawing.Size(152, 20);
-            this.jobNameTb.TabIndex = 10;
-            this.jobNameTb.Validating += new System.ComponentModel.CancelEventHandler(this.jobNameTb_Validating);
-            // 
-            // triggerNameTb
-            // 
-            this.triggerNameTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.triggerNameTb.Location = new System.Drawing.Point(163, 414);
-            this.triggerNameTb.Name = "triggerNameTb";
-            this.triggerNameTb.Size = new System.Drawing.Size(152, 20);
-            this.triggerNameTb.TabIndex = 2;
-            this.triggerNameTb.Validating += new System.ComponentModel.CancelEventHandler(this.triggerNameTb_Validating);
-            // 
-            // jobMessageTb
-            // 
-            this.jobMessageTb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.jobMessageTb.Location = new System.Drawing.Point(163, 29);
-            this.jobMessageTb.Name = "jobMessageTb";
-            this.jobMessageTb.Size = new System.Drawing.Size(152, 20);
-            this.jobMessageTb.TabIndex = 9;
-            this.jobMessageTb.Validating += new System.ComponentModel.CancelEventHandler(this.jobMessageTb_Validating);
-            // 
             // viewHolder
             // 
-            this.viewHolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.viewHolder.AutoSize = true;
             this.viewHolder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.viewHolder.ColumnCount = 2;
             this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
             this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.viewHolder.Controls.Add(this.cronExpressionTb, 1, 6);
-            this.viewHolder.Controls.Add(this.addTriggerBtn, 1, 7);
+            this.viewHolder.Controls.Add(this.jobsAndTriggerBtn, 1, 7);
             this.viewHolder.Controls.Add(this.jobTypesCb, 1, 2);
             this.viewHolder.Controls.Add(this.jobMessageTb, 1, 1);
             this.viewHolder.Controls.Add(this.jobNameTb, 1, 0);
@@ -135,6 +72,7 @@ namespace Maintenance_Scheduler_UI
             this.viewHolder.Controls.Add(this.mailSubjectTb, 1, 3);
             this.viewHolder.Controls.Add(this.mailBody, 0, 4);
             this.viewHolder.Controls.Add(this.mailBodyRtb, 1, 4);
+            this.viewHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.viewHolder.Location = new System.Drawing.Point(0, 0);
             this.viewHolder.Name = "viewHolder";
             this.viewHolder.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
@@ -147,28 +85,27 @@ namespace Maintenance_Scheduler_UI
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.viewHolder.Size = new System.Drawing.Size(348, 493);
-            this.viewHolder.TabIndex = 0;
+            this.viewHolder.Size = new System.Drawing.Size(388, 293);
+            this.viewHolder.TabIndex = 1;
             // 
             // cronExpressionTb
             // 
             this.cronExpressionTb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cronExpressionTb.Location = new System.Drawing.Point(163, 440);
+            this.cronExpressionTb.Location = new System.Drawing.Point(163, 240);
             this.cronExpressionTb.Name = "cronExpressionTb";
-            this.cronExpressionTb.Size = new System.Drawing.Size(152, 20);
+            this.cronExpressionTb.Size = new System.Drawing.Size(192, 20);
             this.cronExpressionTb.TabIndex = 23;
-            this.cronExpressionTb.Validating += new System.ComponentModel.CancelEventHandler(this.cronExpressionTb_Validating);
             // 
-            // addTriggerBtn
+            // jobsAndTriggerBtn
             // 
-            this.addTriggerBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.addTriggerBtn.Location = new System.Drawing.Point(240, 466);
-            this.addTriggerBtn.Name = "addTriggerBtn";
-            this.addTriggerBtn.Size = new System.Drawing.Size(75, 24);
-            this.addTriggerBtn.TabIndex = 22;
-            this.addTriggerBtn.Text = "Add";
-            this.addTriggerBtn.UseVisualStyleBackColor = true;
-            this.addTriggerBtn.Click += new System.EventHandler(this.addTriggerBtn_Click);
+            this.jobsAndTriggerBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.jobsAndTriggerBtn.Location = new System.Drawing.Point(280, 266);
+            this.jobsAndTriggerBtn.Name = "jobsAndTriggerBtn";
+            this.jobsAndTriggerBtn.Size = new System.Drawing.Size(75, 24);
+            this.jobsAndTriggerBtn.TabIndex = 22;
+            this.jobsAndTriggerBtn.Text = "Enter Text";
+            this.jobsAndTriggerBtn.UseVisualStyleBackColor = true;
+            this.jobsAndTriggerBtn.Click += new System.EventHandler(this.updateJobeAndTriggerBtn_Click);
             // 
             // jobTypesCb
             // 
@@ -176,9 +113,44 @@ namespace Maintenance_Scheduler_UI
             this.jobTypesCb.FormattingEnabled = true;
             this.jobTypesCb.Location = new System.Drawing.Point(163, 55);
             this.jobTypesCb.Name = "jobTypesCb";
-            this.jobTypesCb.Size = new System.Drawing.Size(152, 21);
+            this.jobTypesCb.Size = new System.Drawing.Size(192, 21);
             this.jobTypesCb.TabIndex = 20;
-            this.jobTypesCb.SelectedValueChanged += new System.EventHandler(this.jobTypesCb_SelectedValueChanged);
+            // 
+            // jobMessageTb
+            // 
+            this.jobMessageTb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.jobMessageTb.Location = new System.Drawing.Point(163, 29);
+            this.jobMessageTb.Name = "jobMessageTb";
+            this.jobMessageTb.Size = new System.Drawing.Size(192, 20);
+            this.jobMessageTb.TabIndex = 9;
+            // 
+            // jobNameTb
+            // 
+            this.jobNameTb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.jobNameTb.Location = new System.Drawing.Point(163, 3);
+            this.jobNameTb.Name = "jobNameTb";
+            this.jobNameTb.Size = new System.Drawing.Size(192, 20);
+            this.jobNameTb.TabIndex = 10;
+            // 
+            // jobNameLb
+            // 
+            this.jobNameLb.AutoSize = true;
+            this.jobNameLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobNameLb.Location = new System.Drawing.Point(3, 0);
+            this.jobNameLb.Name = "jobNameLb";
+            this.jobNameLb.Size = new System.Drawing.Size(78, 17);
+            this.jobNameLb.TabIndex = 11;
+            this.jobNameLb.Text = "Job name";
+            // 
+            // jobMessageLb
+            // 
+            this.jobMessageLb.AutoSize = true;
+            this.jobMessageLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobMessageLb.Location = new System.Drawing.Point(3, 26);
+            this.jobMessageLb.Name = "jobMessageLb";
+            this.jobMessageLb.Size = new System.Drawing.Size(103, 17);
+            this.jobMessageLb.TabIndex = 12;
+            this.jobMessageLb.Text = "Job message";
             // 
             // jobTypeLb
             // 
@@ -194,11 +166,30 @@ namespace Maintenance_Scheduler_UI
             // 
             this.cronExpressionLb.AutoSize = true;
             this.cronExpressionLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cronExpressionLb.Location = new System.Drawing.Point(3, 437);
+            this.cronExpressionLb.Location = new System.Drawing.Point(3, 237);
             this.cronExpressionLb.Name = "cronExpressionLb";
             this.cronExpressionLb.Size = new System.Drawing.Size(125, 17);
             this.cronExpressionLb.TabIndex = 15;
             this.cronExpressionLb.Text = "Cron expression";
+            // 
+            // triggerNameLb
+            // 
+            this.triggerNameLb.AutoSize = true;
+            this.triggerNameLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.triggerNameLb.Location = new System.Drawing.Point(3, 211);
+            this.triggerNameLb.Name = "triggerNameLb";
+            this.triggerNameLb.Size = new System.Drawing.Size(107, 17);
+            this.triggerNameLb.TabIndex = 1;
+            this.triggerNameLb.Text = "Trigger Name";
+            // 
+            // triggerNameTb
+            // 
+            this.triggerNameTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.triggerNameTb.Location = new System.Drawing.Point(163, 214);
+            this.triggerNameTb.Name = "triggerNameTb";
+            this.triggerNameTb.Size = new System.Drawing.Size(192, 20);
+            this.triggerNameTb.TabIndex = 2;
             // 
             // mailSubjectLb
             // 
@@ -215,7 +206,7 @@ namespace Maintenance_Scheduler_UI
             this.mailSubjectTb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mailSubjectTb.Location = new System.Drawing.Point(163, 82);
             this.mailSubjectTb.Name = "mailSubjectTb";
-            this.mailSubjectTb.Size = new System.Drawing.Size(152, 20);
+            this.mailSubjectTb.Size = new System.Drawing.Size(192, 20);
             this.mailSubjectTb.TabIndex = 25;
             // 
             // mailBody
@@ -233,7 +224,7 @@ namespace Maintenance_Scheduler_UI
             this.mailBodyRtb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mailBodyRtb.Location = new System.Drawing.Point(163, 108);
             this.mailBodyRtb.Name = "mailBodyRtb";
-            this.mailBodyRtb.Size = new System.Drawing.Size(152, 300);
+            this.mailBodyRtb.Size = new System.Drawing.Size(192, 100);
             this.mailBodyRtb.TabIndex = 27;
             this.mailBodyRtb.Text = "";
             // 
@@ -241,16 +232,13 @@ namespace Maintenance_Scheduler_UI
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // AddMaintenanceSchedulerView
+            // UpdateJobAndTriggerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.viewHolder);
-            this.Name = "AddMaintenanceSchedulerView";
-            this.Size = new System.Drawing.Size(348, 496);
+            this.Name = "UpdateJobAndTriggerView";
+            this.Size = new System.Drawing.Size(388, 293);
             this.viewHolder.ResumeLayout(false);
             this.viewHolder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
@@ -260,22 +248,23 @@ namespace Maintenance_Scheduler_UI
         }
 
         #endregion
-        private System.Windows.Forms.Label jobMessageLb;
-        private System.Windows.Forms.Label jobNameLb;
-        private System.Windows.Forms.Label triggerNameLb;
-        private System.Windows.Forms.TextBox jobNameTb;
-        private System.Windows.Forms.TextBox triggerNameTb;
-        private System.Windows.Forms.TextBox jobMessageTb;
+
         private System.Windows.Forms.TableLayoutPanel viewHolder;
-        private System.Windows.Forms.Label cronExpressionLb;
-        private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.Label jobTypeLb;
         private System.Windows.Forms.TextBox cronExpressionTb;
-        private System.Windows.Forms.Button addTriggerBtn;
+        private System.Windows.Forms.Button jobsAndTriggerBtn;
         private System.Windows.Forms.ComboBox jobTypesCb;
+        private System.Windows.Forms.TextBox jobMessageTb;
+        private System.Windows.Forms.TextBox jobNameTb;
+        private System.Windows.Forms.Label jobNameLb;
+        private System.Windows.Forms.Label jobMessageLb;
+        private System.Windows.Forms.Label jobTypeLb;
+        private System.Windows.Forms.Label cronExpressionLb;
+        private System.Windows.Forms.Label triggerNameLb;
+        private System.Windows.Forms.TextBox triggerNameTb;
         private System.Windows.Forms.Label mailSubjectLb;
         private System.Windows.Forms.TextBox mailSubjectTb;
         private System.Windows.Forms.Label mailBody;
         private System.Windows.Forms.RichTextBox mailBodyRtb;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

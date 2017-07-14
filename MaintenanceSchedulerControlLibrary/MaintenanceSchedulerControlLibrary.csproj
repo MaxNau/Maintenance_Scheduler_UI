@@ -61,6 +61,12 @@
       <DependentUpon>Messanger.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="JobAndTriggerView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JobAndTriggerView.Designer.cs">
+      <DependentUpon>JobAndTriggerView.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +79,9 @@
     <EmbeddedResource Include="Messanger.resx">
       <DependentUpon>Messanger.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="JobAndTriggerView.resx">
+      <DependentUpon>JobAndTriggerView.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maintenance_Scheduler_DAL\Maintenance_Scheduler_DAL.csproj">
@@ -83,6 +92,9 @@
       <Project>{f606990b-db4f-43c6-857d-832bdb465b9d}</Project>
       <Name>StringsConstantsAndEnumerations</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\TriggerViewModel.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

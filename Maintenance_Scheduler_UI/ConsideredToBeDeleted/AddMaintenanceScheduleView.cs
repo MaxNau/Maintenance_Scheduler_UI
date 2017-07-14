@@ -14,7 +14,7 @@ namespace Maintenance_Scheduler_UI
             InitializeComponent();
             errorProvider.ContainerControl = this;
             viewModel = new AddMaintenanceSchedulerViewModel();
-            jobTypesCb.DataSource = viewModel.JobTypes;
+            jobTypesCb.DataSource = viewModel.JobAndTrigger.JobTypes;
 
         }
 

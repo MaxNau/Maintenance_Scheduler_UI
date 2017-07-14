@@ -25,6 +25,7 @@ namespace Maintenance_Scheduler_UI
                 Messanger messanger = new Messanger(sender as string);
                 messanger.ShowDialog();
             });
+  
         }
 
         private void Form1_Load(object sender, EventArgs e)

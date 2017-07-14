@@ -1,5 +1,7 @@
 ﻿using Maintenance_Scheduler_DAL.DataAccess.DTOs;
+using StringsConstantsAndEnumerations;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 
@@ -91,7 +93,12 @@ namespace Maintenance_Scheduler_UI
         string Name { get; set; }
         string JobName { get; set; }
         string Message { get; set; }
-        string Type { get; set; }
+        Enumerations.MaintenanceJobType SelectedJobType { get; set; }
+        List<Enumerations.MaintenanceJobType> JobTypes { get; set; }
+        string TriggerType { get; set; }
+        string MailSubject { get; set; }
+        string MailBody { get; set; }
+        string CronExpression { get; set; }
         DateTimeOffset? PreviousFireTimeDate { get; set; }
         DateTimeOffset? NextFireTimeDate { get; set; }
         DateTimeOffset StartTimeDate { get; set; }
