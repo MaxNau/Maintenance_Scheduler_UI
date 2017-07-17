@@ -18,6 +18,10 @@ namespace Maintenance_Scheduler_UI.ViewModels
         private string cronExpression;
         private List<Enumerations.MaintenanceJobType> jobTypes;
         private Enumerations.MaintenanceJobType selectedJobType;
+        private DateTimeOffset? previousFireTimeDate;
+        private DateTimeOffset? nextFireTimeDate;
+        private DateTimeOffset startTimeDate;
+        private DateTimeOffset? endTimeDate;
 
         public TriggerViewModel() {
             JobTypes = GetJobTypes();
@@ -33,6 +37,7 @@ namespace Maintenance_Scheduler_UI.ViewModels
             NextFireTimeDate = model.NextFireTimeDate;
             StartTimeDate = model.StartTimeDate;
             EndTimeDate = model.EndTimeDate;
+            CronExpression = model.CronExpression;
         }
 
         public string Name
@@ -54,6 +59,7 @@ namespace Maintenance_Scheduler_UI.ViewModels
                 NotifyPropertyChanged("JobName");
             }
         }
+
         public string Message
         {
             get { return message; }
@@ -64,6 +70,7 @@ namespace Maintenance_Scheduler_UI.ViewModels
             }
         }
 
+        [Browsable(false)]
         public Enumerations.MaintenanceJobType SelectedJobType
         {
             get { return selectedJobType; }
@@ -74,6 +81,7 @@ namespace Maintenance_Scheduler_UI.ViewModels
             }
         }
 
+        [Browsable(false)]
         public List<Enumerations.MaintenanceJobType> JobTypes
         {
             get { return jobTypes; }
@@ -124,11 +132,50 @@ namespace Maintenance_Scheduler_UI.ViewModels
             }
         }
 
-        public DateTimeOffset? PreviousFireTimeDate { get; set; }
-        public DateTimeOffset? NextFireTimeDate { get; set; }
-        public DateTimeOffset StartTimeDate { get; set; }
-        public DateTimeOffset? EndTimeDate { get; set; }
+        public DateTimeOffset? PreviousFireTimeDate
+        {
+            get { return previousFireTimeDate; }
+            set
+            {
+                previousFireTimeDate = value;
+                NotifyPropertyChanged("PreviousFireTimeDate");
+            }
+        }
 
+        public DateTimeOffset? NextFireTimeDate
+        {
+            get { return nextFireTimeDate; }
+            set
+            {
+                nextFireTimeDate = value;
+                NotifyPropertyChanged("NextFireTimeDate");
+            }
+        }
+
+        public DateTimeOffset StartTimeDate
+        {
+            get { return startTimeDate; }
+            set
+            {
+                startTimeDate = value;
+                NotifyPropertyChanged("StartTimeDate");
+            }
+        }
+
+        public DateTimeOffset? EndTimeDate
+        {
+            get { return endTimeDate; }
+            set
+            {
+                endTimeDate = value;
+                NotifyPropertyChanged("EndTimeDate");
+            }
+        }
+
+        /// <summary>
+        /// Gets the job types from the MaintenaceJobType enum and stores them into list
+        /// </summary>
+        /// <returns></returns>
         private List<Enumerations.MaintenanceJobType> GetJobTypes()
         {
             return ((Enum.GetValues(typeof(Enumerations.MaintenanceJobType))) as Enumerations.MaintenanceJobType[]).ToList();

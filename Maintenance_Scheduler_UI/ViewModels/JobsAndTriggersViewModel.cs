@@ -3,14 +3,30 @@ using Maintenance_Scheduler_BAL.SchedulerJobs;
 using System.Linq;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Maintenance_Scheduler_UI.ViewModels
 {
-    public class JobsAndTriggersViewModel : IJobsAndTriggersViewModel
+    public class JobsAndTriggersViewModel : IJobsAndTriggersViewModel, INotifyPropertyChanged
     {
+        private ObservableCollection<ITriggerViewModel> triggers;
+
         public event EventHandler UpdateTrigersDgv;
 
-        public ObservableCollection<ITriggerViewModel> Triggers { get; set; }
+        public IAddMaintenanceSchedulerViewModel viewModel { get; set; }
+
+        public ObservableCollection<ITriggerViewModel> Triggers
+        {
+            get { return triggers; }
+            set
+            {
+                triggers = value;
+                NotifyPropertyChanged("Triggers");
+            }
+        }
+
+        public ITriggerViewModel JobAndTrigger { get; set; }
+        public bool ShowJobMailPart { get; set; }
 
         public JobsAndTriggersViewModel()
         {
@@ -62,6 +78,38 @@ namespace Maintenance_Scheduler_UI.ViewModels
         public void UnsuscribeFromJobExecution()
         {
             MaintenanceJob.JobDone -= OnJobDone;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String info)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
+        }
+
+        public bool TriggerNameExists(string triggerName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool JobNameExists(string jobName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ScheduleJobWithCronTrigger()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsValidCronExpression(string cronExpression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CheckIfShowJobMailPart()
+        {
+            throw new NotImplementedException();
         }
     }
 }

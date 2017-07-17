@@ -2,7 +2,6 @@
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using static StringsConstantsAndEnumerations.Enumerations;
 
 namespace Maintenance_Scheduler_UI
 {
@@ -23,6 +22,8 @@ namespace Maintenance_Scheduler_UI
             AddBindings();
         }
 
+        public IAddMaintenanceSchedulerViewModel GetViewModel { get { return viewModel; } }
+
         private void AddBindings()
         {
             jobNameTb.DataBindings.Add("Text", viewModel.JobAndTrigger, "JobName", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -41,6 +42,7 @@ namespace Maintenance_Scheduler_UI
         // this method will save job details, trigger and will schedule the job 
         private void addTriggerBtn_Click(object sender, EventArgs e)
         {
+            var cron = cronExpressionTabControl1.CronExpression;
             if (validate() == true)
             {
                 viewModel.ScheduleJobWithCronTrigger();

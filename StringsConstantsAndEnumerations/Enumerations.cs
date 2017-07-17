@@ -8,5 +8,32 @@ namespace StringsConstantsAndEnumerations
             Local,
             Mailing
         }
+
+        public enum Month
+        {
+            JAN = 1,
+            FEB,
+            MAR,
+            APR,
+            MAY,
+            JUN,
+            JUL,
+            AUG,
+            SEP,
+            OCT,
+            NOV,
+            DEC
+        }
+
+        public enum TimeInterval
+        {
+            Second,
+            Minute,
+            Hour,
+            Day_of_the_month,
+            Day_of_the_week,
+            Month,
+            Year
+        }
     }
 }

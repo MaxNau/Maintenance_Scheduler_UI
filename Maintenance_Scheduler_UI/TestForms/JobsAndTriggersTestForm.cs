@@ -1,4 +1,5 @@
-﻿using Maintenance_Scheduler_UI.ViewModels;
+﻿using BrightIdeasSoftware;
+using Maintenance_Scheduler_UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,10 +12,15 @@ namespace Maintenance_Scheduler_UI.TestForms
 {
     public partial class JobsAndTriggersTestForm : Form
     {
+        IJobsAndTriggersViewModel viewModel;
+
         public JobsAndTriggersTestForm()
         {
-            InitializeComponent();
-            jobsAndTriggersView1.IntitializeViewModel(new JobsAndTriggersViewModel());
+            InitializeComponent();  
+            viewModel = new JobsAndTriggersViewModel();
+            jobsAndTriggersView1.IntitializeViewModel(viewModel, new AddMaintenanceSchedulerViewModel());
+            objectListView1.SetObjects(viewModel.Triggers);
+            objectListView1.RebuildColumns();
         }
     }
 }

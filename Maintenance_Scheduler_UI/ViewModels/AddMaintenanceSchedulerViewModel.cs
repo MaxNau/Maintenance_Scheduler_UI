@@ -14,7 +14,16 @@ namespace Maintenance_Scheduler_UI.ViewModels
             JobAndTrigger = new TriggerViewModel();
         }
 
-        public ITriggerViewModel JobAndTrigger { get; set; }
+        private ITriggerViewModel jobAndTrigger;
+        public ITriggerViewModel JobAndTrigger
+        {
+            get { return jobAndTrigger; }
+            set { jobAndTrigger = value;
+                NotifyPropertyChanged("JobAndTrigger");
+            }
+        }
+
+
 
         public bool TriggerNameExists(string triggerName)
         {

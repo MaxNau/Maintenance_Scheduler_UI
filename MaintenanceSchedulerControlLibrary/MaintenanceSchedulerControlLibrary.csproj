@@ -48,6 +48,24 @@
     <Compile Include="AddMaintenanceSchedulerView.Designer.cs">
       <DependentUpon>AddMaintenanceSchedulerView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CronExpressionTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CronExpressionTabControl.Designer.cs">
+      <DependentUpon>CronExpressionTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CronURIPart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CronURIPart.Designer.cs">
+      <DependentUpon>CronURIPart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedCronURI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExtendedCronURI.Designer.cs">
+      <DependentUpon>ExtendedCronURI.cs</DependentUpon>
+    </Compile>
     <Compile Include="JobsAndTriggersView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -72,6 +90,15 @@
   <ItemGroup>
     <EmbeddedResource Include="AddMaintenanceSchedulerView.resx">
       <DependentUpon>AddMaintenanceSchedulerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CronExpressionTabControl.resx">
+      <DependentUpon>CronExpressionTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CronURIPart.resx">
+      <DependentUpon>CronURIPart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtendedCronURI.resx">
+      <DependentUpon>ExtendedCronURI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JobsAndTriggersView.resx">
       <DependentUpon>JobsAndTriggersView.cs</DependentUpon>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.triggersDgv = new System.Windows.Forms.DataGridView();
             this.jobAndTriggerView1 = new MaintenanceSchedulerControlLibrary.JobAndTriggerView();
@@ -53,18 +54,28 @@
             // 
             // triggersDgv
             // 
+            this.triggersDgv.AllowUserToAddRows = false;
+            this.triggersDgv.AllowUserToDeleteRows = false;
+            this.triggersDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.triggersDgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.triggersDgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.triggersDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.triggersDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.triggersDgv.Location = new System.Drawing.Point(3, 3);
             this.triggersDgv.Name = "triggersDgv";
+            this.triggersDgv.ReadOnly = true;
+            this.triggersDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.triggersDgv.Size = new System.Drawing.Size(453, 194);
             this.triggersDgv.TabIndex = 0;
+            this.triggersDgv.DataSourceChanged += new System.EventHandler(this.triggersDgv_DataSourceChanged);
+            this.triggersDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.triggersDgv_CellClick);
+            this.triggersDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.triggersDgv_CellContentClick);
             // 
             // jobAndTriggerView1
             // 
             this.jobAndTriggerView1.CronExpression = "";
             this.jobAndTriggerView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.jobAndTriggerView1.JobAndTriggerViewButtonText = "Update";
+            this.jobAndTriggerView1.JobAndTriggerViewButtonText = "Enter Text";
             this.jobAndTriggerView1.JobMessage = "";
             this.jobAndTriggerView1.JobName = "";
             this.jobAndTriggerView1.JobTypes = null;

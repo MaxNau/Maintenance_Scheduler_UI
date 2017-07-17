@@ -117,12 +117,12 @@ namespace Maintenance_Scheduler_BAL
         /// <param name="jobMessage"></param>
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
-        public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType jobType, string triggerName, string cronExpression, string jobMailSubject = "", string jobMailBody = "")
+        public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType jobType, string triggerName, string cronExpression, string startDate, string jobMailSubject = "", string jobMailBody = "")
         {
             if (jobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Local)
-                scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression));
+                scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression, startDate));
             else if (jobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Mailing)
-                scheduler.ScheduleJob(CreateMailingNotifierJob(jobName, jobMessage, jobMailSubject, jobMailBody), CreateCronTrigger(triggerName, cronExpression));
+                scheduler.ScheduleJob(CreateMailingNotifierJob(jobName, jobMessage, jobMailSubject, jobMailBody), CreateCronTrigger(triggerName, cronExpression, startDate));
         }
 
         private static ITrigger CreateDailyBasedtrigger(string triggerName, DateTime startDate, int daysInteval)
@@ -140,12 +140,13 @@ namespace Maintenance_Scheduler_BAL
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
         /// <returns></returns>
-        private static ITrigger CreateCronTrigger(string triggerName, string cronExpression)
+        private static ITrigger CreateCronTrigger(string triggerName, string cronExpression, string startDate)
         {
             return TriggerBuilder.Create()
                 .WithIdentity(triggerName)
                 .WithCronSchedule(cronExpression)
-                .StartAt(DateTimeOffset.Now)
+                .StartAt(DateTimeOffset.ParseExact(startDate,
+    "dd/MM/yyyy HH.mm.ss", System.Globalization.CultureInfo.InvariantCulture))
                 .Build();
         }
 
@@ -183,17 +184,21 @@ namespace Maintenance_Scheduler_BAL
             {
                 ITrigger trigger = scheduler.GetTrigger(key);
 
-                triggers.Add(new TriggerModel()
+                if (trigger is ICronTrigger)
                 {
-                    JobName = trigger.JobKey.Name,
-                    Name = trigger.Key.Name,
-                    Type = trigger.GetType().Name,
-                    StartTimeDate = trigger.StartTimeUtc,
-                    EndTimeDate = trigger.EndTimeUtc,
-                    PreviousFireTimeDate = trigger.GetPreviousFireTimeUtc(),
-                    NextFireTimeDate = trigger.GetNextFireTimeUtc(),
-                    Message = scheduler.GetJobDetail(trigger.JobKey).JobDataMap.GetString("Message")
-                });
+                    triggers.Add(new TriggerModel()
+                    {
+                        JobName = trigger.JobKey.Name,
+                        Name = trigger.Key.Name,
+                        Type = trigger.GetType().Name,
+                        StartTimeDate = trigger.StartTimeUtc,
+                        EndTimeDate = trigger.EndTimeUtc,
+                        PreviousFireTimeDate = trigger.GetPreviousFireTimeUtc(),
+                        NextFireTimeDate = trigger.GetNextFireTimeUtc(),
+                        Message = scheduler.GetJobDetail(trigger.JobKey).JobDataMap.GetString("Message"),
+                        CronExpression = ((ICronTrigger)trigger).CronExpressionString
+                    });
+                }
             }
 
             return triggers;

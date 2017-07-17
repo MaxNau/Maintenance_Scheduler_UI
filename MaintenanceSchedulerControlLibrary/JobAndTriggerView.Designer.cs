@@ -85,7 +85,7 @@
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.viewHolder.Size = new System.Drawing.Size(388, 293);
+            this.viewHolder.Size = new System.Drawing.Size(388, 294);
             this.viewHolder.TabIndex = 1;
             // 
             // cronExpressionTb
@@ -101,7 +101,7 @@
             this.jobsAndTriggerBtn.Dock = System.Windows.Forms.DockStyle.Right;
             this.jobsAndTriggerBtn.Location = new System.Drawing.Point(280, 266);
             this.jobsAndTriggerBtn.Name = "jobsAndTriggerBtn";
-            this.jobsAndTriggerBtn.Size = new System.Drawing.Size(75, 24);
+            this.jobsAndTriggerBtn.Size = new System.Drawing.Size(75, 25);
             this.jobsAndTriggerBtn.TabIndex = 22;
             this.jobsAndTriggerBtn.Text = "Enter Text";
             this.jobsAndTriggerBtn.UseVisualStyleBackColor = true;
@@ -237,9 +237,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.Controls.Add(this.viewHolder);
             this.Name = "JobAndTriggerView";
-            this.Size = new System.Drawing.Size(388, 293);
+            this.Size = new System.Drawing.Size(388, 294);
             this.viewHolder.ResumeLayout(false);
             this.viewHolder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();

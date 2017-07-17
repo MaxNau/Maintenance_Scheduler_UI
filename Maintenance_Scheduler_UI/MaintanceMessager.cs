@@ -21,10 +21,13 @@ namespace Maintenance_Scheduler_UI
 
         private void ReplaceFanucBatteries_JobDone(object sender, EventArgs e)
         {
-            Invoke((MethodInvoker)delegate
+            if (IsHandleCreated)
             {
-                textBox1.Text = sender as string;
-            });
+                    Invoke((MethodInvoker)delegate
+                {
+                    textBox1.Text = sender as string;
+                });
+            }
         }
     }
 }
