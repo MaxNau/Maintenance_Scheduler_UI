@@ -9,12 +9,14 @@ namespace Maintenance_Scheduler_UI.ViewModels
 {
     public class AddMaintenanceSchedulerViewModel : IAddMaintenanceSchedulerViewModel, INotifyPropertyChanged
     {
+        private bool showJobMailPart;
+        private ITriggerViewModel jobAndTrigger;
+
         public AddMaintenanceSchedulerViewModel()
         {
             JobAndTrigger = new TriggerViewModel();
         }
 
-        private ITriggerViewModel jobAndTrigger;
         public ITriggerViewModel JobAndTrigger
         {
             get { return jobAndTrigger; }
@@ -23,18 +25,24 @@ namespace Maintenance_Scheduler_UI.ViewModels
             }
         }
 
-
+        public bool ShowJobMailPart
+        {
+            get { return showJobMailPart; }
+            set
+            {
+                showJobMailPart = value;
+                NotifyPropertyChanged("ShowJobMailPart");
+            }
+        }
 
         public bool TriggerNameExists(string triggerName)
         {
             return MaintenanceScheduler.GetAllTriggers().Any(t => t.Name == triggerName);
-            //return MaintenanceSchedulerDb.TriggerNameExists(triggerName);
         }
 
         public bool JobNameExists(string jobName)
         {
             return MaintenanceScheduler.GetAllTriggers().Any(t => t.JobName == jobName);
-            //return MaintenanceSchedulerDb.JobNameExists(jobName);
         }
 
         public void ScheduleJobWithCronTrigger()
@@ -61,18 +69,6 @@ namespace Maintenance_Scheduler_UI.ViewModels
         public bool IsValidCronExpression(string cronExpression)
         {
             return CronExpression.IsValidExpression(cronExpression);
-        }
-
-        private bool showJobMailPart;
-
-        public bool ShowJobMailPart
-        {
-            get { return showJobMailPart; }
-            set
-            {
-                showJobMailPart = value;
-                NotifyPropertyChanged("ShowJobMailPart");
-            }
         }
 
         public void CheckIfShowJobMailPart()

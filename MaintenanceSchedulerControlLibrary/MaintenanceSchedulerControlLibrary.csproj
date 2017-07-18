@@ -54,24 +54,25 @@
     <Compile Include="CombinedCronURI.Designer.cs">
       <DependentUpon>CombinedCronURI.cs</DependentUpon>
     </Compile>
-    <Compile Include="CronExpressionTabControl.cs">
+    <Compile Include="ConsideredToBeDeleted\CronExpressionTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CronExpressionTabControl.Designer.cs">
+    <Compile Include="ConsideredToBeDeleted\CronExpressionTabControl.Designer.cs">
       <DependentUpon>CronExpressionTabControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CronURIPart.cs">
+    <Compile Include="ConsideredToBeDeleted\CronURIPart.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CronURIPart.Designer.cs">
+    <Compile Include="ConsideredToBeDeleted\CronURIPart.Designer.cs">
       <DependentUpon>CronURIPart.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExtendedCronURI.cs">
+    <Compile Include="ConsideredToBeDeleted\ExtendedCronURI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ExtendedCronURI.Designer.cs">
+    <Compile Include="ConsideredToBeDeleted\ExtendedCronURI.Designer.cs">
       <DependentUpon>ExtendedCronURI.cs</DependentUpon>
     </Compile>
+    <Compile Include="CronExp.cs" />
     <Compile Include="ExtendedCronURIEveryDMYAtSpecTime.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,13 +113,13 @@
     <EmbeddedResource Include="CombinedCronURI.resx">
       <DependentUpon>CombinedCronURI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CronExpressionTabControl.resx">
+    <EmbeddedResource Include="ConsideredToBeDeleted\CronExpressionTabControl.resx">
       <DependentUpon>CronExpressionTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CronURIPart.resx">
+    <EmbeddedResource Include="ConsideredToBeDeleted\CronURIPart.resx">
       <DependentUpon>CronURIPart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExtendedCronURI.resx">
+    <EmbeddedResource Include="ConsideredToBeDeleted\ExtendedCronURI.resx">
       <DependentUpon>ExtendedCronURI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtendedCronURIEveryDMYAtSpecTime.resx">

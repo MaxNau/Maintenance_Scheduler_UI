@@ -2,16 +2,29 @@
 using Maintenance_Scheduler_BAL.SchedulerJobs;
 using System.Linq;
 using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
+using log4net;
 
 namespace Maintenance_Scheduler_UI.ViewModels
 {
     public class JobsAndTriggersViewModel : IJobsAndTriggersViewModel, INotifyPropertyChanged
     {
+        public event EventHandler UpdateTrigersDgv;
+
+        private ILog log;
         private BindingList<ITriggerViewModel> triggers;
 
-        public event EventHandler UpdateTrigersDgv;
+        public JobsAndTriggersViewModel()
+        {
+            StartLogging();
+            GetAllTriggers();
+        }
+
+        private void StartLogging()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            log = LogManager.GetLogger(typeof(JobsAndTriggersViewModel));
+        }
 
         public IAddMaintenanceSchedulerViewModel viewModel { get; set; }
 
@@ -27,11 +40,6 @@ namespace Maintenance_Scheduler_UI.ViewModels
 
         public ITriggerViewModel JobAndTrigger { get; set; }
         public bool ShowJobMailPart { get; set; }
-
-        public JobsAndTriggersViewModel()
-        {
-            GetAllTriggers();
-        }
 
         /// <summary>
         /// Removes job from the database 
@@ -49,8 +57,15 @@ namespace Maintenance_Scheduler_UI.ViewModels
         /// <param name="jobName"></param>
         public void RemoveJobFromTheDataSource(string jobName)
         {
-            var trigger = Triggers.FirstOrDefault(t => t.JobName == jobName);
-            Triggers.Remove(trigger);
+            try
+            {
+                var trigger = Triggers.FirstOrDefault(t => t.JobName == jobName);
+                Triggers.Remove(trigger);
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message, ex);
+            }
         }
 
         /// <summary>
@@ -58,10 +73,17 @@ namespace Maintenance_Scheduler_UI.ViewModels
         /// </summary>
         private void GetAllTriggers()
         {
-            Triggers = new BindingList<ITriggerViewModel>((
-                from model in MaintenanceScheduler.GetAllTriggers()
-                select new TriggerViewModel(model))
-                .ToList<ITriggerViewModel>());
+            try
+            {
+                Triggers = new BindingList<ITriggerViewModel>((
+                    from model in MaintenanceScheduler.GetAllTriggers()
+                    select new TriggerViewModel(model))
+                    .ToList<ITriggerViewModel>());
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message, ex);
+            }
         }
 
         public void SubscribeToJobExecution()
@@ -85,31 +107,6 @@ namespace Maintenance_Scheduler_UI.ViewModels
         private void NotifyPropertyChanged(String info)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
-        }
-
-        public bool TriggerNameExists(string triggerName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool JobNameExists(string jobName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ScheduleJobWithCronTrigger()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsValidCronExpression(string cronExpression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CheckIfShowJobMailPart()
-        {
-            throw new NotImplementedException();
         }
     }
 }

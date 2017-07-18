@@ -1,4 +1,5 @@
-﻿using Maintenance_Scheduler_BAL.Models;
+﻿using log4net;
+using Maintenance_Scheduler_BAL.Models;
 using Maintenance_Scheduler_BAL.SchedulerJobs;
 using Quartz;
 using Quartz.Impl;
@@ -16,6 +17,8 @@ namespace Maintenance_Scheduler_BAL
     /// </summary>
     public static class MaintenanceScheduler
     {
+        private static ILog log;
+
         private static IScheduler scheduler;
 
         /// <summary>
@@ -23,6 +26,10 @@ namespace Maintenance_Scheduler_BAL
         /// </summary>
         public static void Start()
         {
+            StartLogging();
+
+            log.Info("Scheduler started");
+
             var config = (NameValueCollection)ConfigurationManager.GetSection("quartz");
 
             ISchedulerFactory schedulerFactory = new StdSchedulerFactory(config);
@@ -31,12 +38,22 @@ namespace Maintenance_Scheduler_BAL
             scheduler.Start();
         }
 
+        private static void StartLogging()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            log = LogManager.GetLogger(typeof(MaintenanceScheduler));
+        }
+
         /// <summary>
         /// Stops the scheduler
         /// </summary>
         public static void Stop()
         {
+            log.Info("Scheduler is about to stop");
+
             scheduler.Shutdown();
+
+            log.Info("Scheduler stoped");
         }
 
         #region Scheduler Specification

@@ -8,7 +8,9 @@ using System.Windows.Forms;
 namespace Maintenance_Scheduler_UI
 {
     public partial class TestForm : Form
-    { 
+    {
+        log4net.ILog log;
+
         public TestForm()
         {
             InitializeComponent();
@@ -18,19 +20,34 @@ namespace Maintenance_Scheduler_UI
             MaintenanceJob.JobDone += OnJobDone;
         }
 
+        private void StartLogging()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            log = log4net.LogManager.GetLogger(typeof(TestForm));
+        }
+
         private void OnJobDone(object sender, EventArgs e)
         {
-            Invoke((MethodInvoker)delegate
+            try
             {
-                Messanger messanger = new Messanger(sender as string);
-                messanger.ShowDialog();
-            });
-  
+                if (IsHandleCreated)
+                {
+                    Invoke((MethodInvoker)delegate
+                    {
+                        Messanger messanger = new Messanger(sender as string);
+                        messanger.ShowDialog();
+                    });
+                }
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message, ex);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            StartLogging();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
