@@ -1,11 +1,5 @@
 ﻿using BrightIdeasSoftware;
 using Maintenance_Scheduler_UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Maintenance_Scheduler_UI.TestForms
@@ -19,8 +13,12 @@ namespace Maintenance_Scheduler_UI.TestForms
             InitializeComponent();  
             viewModel = new JobsAndTriggersViewModel();
             jobsAndTriggersView1.IntitializeViewModel(viewModel, new AddMaintenanceSchedulerViewModel());
-            objectListView1.SetObjects(viewModel.Triggers);
-            objectListView1.RebuildColumns();
+
+        }
+
+        private void objectListView1_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            var selectedItem = (TriggerViewModel)((sender as ObjectListView).SelectedObject);
         }
     }
 }

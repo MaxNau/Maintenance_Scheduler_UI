@@ -9,13 +9,13 @@ namespace Maintenance_Scheduler_UI.ViewModels
 {
     public class JobsAndTriggersViewModel : IJobsAndTriggersViewModel, INotifyPropertyChanged
     {
-        private ObservableCollection<ITriggerViewModel> triggers;
+        private BindingList<ITriggerViewModel> triggers;
 
         public event EventHandler UpdateTrigersDgv;
 
         public IAddMaintenanceSchedulerViewModel viewModel { get; set; }
 
-        public ObservableCollection<ITriggerViewModel> Triggers
+        public BindingList<ITriggerViewModel> Triggers
         {
             get { return triggers; }
             set
@@ -58,7 +58,7 @@ namespace Maintenance_Scheduler_UI.ViewModels
         /// </summary>
         private void GetAllTriggers()
         {
-            Triggers = new ObservableCollection<ITriggerViewModel>((
+            Triggers = new BindingList<ITriggerViewModel>((
                 from model in MaintenanceScheduler.GetAllTriggers()
                 select new TriggerViewModel(model))
                 .ToList<ITriggerViewModel>());

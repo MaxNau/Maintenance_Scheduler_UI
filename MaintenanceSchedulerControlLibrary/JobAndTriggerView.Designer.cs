@@ -30,15 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.viewHolder = new System.Windows.Forms.TableLayoutPanel();
-            this.cronExpressionTb = new System.Windows.Forms.TextBox();
-            this.jobsAndTriggerBtn = new System.Windows.Forms.Button();
             this.jobTypesCb = new System.Windows.Forms.ComboBox();
             this.jobMessageTb = new System.Windows.Forms.TextBox();
             this.jobNameTb = new System.Windows.Forms.TextBox();
             this.jobNameLb = new System.Windows.Forms.Label();
             this.jobMessageLb = new System.Windows.Forms.Label();
             this.jobTypeLb = new System.Windows.Forms.Label();
-            this.cronExpressionLb = new System.Windows.Forms.Label();
             this.triggerNameLb = new System.Windows.Forms.Label();
             this.triggerNameTb = new System.Windows.Forms.TextBox();
             this.mailSubjectLb = new System.Windows.Forms.Label();
@@ -46,19 +43,19 @@
             this.mailBody = new System.Windows.Forms.Label();
             this.mailBodyRtb = new System.Windows.Forms.RichTextBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cronExpressionLb = new System.Windows.Forms.Label();
+            this.cronExpressionTb = new System.Windows.Forms.TextBox();
+            this.combinedCronURI1 = new MaintenanceSchedulerControlLibrary.CombinedCronURI();
             this.viewHolder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // viewHolder
             // 
-            this.viewHolder.AutoSize = true;
-            this.viewHolder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.viewHolder.ColumnCount = 2;
             this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
             this.viewHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.viewHolder.Controls.Add(this.cronExpressionTb, 1, 6);
-            this.viewHolder.Controls.Add(this.jobsAndTriggerBtn, 1, 7);
             this.viewHolder.Controls.Add(this.jobTypesCb, 1, 2);
             this.viewHolder.Controls.Add(this.jobMessageTb, 1, 1);
             this.viewHolder.Controls.Add(this.jobNameTb, 1, 0);
@@ -72,11 +69,12 @@
             this.viewHolder.Controls.Add(this.mailSubjectTb, 1, 3);
             this.viewHolder.Controls.Add(this.mailBody, 0, 4);
             this.viewHolder.Controls.Add(this.mailBodyRtb, 1, 4);
-            this.viewHolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.viewHolder.Controls.Add(this.combinedCronURI1, 1, 8);
+            this.viewHolder.Dock = System.Windows.Forms.DockStyle.Top;
             this.viewHolder.Location = new System.Drawing.Point(0, 0);
             this.viewHolder.Name = "viewHolder";
             this.viewHolder.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
-            this.viewHolder.RowCount = 8;
+            this.viewHolder.RowCount = 9;
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -84,36 +82,20 @@
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.viewHolder.Size = new System.Drawing.Size(388, 294);
+            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.viewHolder.Size = new System.Drawing.Size(371, 467);
             this.viewHolder.TabIndex = 1;
-            // 
-            // cronExpressionTb
-            // 
-            this.cronExpressionTb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cronExpressionTb.Location = new System.Drawing.Point(163, 240);
-            this.cronExpressionTb.Name = "cronExpressionTb";
-            this.cronExpressionTb.Size = new System.Drawing.Size(192, 20);
-            this.cronExpressionTb.TabIndex = 23;
-            // 
-            // jobsAndTriggerBtn
-            // 
-            this.jobsAndTriggerBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.jobsAndTriggerBtn.Location = new System.Drawing.Point(280, 266);
-            this.jobsAndTriggerBtn.Name = "jobsAndTriggerBtn";
-            this.jobsAndTriggerBtn.Size = new System.Drawing.Size(75, 25);
-            this.jobsAndTriggerBtn.TabIndex = 22;
-            this.jobsAndTriggerBtn.Text = "Enter Text";
-            this.jobsAndTriggerBtn.UseVisualStyleBackColor = true;
-            this.jobsAndTriggerBtn.Click += new System.EventHandler(this.updateJobeAndTriggerBtn_Click);
             // 
             // jobTypesCb
             // 
             this.jobTypesCb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.jobTypesCb.Enabled = false;
             this.jobTypesCb.FormattingEnabled = true;
             this.jobTypesCb.Location = new System.Drawing.Point(163, 55);
             this.jobTypesCb.Name = "jobTypesCb";
-            this.jobTypesCb.Size = new System.Drawing.Size(192, 21);
+            this.jobTypesCb.Size = new System.Drawing.Size(175, 21);
             this.jobTypesCb.TabIndex = 20;
             this.jobTypesCb.SelectedValueChanged += new System.EventHandler(this.jobTypesCb_SelectedValueChanged);
             // 
@@ -122,7 +104,7 @@
             this.jobMessageTb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.jobMessageTb.Location = new System.Drawing.Point(163, 29);
             this.jobMessageTb.Name = "jobMessageTb";
-            this.jobMessageTb.Size = new System.Drawing.Size(192, 20);
+            this.jobMessageTb.Size = new System.Drawing.Size(175, 20);
             this.jobMessageTb.TabIndex = 9;
             // 
             // jobNameTb
@@ -130,7 +112,8 @@
             this.jobNameTb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.jobNameTb.Location = new System.Drawing.Point(163, 3);
             this.jobNameTb.Name = "jobNameTb";
-            this.jobNameTb.Size = new System.Drawing.Size(192, 20);
+            this.jobNameTb.ReadOnly = true;
+            this.jobNameTb.Size = new System.Drawing.Size(175, 20);
             this.jobNameTb.TabIndex = 10;
             // 
             // jobNameLb
@@ -163,16 +146,6 @@
             this.jobTypeLb.TabIndex = 18;
             this.jobTypeLb.Text = "Job type";
             // 
-            // cronExpressionLb
-            // 
-            this.cronExpressionLb.AutoSize = true;
-            this.cronExpressionLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cronExpressionLb.Location = new System.Drawing.Point(3, 237);
-            this.cronExpressionLb.Name = "cronExpressionLb";
-            this.cronExpressionLb.Size = new System.Drawing.Size(125, 17);
-            this.cronExpressionLb.TabIndex = 15;
-            this.cronExpressionLb.Text = "Cron expression";
-            // 
             // triggerNameLb
             // 
             this.triggerNameLb.AutoSize = true;
@@ -189,7 +162,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.triggerNameTb.Location = new System.Drawing.Point(163, 214);
             this.triggerNameTb.Name = "triggerNameTb";
-            this.triggerNameTb.Size = new System.Drawing.Size(192, 20);
+            this.triggerNameTb.Size = new System.Drawing.Size(175, 20);
             this.triggerNameTb.TabIndex = 2;
             // 
             // mailSubjectLb
@@ -207,7 +180,7 @@
             this.mailSubjectTb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mailSubjectTb.Location = new System.Drawing.Point(163, 82);
             this.mailSubjectTb.Name = "mailSubjectTb";
-            this.mailSubjectTb.Size = new System.Drawing.Size(192, 20);
+            this.mailSubjectTb.Size = new System.Drawing.Size(175, 20);
             this.mailSubjectTb.TabIndex = 25;
             // 
             // mailBody
@@ -225,13 +198,39 @@
             this.mailBodyRtb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mailBodyRtb.Location = new System.Drawing.Point(163, 108);
             this.mailBodyRtb.Name = "mailBodyRtb";
-            this.mailBodyRtb.Size = new System.Drawing.Size(192, 100);
+            this.mailBodyRtb.Size = new System.Drawing.Size(175, 100);
             this.mailBodyRtb.TabIndex = 27;
             this.mailBodyRtb.Text = "";
             // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
+            // 
+            // cronExpressionLb
+            // 
+            this.cronExpressionLb.AutoSize = true;
+            this.cronExpressionLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cronExpressionLb.Location = new System.Drawing.Point(3, 237);
+            this.cronExpressionLb.Name = "cronExpressionLb";
+            this.cronExpressionLb.Size = new System.Drawing.Size(125, 17);
+            this.cronExpressionLb.TabIndex = 15;
+            this.cronExpressionLb.Text = "Cron expression";
+            // 
+            // cronExpressionTb
+            // 
+            this.cronExpressionTb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cronExpressionTb.Location = new System.Drawing.Point(163, 240);
+            this.cronExpressionTb.Name = "cronExpressionTb";
+            this.cronExpressionTb.Size = new System.Drawing.Size(175, 20);
+            this.cronExpressionTb.TabIndex = 23;
+            // 
+            // combinedCronURI1
+            // 
+            this.viewHolder.SetColumnSpan(this.combinedCronURI1, 2);
+            this.combinedCronURI1.Location = new System.Drawing.Point(3, 266);
+            this.combinedCronURI1.Name = "combinedCronURI1";
+            this.combinedCronURI1.Size = new System.Drawing.Size(334, 261);
+            this.combinedCronURI1.TabIndex = 29;
             // 
             // JobAndTriggerView
             // 
@@ -240,27 +239,23 @@
             this.AutoScroll = true;
             this.Controls.Add(this.viewHolder);
             this.Name = "JobAndTriggerView";
-            this.Size = new System.Drawing.Size(388, 294);
+            this.Size = new System.Drawing.Size(371, 351);
             this.viewHolder.ResumeLayout(false);
             this.viewHolder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel viewHolder;
-        private System.Windows.Forms.TextBox cronExpressionTb;
-        private System.Windows.Forms.Button jobsAndTriggerBtn;
         private System.Windows.Forms.ComboBox jobTypesCb;
         private System.Windows.Forms.TextBox jobMessageTb;
         private System.Windows.Forms.TextBox jobNameTb;
         private System.Windows.Forms.Label jobNameLb;
         private System.Windows.Forms.Label jobMessageLb;
         private System.Windows.Forms.Label jobTypeLb;
-        private System.Windows.Forms.Label cronExpressionLb;
         private System.Windows.Forms.Label triggerNameLb;
         private System.Windows.Forms.TextBox triggerNameTb;
         private System.Windows.Forms.Label mailSubjectLb;
@@ -268,5 +263,8 @@
         private System.Windows.Forms.Label mailBody;
         private System.Windows.Forms.RichTextBox mailBodyRtb;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.TextBox cronExpressionTb;
+        private System.Windows.Forms.Label cronExpressionLb;
+        private CombinedCronURI combinedCronURI1;
     }
 }

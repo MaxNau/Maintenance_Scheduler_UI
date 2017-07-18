@@ -70,16 +70,6 @@ namespace MaintenanceSchedulerControlLibrary
             OnSelectedValueChanged();
         }
 
-        [Browsable(true)]
-        [Category("Extended Properties")]
-        [Description("Sets the text for the button")]
-        [DisplayName("Job and trigger view button")]
-        public string JobAndTriggerViewButtonText
-        {
-            get { return jobsAndTriggerBtn.Text; }
-            set { jobsAndTriggerBtn.Text = value; }
-        }
-
         public delegate void JobAndTriggerViewBtnClicked();
         public delegate void JobTypesCb_SelectedValueChanged();
 

@@ -1,21 +1,23 @@
-﻿using System;
+﻿using StringsConstantsAndEnumerations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
-using StringsConstantsAndEnumerations;
 
 namespace MaintenanceSchedulerControlLibrary
 {
-    public partial class ExtendedCronURI : UserControl
+    public partial class ExtendedCronURIEverySMHStartAtSpecTime : UserControl
     {
-        public ExtendedCronURI()
+        public ExtendedCronURIEverySMHStartAtSpecTime()
         {
             InitializeComponent();
-            timeIntervalCb.DataSource = ((Enum.GetValues(typeof(Enumerations.TimeInterval))) as Enumerations.TimeInterval[]);
-            dayCb.DataSource = Strings.Days;
+            timeIntervalCb.DataSource = ((Enum.GetValues(typeof(Enumerations.TimeInterval))) as Enumerations.TimeInterval[]).ToList();
+            dayCb.DataSource = new List<int>(Strings.Days);
             monthCb.DataSource = ((Enum.GetValues(typeof(Enumerations.Month))) as Enumerations.Month[]);
-            yearCb.DataSource = Strings.Years;
-            hoursCb.DataSource = Strings.Hours;
-            minutesCb.DataSource = Strings.Minutes;
-            secondsCb.DataSource = Strings.Seconds;
+            yearCb.DataSource = new List<int>(Strings.Years);
+            hoursCb.DataSource = new List<int>(Strings.Hours);
+            minutesCb.DataSource = new List<int>(Strings.Minutes);
+            secondsCb.DataSource = new List<int>(Strings.Seconds);
         }
 
         private void timeIntervalCb_SelectedIndexChanged(object sender, EventArgs e)
@@ -40,7 +42,7 @@ namespace MaintenanceSchedulerControlLibrary
             }
             else if (selectedTimeInterval == Enumerations.TimeInterval.Day_of_the_week)
             {
-                
+                timeIntervalValueCb.DataSource = ((Enum.GetValues(typeof(Enumerations.DayOfWeek))) as Enumerations.DayOfWeek[]);
             }
             else if (selectedTimeInterval == Enumerations.TimeInterval.Month)
             {
@@ -48,7 +50,7 @@ namespace MaintenanceSchedulerControlLibrary
             }
             else
             {
-                timeIntervalValueCb.DataSource = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                timeIntervalValueCb.DataSource = Strings.YearStep;
             }
         }
     }

@@ -48,6 +48,12 @@
     <Compile Include="AddMaintenanceSchedulerView.Designer.cs">
       <DependentUpon>AddMaintenanceSchedulerView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CombinedCronURI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CombinedCronURI.Designer.cs">
+      <DependentUpon>CombinedCronURI.cs</DependentUpon>
+    </Compile>
     <Compile Include="CronExpressionTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -65,6 +71,18 @@
     </Compile>
     <Compile Include="ExtendedCronURI.Designer.cs">
       <DependentUpon>ExtendedCronURI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedCronURIEveryDMYAtSpecTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExtendedCronURIEveryDMYAtSpecTime.Designer.cs">
+      <DependentUpon>ExtendedCronURIEveryDMYAtSpecTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedCronURIEverySMHStartAtSpecTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExtendedCronURIEverySMHStartAtSpecTime.Designer.cs">
+      <DependentUpon>ExtendedCronURIEverySMHStartAtSpecTime.cs</DependentUpon>
     </Compile>
     <Compile Include="JobsAndTriggersView.cs">
       <SubType>UserControl</SubType>
@@ -91,6 +109,9 @@
     <EmbeddedResource Include="AddMaintenanceSchedulerView.resx">
       <DependentUpon>AddMaintenanceSchedulerView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CombinedCronURI.resx">
+      <DependentUpon>CombinedCronURI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CronExpressionTabControl.resx">
       <DependentUpon>CronExpressionTabControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExtendedCronURI.resx">
       <DependentUpon>ExtendedCronURI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtendedCronURIEveryDMYAtSpecTime.resx">
+      <DependentUpon>ExtendedCronURIEveryDMYAtSpecTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtendedCronURIEverySMHStartAtSpecTime.resx">
+      <DependentUpon>ExtendedCronURIEverySMHStartAtSpecTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JobsAndTriggersView.resx">
       <DependentUpon>JobsAndTriggersView.cs</DependentUpon>

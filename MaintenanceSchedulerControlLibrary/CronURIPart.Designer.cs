@@ -122,7 +122,7 @@
         public System.Windows.Forms.ListBox timeIntervalListbox;
         public System.Windows.Forms.RadioButton selectIntervalRbtn;
         public System.Windows.Forms.RadioButton allRbtn;
-        private ExtendedCronURI extendedCronURI1;
         private System.Windows.Forms.RadioButton everyRbtn;
+        public ExtendedCronURI extendedCronURI1;
     }
 }

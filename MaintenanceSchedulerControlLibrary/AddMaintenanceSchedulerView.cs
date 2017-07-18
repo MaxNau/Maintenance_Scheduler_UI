@@ -42,10 +42,9 @@ namespace Maintenance_Scheduler_UI
         // this method will save job details, trigger and will schedule the job 
         private void addTriggerBtn_Click(object sender, EventArgs e)
         {
-            var cron = cronExpressionTabControl1.CronExpression;
             if (validate() == true)
             {
-                viewModel.ScheduleJobWithCronTrigger();
+                viewModel.ScheduleJobWithCronTrigger(combinedCronURI1.CronExpression, combinedCronURI1.StartDate);
                 MessageBox.Show("Job successfully added");
             }
         }
@@ -78,8 +77,7 @@ namespace Maintenance_Scheduler_UI
             bool vJobName = validateJobName();
             bool vMessage = validateMessage();
             bool vTriggerName = validateTriggerName();
-            bool vCronExpression = validateCronExpression();
-            return vJobName & vMessage & vTriggerName & vCronExpression;
+            return vJobName & vMessage & vTriggerName;
         }
 
         private bool validateJobName()
@@ -155,6 +153,8 @@ namespace Maintenance_Scheduler_UI
 
     public interface IAddMaintenanceSchedulerViewModel
     {
+        void ScheduleJobWithCronTrigger(string cronExpression, DateTimeOffset startDate);
+
         /// <summary>
         /// User controls job and trigger instance
         /// </summary>

@@ -7,7 +7,6 @@ namespace MaintenanceSchedulerControlLibrary
 {
     public partial class CronExpressionTabControl : UserControl
     {
-        private RadioButton lastChecked;
         private CronExp cronExp;
 
         public string CronExpression { get { return cronExp.CronExpression; } }
@@ -55,6 +54,49 @@ namespace MaintenanceSchedulerControlLibrary
             monthCronURIPart.selectIntervalRbtn.CheckedChanged += SelectMonthRbtn_CheckedChanged;
             yearCronURIPart.timeIntervalListbox.SelectedIndexChanged += YearsListbox_SelectedIndexChanged;
             yearCronURIPart.selectIntervalRbtn.CheckedChanged += SelectYearRbtn_CheckedChanged;
+
+            secondsCronURIPart.extendedCronURI1.timeIntervalValueCb.SelectedIndexChanged += TimeIntervalValueCb_SelectedIndexChanged;
+        }
+
+        private void TimeIntervalValueCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedIntervalValue = (sender as ComboBox).SelectedItem;
+            if ((Enumerations.TimeInterval)secondsCronURIPart.extendedCronURI1.timeIntervalCb.SelectedItem == Enumerations.TimeInterval.Second)
+            {
+                cronExp.Seconds = String.Format("0/{0}", selectedIntervalValue);
+                cronExp.Minutes = "0/1";
+                cronExp.Hours = "*";
+                cronExp.DayOfMonth = "1/1";
+                cronExp.Month = "*";
+                cronExp.Year = "*";
+            }
+            else if ((Enumerations.TimeInterval) secondsCronURIPart.extendedCronURI1.timeIntervalCb.SelectedItem == Enumerations.TimeInterval.Minute)
+            {
+                cronExp.Seconds = "0";
+                cronExp.Minutes = String.Format("0/{0}", selectedIntervalValue);
+                cronExp.Hours = "*";
+                cronExp.DayOfMonth = "*";
+                cronExp.Month = "*";
+                cronExp.Year = "*";
+            }
+            else if ((Enumerations.TimeInterval)secondsCronURIPart.extendedCronURI1.timeIntervalCb.SelectedItem == Enumerations.TimeInterval.Hour)
+            {
+                cronExp.Seconds = "0";
+                cronExp.Minutes = "0";
+                cronExp.Hours = String.Format("0/{0}", selectedIntervalValue);
+                cronExp.DayOfMonth = "*";
+                cronExp.Month = "*";
+                cronExp.Year = "*";
+            }
+            else if ((Enumerations.TimeInterval)secondsCronURIPart.extendedCronURI1.timeIntervalCb.SelectedItem == Enumerations.TimeInterval.Day_of_the_month)
+            {
+                cronExp.Seconds = "0";
+                cronExp.Minutes = "0";
+                cronExp.Hours = "12";
+                cronExp.DayOfMonth = String.Format("1/{0}", selectedIntervalValue);
+                cronExp.Month = "*";
+                cronExp.Year = "*";
+            }
         }
 
         private void secondsCronURIPartAllRbtn_CheckedChanged(object sender, EventArgs e)
@@ -152,12 +194,13 @@ namespace MaintenanceSchedulerControlLibrary
         public string Month { get; set; }
         public string DayOfWeek { get; set; }
         public string Year { get; set; }
-        public string StartDate { get; set; }
+        public DateTimeOffset StartDate { get; set; }
 
         public CronExp()
         {
             Seconds = Minutes = Hours = Month = DayOfWeek = Year = "*";
-            DayOfMonth = "?";
+            DayOfMonth = "*";
+            StartDate = DateTimeOffset.Now;
         }
 
         public string CronExpression
@@ -166,6 +209,18 @@ namespace MaintenanceSchedulerControlLibrary
             {
                 return String.Join(" ", Seconds, Minutes, Hours, DayOfMonth, Month, DayOfWeek, Year);
             }
+        }
+
+        public void SetCronExpression(string seconds = "*", string minutes = "*", string hours = "*",
+            string dayOfMonth = "*", string dayOfWeek = "*", string month = "*", string year = "*")
+        {
+            Seconds = seconds;
+            Minutes = minutes;
+            Hours = hours;
+            DayOfMonth = dayOfMonth;
+            DayOfWeek = dayOfWeek;
+            Month = month;
+            Year = year;
         }
     }
 }

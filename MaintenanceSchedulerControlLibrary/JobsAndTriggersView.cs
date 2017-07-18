@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Maintenance_Scheduler_UI
 {
     public partial class JobsAndTriggersView : UserControl
     {
+        ITriggerViewModel currentSelectedTriggerAndJob;
         IJobsAndTriggersViewModel viewModel;
         public JobsAndTriggersView()
         {
@@ -20,17 +22,21 @@ namespace Maintenance_Scheduler_UI
             viewModel.UpdateTrigersDgv += ViewModel_UpdateTrigersDgv;
             viewModel.SubscribeToJobExecution();
             triggersDgv.DataSource = viewModel.Triggers;
-            AddRemoveColumnToTriggersDgv();
         }
 
 
         private void ViewModel_UpdateTrigersDgv(object sender, EventArgs e)
         {
-            triggersDgv.Invoke(new MethodInvoker(delegate {
-                triggersDgv.DataSource = null;
-                triggersDgv.DataSource = viewModel.Triggers;
-                triggersDgv.Refresh(); }));
+            if (IsHandleCreated)
+            {
+                triggersDgv.Invoke(new MethodInvoker(delegate
+                {
+                    triggersDgv.DataSource = null;
+                    triggersDgv.DataSource = viewModel.Triggers;
+                    triggersDgv.Refresh();
+                }));
             }
+        }
 
         private void JobsAndTriggersView_Load(object sender, EventArgs e)
         {
@@ -39,25 +45,7 @@ namespace Maintenance_Scheduler_UI
 
         private void triggersDgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var dgv = sender as DataGridView;
-            if (dgv.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0 && dgv.Columns[e.ColumnIndex].Name == "Remove")
-            {
-                ITriggerViewModel triggerToRemove = (ITriggerViewModel)(dgv.CurrentRow.DataBoundItem);
-                viewModel.RemoveJob(triggerToRemove.JobName);
-            }
-        }
 
-        /// <summary>
-        /// Adds DataGridViewButtonColumn that removes job
-        /// </summary>
-        private void AddRemoveColumnToTriggersDgv()
-        {
-            DataGridViewButtonColumn removeButton = new DataGridViewButtonColumn();
-            removeButton.Name = "Remove";
-            removeButton.Text = "Remove";
-            removeButton.UseColumnTextForButtonValue = true;
-
-            triggersDgv.Columns.Add(removeButton);
         }
 
         private void triggersDgv_DataSourceChanged(object sender, EventArgs e)
@@ -67,20 +55,31 @@ namespace Maintenance_Scheduler_UI
 
         private void triggersDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            ITriggerViewModel trigger = (ITriggerViewModel)((sender as DataGridView)
+            currentSelectedTriggerAndJob = (ITriggerViewModel)((sender as DataGridView)
                 .CurrentRow.DataBoundItem);
-            jobAndTriggerView1.TriggerName = trigger.Name;
-            jobAndTriggerView1.JobName = trigger.JobName;
-            jobAndTriggerView1.JobMessage = trigger.Message;
-            jobAndTriggerView1.CronExpression = trigger.CronExpression;
-            jobAndTriggerView1.MailBody = trigger.MailBody;
+            jobAndTriggerView1.TriggerName = currentSelectedTriggerAndJob.Name;
+            jobAndTriggerView1.JobName = currentSelectedTriggerAndJob.JobName;
+            jobAndTriggerView1.JobMessage = currentSelectedTriggerAndJob.Message;
+            jobAndTriggerView1.CronExpression = currentSelectedTriggerAndJob.CronExpression;
+            jobAndTriggerView1.MailBody = currentSelectedTriggerAndJob.MailBody;
+            jobAndTriggerView1.MailSubject = currentSelectedTriggerAndJob.MailSubject;
+            jobAndTriggerView1.JobTypes = Enum.GetValues(typeof(Enumerations.MaintenanceJobType));
+        }
+
+        private void removeJobTriggerButton_Click(object sender, EventArgs e)
+        {
+            if (currentSelectedTriggerAndJob != null)
+            {
+                ITriggerViewModel triggerToRemove = (ITriggerViewModel)(triggersDgv.CurrentRow.DataBoundItem);
+                viewModel.RemoveJob(triggerToRemove.JobName);
+            }
         }
     }
 
     public interface IJobsAndTriggersViewModel
     {
         event EventHandler UpdateTrigersDgv;
-        ObservableCollection<ITriggerViewModel> Triggers { get; set; }
+        BindingList<ITriggerViewModel> Triggers { get; set; }
         IAddMaintenanceSchedulerViewModel viewModel { get; set; }
 
         /// <summary>
@@ -111,8 +110,13 @@ namespace Maintenance_Scheduler_UI
         string Name { get; set; }
         string JobName { get; set; }
         string Message { get; set; }
+
+        [Browsable(false)]
         Enumerations.MaintenanceJobType SelectedJobType { get; set; }
+
+        [Browsable(false)]
         List<Enumerations.MaintenanceJobType> JobTypes { get; set; }
+
         string TriggerType { get; set; }
         string MailSubject { get; set; }
         string MailBody { get; set; }

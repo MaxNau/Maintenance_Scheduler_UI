@@ -117,7 +117,7 @@ namespace Maintenance_Scheduler_BAL
         /// <param name="jobMessage"></param>
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
-        public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType jobType, string triggerName, string cronExpression, string startDate, string jobMailSubject = "", string jobMailBody = "")
+        public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType jobType, string triggerName, string cronExpression, DateTimeOffset startDate, string jobMailSubject = "", string jobMailBody = "")
         {
             if (jobType == StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType.Local)
                 scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression, startDate));
@@ -140,13 +140,12 @@ namespace Maintenance_Scheduler_BAL
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
         /// <returns></returns>
-        private static ITrigger CreateCronTrigger(string triggerName, string cronExpression, string startDate)
+        private static ITrigger CreateCronTrigger(string triggerName, string cronExpression, DateTimeOffset startDate)
         {
             return TriggerBuilder.Create()
                 .WithIdentity(triggerName)
                 .WithCronSchedule(cronExpression)
-                .StartAt(DateTimeOffset.ParseExact(startDate,
-    "dd/MM/yyyy HH.mm.ss", System.Globalization.CultureInfo.InvariantCulture))
+                .StartAt(startDate)
                 .Build();
         }
 
@@ -196,6 +195,8 @@ namespace Maintenance_Scheduler_BAL
                         PreviousFireTimeDate = trigger.GetPreviousFireTimeUtc(),
                         NextFireTimeDate = trigger.GetNextFireTimeUtc(),
                         Message = scheduler.GetJobDetail(trigger.JobKey).JobDataMap.GetString("Message"),
+                        MailSubject = scheduler.GetJobDetail(trigger.JobKey).JobDataMap.GetString("MailSubject"),
+                        MailBody = scheduler.GetJobDetail(trigger.JobKey).JobDataMap.GetString("MailBody"),
                         CronExpression = ((ICronTrigger)trigger).CronExpressionString
                     });
                 }

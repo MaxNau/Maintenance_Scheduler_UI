@@ -40,7 +40,13 @@ namespace Maintenance_Scheduler_UI.ViewModels
         public void ScheduleJobWithCronTrigger()
         {
             CheckAndResetMailSubjectAndBody();
-            MaintenanceScheduler.ScheduleJobWithCronTrigger(JobAndTrigger.JobName, JobAndTrigger.Message, JobAndTrigger.SelectedJobType, JobAndTrigger.Name, JobAndTrigger.CronExpression, JobAndTrigger.MailSubject, JobAndTrigger.MailBody);
+            MaintenanceScheduler.ScheduleJobWithCronTrigger(JobAndTrigger.JobName, JobAndTrigger.Message, JobAndTrigger.SelectedJobType, JobAndTrigger.Name, JobAndTrigger.CronExpression, DateTimeOffset.Now, JobAndTrigger.MailSubject, JobAndTrigger.MailBody);
+        }
+
+        public void ScheduleJobWithCronTrigger(string cronExpression, DateTimeOffset startDate)
+        {
+            CheckAndResetMailSubjectAndBody();
+            MaintenanceScheduler.ScheduleJobWithCronTrigger(JobAndTrigger.JobName, JobAndTrigger.Message, JobAndTrigger.SelectedJobType, JobAndTrigger.Name, cronExpression, startDate, JobAndTrigger.MailSubject, JobAndTrigger.MailBody);
         }
 
         private void CheckAndResetMailSubjectAndBody()

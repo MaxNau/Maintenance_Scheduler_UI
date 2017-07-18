@@ -38,6 +38,8 @@ namespace Maintenance_Scheduler_UI.ViewModels
             StartTimeDate = model.StartTimeDate;
             EndTimeDate = model.EndTimeDate;
             CronExpression = model.CronExpression;
+            MailSubject = model.MailSubject;
+            MailBody = model.MailBody;
         }
 
         public string Name
@@ -70,7 +72,6 @@ namespace Maintenance_Scheduler_UI.ViewModels
             }
         }
 
-        [Browsable(false)]
         public Enumerations.MaintenanceJobType SelectedJobType
         {
             get { return selectedJobType; }
@@ -81,7 +82,6 @@ namespace Maintenance_Scheduler_UI.ViewModels
             }
         }
 
-        [Browsable(false)]
         public List<Enumerations.MaintenanceJobType> JobTypes
         {
             get { return jobTypes; }
