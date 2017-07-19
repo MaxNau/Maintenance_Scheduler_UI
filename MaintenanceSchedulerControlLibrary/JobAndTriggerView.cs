@@ -1,5 +1,4 @@
-﻿using StringsConstantsAndEnumerations;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -45,6 +44,16 @@ namespace MaintenanceSchedulerControlLibrary
 
         public string CronExpression
         {
+            get { return combinedCronURI1.CronExpression; }
+        }
+
+        public DateTimeOffset TriggerStartDate
+        {
+            get { return combinedCronURI1.StartDate; }
+        }
+
+        public string CronExpressionManual
+        {
             get { return cronExpressionTb.Text; }
             set { cronExpressionTb.Text = value; }
         }
@@ -58,11 +67,14 @@ namespace MaintenanceSchedulerControlLibrary
         public JobAndTriggerView()
         {
             InitializeComponent();
+            EnableDisableJobRelatedControls(false);
+            EnableDisableTriggerRelatedControls(true);
+            RenameUpdateButton();
         }
 
         private void updateJobeAndTriggerBtn_Click(object sender, EventArgs e)
         {
-            OnButtonClicked();
+            //OnButtonClicked();
         }
 
         private void jobTypesCb_SelectedValueChanged(object sender, EventArgs e)
@@ -70,25 +82,95 @@ namespace MaintenanceSchedulerControlLibrary
             OnSelectedValueChanged();
         }
 
-        public delegate void JobAndTriggerViewBtnClicked();
+        public delegate void JobAndTriggerViewRemoveBtnClicked();
         public delegate void JobTypesCb_SelectedValueChanged();
+        public delegate void JobAndTriggerViewUpdateJobButtonClicked();
+        public delegate void JobAndTriggerViewUpdateTriggerButtonClicked();
 
-        [Category("Action")]
-        [Description("Fires when the JobAndTriggerView button is clicked.")]
-        public event JobAndTriggerViewBtnClicked ButtonClicked;
+        [Category("Event")]
+        [Description("Fires when the Remove button is clicked.")]
+        public event JobAndTriggerViewRemoveBtnClicked RemoveButtonClicked;
 
         [Category("Event")]
         [Description("Fires when the Job Type value changes in combobox.")]
         public event JobTypesCb_SelectedValueChanged SelectedValueChanged;
 
-        protected virtual void OnButtonClicked()
+        [Category("Event")]
+        [Description("Fires when job is updating and update button clicked.")]
+        public event JobAndTriggerViewUpdateJobButtonClicked UpdateJobButtonClicked;
+
+        [Category("Event")]
+        [Description("Fires when job is updating and update button clicked.")]
+        public event JobAndTriggerViewUpdateTriggerButtonClicked UpdateTriggerButtonClicked;
+
+        protected virtual void OnUpdateJobButtonClicked()
         {
-            ButtonClicked?.Invoke();
+            UpdateJobButtonClicked?.Invoke();
+        }
+
+        protected virtual void OnUpdateTriggerButtonClicked()
+        {
+            UpdateTriggerButtonClicked?.Invoke();
         }
 
         protected virtual void OnSelectedValueChanged()
         {
             SelectedValueChanged?.Invoke();
+        }
+        
+        private void EnableDisableJobRelatedControls(bool isEnabled)
+        {
+            jobMessageTb.ReadOnly = isEnabled;
+            mailSubjectTb.ReadOnly = isEnabled;
+            mailBodyRtb.Enabled = !isEnabled;
+            jobTypesCb.Enabled = !isEnabled;
+        }
+
+        private void EnableDisableTriggerRelatedControls(bool isEnabled)
+        {
+            triggerNameTb.ReadOnly = isEnabled;
+            combinedCronURI1.Visible = !isEnabled;
+            combinedCronURI1.Enabled = !isEnabled;
+        }
+
+        private void rbtn_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableJobRelatedControls(updateTriggerRbtn.Checked);
+            EnableDisableTriggerRelatedControls(updateJobRbtn.Checked);
+            RenameUpdateButton();
+        }
+
+
+       /* private void updateTriggerRbtn_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableJobRelatedControls(updateTriggerRbtn.Checked);
+            EnableDisableTriggerRelatedControls(updateJobRbtn.Checked);
+        }*/
+
+        protected virtual void OnRemoveButtonClicked()
+        {
+            RemoveButtonClicked?.Invoke();
+        }
+
+        private void removeBtn_Click(object sender, EventArgs e)
+        {
+            OnRemoveButtonClicked();
+        }
+
+        private void RenameUpdateButton()
+        {
+            if (updateJobRbtn.Checked == true)
+                updateButton.Text = "Update job";
+            else if (updateTriggerRbtn.Checked == true)
+                updateButton.Text = "Update trigger";
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            if (updateJobRbtn.Checked == true)
+                OnUpdateJobButtonClicked();
+            else if (updateTriggerRbtn.Checked == true)
+                OnUpdateTriggerButtonClicked();
         }
     }
 }

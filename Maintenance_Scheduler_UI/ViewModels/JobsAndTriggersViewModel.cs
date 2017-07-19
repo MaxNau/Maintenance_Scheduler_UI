@@ -16,6 +16,7 @@ namespace Maintenance_Scheduler_UI.ViewModels
 
         public JobsAndTriggersViewModel()
         {
+            JobAndTriggerToUpdate = new TriggerViewModel();
             StartLogging();
             GetAllTriggers();
         }
@@ -38,8 +39,9 @@ namespace Maintenance_Scheduler_UI.ViewModels
             }
         }
 
-        public ITriggerViewModel JobAndTrigger { get; set; }
         public bool ShowJobMailPart { get; set; }
+        public ITriggerViewModel JobAndTriggerToUpdate { get; set; }
+        public ITriggerViewModel oldJobAndTrigger { get; set; }
 
         /// <summary>
         /// Removes job from the database 
@@ -84,6 +86,16 @@ namespace Maintenance_Scheduler_UI.ViewModels
             {
                 log.Error(ex.Message, ex);
             }
+        }
+
+        public bool UpdateTrigger(string oldTriggerName, string newTriggerName, string cronExpression, DateTimeOffset startDate)
+        {
+            return MaintenanceScheduler.UpdateTrigger(oldTriggerName, newTriggerName, cronExpression, startDate);
+        }
+
+        public void UpdateJob(string jobName, string message)
+        {
+            MaintenanceScheduler.UpdateLocalJob(jobName, message);
         }
 
         public void SubscribeToJobExecution()

@@ -48,6 +48,7 @@ namespace Maintenance_Scheduler_UI
         private void Form1_Load(object sender, EventArgs e)
         {
             StartLogging();
+            log.Info("Log from TestForm");
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -59,6 +60,12 @@ namespace Maintenance_Scheduler_UI
         {
             JobsAndTriggersTestForm form = new JobsAndTriggersTestForm();
             form.Show();
+        }
+
+        private void viewLogsBtn_Click(object sender, EventArgs e)
+        {
+            LogsTestForm logsForm = new LogsTestForm();
+            logsForm.Show();
         }
     }
 }

@@ -103,8 +103,15 @@
     <Compile Include="TestForms\JobsAndTriggersTestForm.Designer.cs">
       <DependentUpon>JobsAndTriggersTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestForms\LogsTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForms\LogsTestForm.Designer.cs">
+      <DependentUpon>LogsTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AddMaintenanceSchedulerViewModel.cs" />
     <Compile Include="ViewModels\JobsAndTriggersViewModel.cs" />
+    <Compile Include="ViewModels\LogsViewModel.cs" />
     <Compile Include="ViewModels\TriggerViewModel.cs" />
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
@@ -124,6 +131,9 @@
     </Compile>
     <EmbeddedResource Include="TestForms\JobsAndTriggersTestForm.resx">
       <DependentUpon>JobsAndTriggersTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestForms\LogsTestForm.resx">
+      <DependentUpon>LogsTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
@@ -156,6 +166,10 @@
     <ProjectReference Include="..\Maintenance_Scheduler_BAL\Maintenance_Scheduler_BAL.csproj">
       <Project>{c2212c35-89f3-4ed0-83c4-7812c04ee3a0}</Project>
       <Name>Maintenance_Scheduler_BAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maintenance_Scheduler_DAL\Maintenance_Scheduler_DAL.csproj">
+      <Project>{EBC03B0E-3B9B-4393-9509-DC4FDF2291D6}</Project>
+      <Name>Maintenance_Scheduler_DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\StringsConstantsAndEnumerations\StringsConstantsAndEnumerations.csproj">
       <Project>{F606990B-DB4F-43C6-857D-832BDB465B9D}</Project>

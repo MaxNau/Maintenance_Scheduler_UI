@@ -5,10 +5,4 @@ namespace Maintenance_Scheduler_BAL.SchedulerJobs
     {
         void OnJobDone(string result);
     }
-
-    public enum MaintenanceJobType
-    {
-        Local,
-        Mailing
-    }
 }
