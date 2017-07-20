@@ -15,8 +15,8 @@ namespace MaintenanceSchedulerControlLibrary
 
         public CronExp()
         {
-            Seconds = Minutes = Hours = Month = DayOfWeek = Year = "*";
-            DayOfMonth = "*";
+            Seconds = Minutes = Hours = Month = DayOfMonth = Year = "*";
+            DayOfWeek = "?";
             StartDate = DateTimeOffset.Now;
         }
 
@@ -28,8 +28,8 @@ namespace MaintenanceSchedulerControlLibrary
             }
         }
 
-        public void SetCronExpression(string seconds = "*", string minutes = "*", string hours = "*",
-            string dayOfMonth = "*", string dayOfWeek = "*", string month = "*", string year = "*")
+        public void SetCronExpression(string seconds = "0", string minutes = "0/5", string hours = "*",
+            string dayOfMonth = "*", string month = "*", string dayOfWeek = "?", string year = "*")
         {
             Seconds = seconds;
             Minutes = minutes;

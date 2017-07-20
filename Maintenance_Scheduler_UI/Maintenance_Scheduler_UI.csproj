@@ -109,6 +109,12 @@
     <Compile Include="TestForms\LogsTestForm.Designer.cs">
       <DependentUpon>LogsTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestForms\MailingSettingsTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForms\MailingSettingsTestForm.Designer.cs">
+      <DependentUpon>MailingSettingsTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AddMaintenanceSchedulerViewModel.cs" />
     <Compile Include="ViewModels\JobsAndTriggersViewModel.cs" />
     <Compile Include="ViewModels\LogsViewModel.cs" />
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestForms\LogsTestForm.resx">
       <DependentUpon>LogsTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestForms\MailingSettingsTestForm.resx">
+      <DependentUpon>MailingSettingsTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>

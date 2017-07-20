@@ -67,5 +67,11 @@ namespace Maintenance_Scheduler_UI
             LogsTestForm logsForm = new LogsTestForm();
             logsForm.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MailingSettingsTestForm mailTest = new MailingSettingsTestForm();
+            mailTest.Show();
+        }
     }
 }

@@ -59,7 +59,9 @@
             // 
             this.triggersDgv.AllowUserToAddRows = false;
             this.triggersDgv.AllowUserToDeleteRows = false;
-            this.triggersDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.triggersDgv.AllowUserToResizeColumns = false;
+            this.triggersDgv.AllowUserToResizeRows = false;
+            this.triggersDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.triggersDgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.triggersDgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.triggersDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -75,6 +77,7 @@
             this.triggersDgv.Location = new System.Drawing.Point(3, 3);
             this.triggersDgv.Name = "triggersDgv";
             this.triggersDgv.ReadOnly = true;
+            this.triggersDgv.RowHeadersVisible = false;
             this.triggersDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.triggersDgv.Size = new System.Drawing.Size(453, 234);
             this.triggersDgv.TabIndex = 0;

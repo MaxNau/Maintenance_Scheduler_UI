@@ -93,9 +93,9 @@ namespace Maintenance_Scheduler_UI.ViewModels
             return MaintenanceScheduler.UpdateTrigger(oldTriggerName, newTriggerName, cronExpression, startDate);
         }
 
-        public void UpdateJob(string jobName, string message)
+        public void UpdateJob(string jobName, string message, StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType jobType, string jobMailSubject = "", string jobMailBody = "")
         {
-            MaintenanceScheduler.UpdateLocalJob(jobName, message);
+            MaintenanceScheduler.UpdateJob(jobName, message, jobType, jobMailSubject, jobMailBody);
         }
 
         public void SubscribeToJobExecution()

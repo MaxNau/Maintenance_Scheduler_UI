@@ -1,4 +1,5 @@
-﻿using Maintenance_Scheduler_BAL.Models;
+﻿using Maintenance_Scheduler_BAL.Exceptions;
+using Maintenance_Scheduler_BAL.Models;
 using StringsConstantsAndEnumerations;
 using System;
 using System.Collections.Generic;
@@ -29,10 +30,10 @@ namespace Maintenance_Scheduler_UI.ViewModels
 
         public TriggerViewModel(TriggerModel model)
         {
-            Name = model.Name;
+            Name = model.TriggerName;
             JobName = model.JobName;
             Message = model.Message;
-            TriggerType = model.Type;
+            TriggerType = model.TriggerType;
             PreviousFireTimeDate = model.PreviousFireTimeDate;
             NextFireTimeDate = model.NextFireTimeDate;
             StartTimeDate = model.StartTimeDate;
@@ -40,6 +41,7 @@ namespace Maintenance_Scheduler_UI.ViewModels
             CronExpression = model.CronExpression;
             MailSubject = model.MailSubject;
             MailBody = model.MailBody;
+            SelectedJobType = ConvertJobClassNameStringToEnum(model.JobType);
         }
 
         public string Name
@@ -179,6 +181,16 @@ namespace Maintenance_Scheduler_UI.ViewModels
         private List<Enumerations.MaintenanceJobType> GetJobTypes()
         {
             return ((Enum.GetValues(typeof(Enumerations.MaintenanceJobType))) as Enumerations.MaintenanceJobType[]).ToList();
+        }
+
+        private Enumerations.MaintenanceJobType ConvertJobClassNameStringToEnum(string jobClassName)
+        {
+            if (jobClassName == "MaintenanceJob")
+                return Enumerations.MaintenanceJobType.Local;
+            else if (jobClassName == "MailingJob")
+                return Enumerations.MaintenanceJobType.Mailing;
+            else
+                throw new MaintenanceTypeNotFoundException(String.Format("The type {0} is not relate to any of MaintenanceJobTypes", jobClassName));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

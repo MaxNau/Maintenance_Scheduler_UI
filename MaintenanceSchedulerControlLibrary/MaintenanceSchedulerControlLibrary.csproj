@@ -85,11 +85,23 @@
     <Compile Include="ExtendedCronURIEverySMHStartAtSpecTime.Designer.cs">
       <DependentUpon>ExtendedCronURIEverySMHStartAtSpecTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExtendedCronURIEveryYearsOnSpecifiedDateTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExtendedCronURIEveryYearsOnSpecifiedDateTime.Designer.cs">
+      <DependentUpon>ExtendedCronURIEveryYearsOnSpecifiedDateTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="JobsAndTriggersView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="JobsAndTriggersView.Designer.cs">
       <DependentUpon>JobsAndTriggersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MailingConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MailingConfig.Designer.cs">
+      <DependentUpon>MailingConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Messanger.cs">
       <SubType>Form</SubType>
@@ -128,8 +140,14 @@
     <EmbeddedResource Include="ExtendedCronURIEverySMHStartAtSpecTime.resx">
       <DependentUpon>ExtendedCronURIEverySMHStartAtSpecTime.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExtendedCronURIEveryYearsOnSpecifiedDateTime.resx">
+      <DependentUpon>ExtendedCronURIEveryYearsOnSpecifiedDateTime.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="JobsAndTriggersView.resx">
       <DependentUpon>JobsAndTriggersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MailingConfig.resx">
+      <DependentUpon>MailingConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Messanger.resx">
       <DependentUpon>Messanger.cs</DependentUpon>

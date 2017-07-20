@@ -148,9 +148,9 @@ namespace Maintenance_Scheduler_UI
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.viewHolder.Size = new System.Drawing.Size(297, 654);
+            this.viewHolder.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.viewHolder.Size = new System.Drawing.Size(297, 529);
             this.viewHolder.TabIndex = 0;
             // 
             // cronExpressionTb
@@ -247,9 +247,10 @@ namespace Maintenance_Scheduler_UI
             // combinedCronURI1
             // 
             this.viewHolder.SetColumnSpan(this.combinedCronURI1, 2);
+            this.combinedCronURI1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combinedCronURI1.Location = new System.Drawing.Point(3, 346);
             this.combinedCronURI1.Name = "combinedCronURI1";
-            this.combinedCronURI1.Size = new System.Drawing.Size(261, 305);
+            this.combinedCronURI1.Size = new System.Drawing.Size(261, 180);
             this.combinedCronURI1.TabIndex = 28;
             // 
             // AddMaintenanceSchedulerView
@@ -261,7 +262,7 @@ namespace Maintenance_Scheduler_UI
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.viewHolder);
             this.Name = "AddMaintenanceSchedulerView";
-            this.Size = new System.Drawing.Size(297, 657);
+            this.Size = new System.Drawing.Size(297, 532);
             this.viewHolder.ResumeLayout(false);
             this.viewHolder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();

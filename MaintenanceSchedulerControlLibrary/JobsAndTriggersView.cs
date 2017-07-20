@@ -19,6 +19,7 @@ namespace Maintenance_Scheduler_UI
 
         private void JobAndTriggerView1_UpdateTriggerButtonClicked()
         {
+
             if (viewModel.oldJobAndTrigger != null)
             {
                 viewModel.JobAndTriggerToUpdate.Name = jobAndTriggerView1.TriggerName;
@@ -44,7 +45,8 @@ namespace Maintenance_Scheduler_UI
         {
             if (viewModel.oldJobAndTrigger != null)
             {
-                viewModel.UpdateJob(jobAndTriggerView1.JobName, jobAndTriggerView1.JobMessage);
+                viewModel.UpdateJob(jobAndTriggerView1.JobName, jobAndTriggerView1.JobMessage, 
+                    (Enumerations.MaintenanceJobType)jobAndTriggerView1.SelectedJobType, jobAndTriggerView1.MailSubject, jobAndTriggerView1.MailBody);
             }
         }
 
@@ -90,6 +92,7 @@ namespace Maintenance_Scheduler_UI
             jobAndTriggerView1.MailBody = viewModel.oldJobAndTrigger.MailBody;
             jobAndTriggerView1.MailSubject = viewModel.oldJobAndTrigger.MailSubject;
             jobAndTriggerView1.JobTypes = Enum.GetValues(typeof(Enumerations.MaintenanceJobType));
+            jobAndTriggerView1.SelectedJobType = viewModel.oldJobAndTrigger.SelectedJobType;
         }
     }
 
@@ -122,7 +125,7 @@ namespace Maintenance_Scheduler_UI
         /// </summary>
         /// <param name="jobName"></param>
         /// <param name="message"></param>
-        void UpdateJob(string jobName, string message);
+        void UpdateJob(string jobName, string message, Enumerations.MaintenanceJobType jobType, string jobMailSubject = "", string jobMailBody = "");
 
         /// <summary>
         /// Removes job from the databound collection 
@@ -146,8 +149,6 @@ namespace Maintenance_Scheduler_UI
         string Name { get; set; }
         string JobName { get; set; }
         string Message { get; set; }
-
-        [Browsable(false)]
         Enumerations.MaintenanceJobType SelectedJobType { get; set; }
 
         [Browsable(false)]

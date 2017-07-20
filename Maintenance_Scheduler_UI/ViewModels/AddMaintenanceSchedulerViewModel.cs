@@ -37,7 +37,7 @@ namespace Maintenance_Scheduler_UI.ViewModels
 
         public bool TriggerNameExists(string triggerName)
         {
-            return MaintenanceScheduler.GetAllTriggers().Any(t => t.Name == triggerName);
+            return MaintenanceScheduler.GetAllTriggers().Any(t => t.TriggerName == triggerName);
         }
 
         public bool JobNameExists(string jobName)

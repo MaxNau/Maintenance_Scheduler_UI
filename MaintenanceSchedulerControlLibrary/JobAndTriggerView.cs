@@ -24,6 +24,12 @@ namespace MaintenanceSchedulerControlLibrary
             set { jobTypesCb.DataSource = value; }
         }
 
+        public object SelectedJobType
+        {
+            get { return jobTypesCb.SelectedItem; }
+            set { jobTypesCb.SelectedItem = value; }
+        }
+
         public string MailSubject
         {
             get { return mailSubjectTb.Text; }
@@ -70,11 +76,6 @@ namespace MaintenanceSchedulerControlLibrary
             EnableDisableJobRelatedControls(false);
             EnableDisableTriggerRelatedControls(true);
             RenameUpdateButton();
-        }
-
-        private void updateJobeAndTriggerBtn_Click(object sender, EventArgs e)
-        {
-            //OnButtonClicked();
         }
 
         private void jobTypesCb_SelectedValueChanged(object sender, EventArgs e)
@@ -139,13 +140,6 @@ namespace MaintenanceSchedulerControlLibrary
             EnableDisableTriggerRelatedControls(updateJobRbtn.Checked);
             RenameUpdateButton();
         }
-
-
-       /* private void updateTriggerRbtn_CheckedChanged(object sender, EventArgs e)
-        {
-            EnableDisableJobRelatedControls(updateTriggerRbtn.Checked);
-            EnableDisableTriggerRelatedControls(updateJobRbtn.Checked);
-        }*/
 
         protected virtual void OnRemoveButtonClicked()
         {

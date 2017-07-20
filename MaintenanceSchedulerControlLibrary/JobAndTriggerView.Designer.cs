@@ -141,7 +141,6 @@ namespace MaintenanceSchedulerControlLibrary
             this.updateTriggerRbtn.TabIndex = 1;
             this.updateTriggerRbtn.Text = "Update trigger";
             this.updateTriggerRbtn.UseVisualStyleBackColor = true;
-            this.updateTriggerRbtn.CheckedChanged += new System.EventHandler(this.updateJobeAndTriggerBtn_Click);
             // 
             // updateJobRbtn
             // 

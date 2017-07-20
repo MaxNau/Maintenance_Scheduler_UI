@@ -1,5 +1,6 @@
 ﻿using StringsConstantsAndEnumerations;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -25,99 +26,36 @@ namespace MaintenanceSchedulerControlLibrary
             SubscribeToEvents();
             cronExp = new CronExp();
             EnableDisableExtendedCronURI();
-            extendedCronURI_1.timeIntervalCb.DataSource = ((Enum.GetValues(typeof(Enumerations.TimeInterval))) as Enumerations.TimeInterval[]).ToList().GetRange(0, 3);
-            extendedCronURIEveryDMYAtSpecTime1.timeIntervalCb.DataSource = ((Enum.GetValues(typeof(Enumerations.TimeInterval))) as Enumerations.TimeInterval[]).ToList().GetRange(3, 4);
         }
 
         private void EnableDisableExtendedCronURI()
         {
-            extendedCronURI_1.dayCb.Enabled = everySMHRbtn.Checked;
-            extendedCronURI_1.hoursCb.Enabled = everySMHRbtn.Checked;
-            extendedCronURI_1.minutesCb.Enabled = everySMHRbtn.Checked;
-            extendedCronURI_1.monthCb.Enabled = everySMHRbtn.Checked;
-            extendedCronURI_1.secondsCb.Enabled = everySMHRbtn.Checked;
-            extendedCronURI_1.timeIntervalCb.Enabled = everySMHRbtn.Checked;
-            extendedCronURI_1.timeIntervalValueCb.Enabled = everySMHRbtn.Checked;
-            extendedCronURI_1.yearCb.Enabled = everySMHRbtn.Checked;
+            extendedCronURI_1.Enabled = everySMHRbtn.Checked;
             extendedCronURI_1.Visible = everySMHRbtn.Checked;
-            extendedCronURIEveryDMYAtSpecTime1.hoursCb.Enabled = specificTimeRbtn.Checked;
-            extendedCronURIEveryDMYAtSpecTime1.minutesCb.Enabled = specificTimeRbtn.Checked;
-            extendedCronURIEveryDMYAtSpecTime1.secondsCb.Enabled = specificTimeRbtn.Checked;
-            extendedCronURIEveryDMYAtSpecTime1.timeIntervalCb.Enabled = specificTimeRbtn.Checked;
-            extendedCronURIEveryDMYAtSpecTime1.timeIntervalValueCb.Enabled = specificTimeRbtn.Checked;
+            
+            extendedCronURIEveryDMYAtSpecTime1.Enabled = specificTimeRbtn.Checked;
             extendedCronURIEveryDMYAtSpecTime1.Visible = specificTimeRbtn.Checked;
+
+            extendedCronURIEveryYearsOnSpecifiedDateTime1.Enabled = everyNYearsOnAtStartingRb.Checked;
+            extendedCronURIEveryYearsOnSpecifiedDateTime1.Visible = everyNYearsOnAtStartingRb.Checked;
         }
 
         private void SubscribeToEvents()
         {
-            extendedCronURI_1.dayCb.SelectedIndexChanged += extendedCronURI_1_SelectedIndexChanged;
-            extendedCronURI_1.hoursCb.SelectedIndexChanged += extendedCronURI_1_SelectedIndexChanged;
-            extendedCronURI_1.minutesCb.SelectedIndexChanged += extendedCronURI_1_SelectedIndexChanged;
-            extendedCronURI_1.monthCb.SelectedIndexChanged += extendedCronURI_1_SelectedIndexChanged;
-            extendedCronURI_1.secondsCb.SelectedIndexChanged += extendedCronURI_1_SelectedIndexChanged;
-            extendedCronURI_1.timeIntervalCb.SelectedIndexChanged += extendedCronURI_1_SelectedIndexChanged;
-            extendedCronURI_1.timeIntervalValueCb.SelectedIndexChanged += extendedCronURI_1_SelectedIndexChanged;
-            extendedCronURI_1.yearCb.SelectedIndexChanged += extendedCronURI_1_SelectedIndexChanged;
+            extendedCronURI_1.SelectedDateTimeIndexChanged += ExtendedCronURI_1_SelectedDateTimeIndexChanged;
+             
+            extendedCronURIEveryDMYAtSpecTime1.SelectedDateTimeIndexChanged += ExtendedCronURIEveryDMYAtSpecTime1_SelectedDateTimeIndexChanged;
 
-            extendedCronURIEveryDMYAtSpecTime1.hoursCb.SelectedIndexChanged += extendedCronURI_2_SelectedIndexChanged;
-            extendedCronURIEveryDMYAtSpecTime1.minutesCb.SelectedIndexChanged += extendedCronURI_2_SelectedIndexChanged;
-            extendedCronURIEveryDMYAtSpecTime1.secondsCb.SelectedIndexChanged += extendedCronURI_2_SelectedIndexChanged;
-            extendedCronURIEveryDMYAtSpecTime1.timeIntervalCb.SelectedIndexChanged += extendedCronURI_2_SelectedIndexChanged;
-            extendedCronURIEveryDMYAtSpecTime1.timeIntervalValueCb.SelectedIndexChanged += extendedCronURI_2_SelectedIndexChanged;
+            extendedCronURIEveryYearsOnSpecifiedDateTime1.SelectedDateTimeIndexChanged += ExtendedCronURIEveryYearsOnSpecifiedDateTime1_SelectedDateTimeIndexChanged;
         }
 
-        private void extendedCronURI_2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (specificTimeRbtn.Checked == true)
-            {
-                var selectedIntervalValue = extendedCronURIEveryDMYAtSpecTime1.timeIntervalValueCb.SelectedItem;
-                if (selectedIntervalValue != null)
-                {
-                    if ((Enumerations.TimeInterval)extendedCronURIEveryDMYAtSpecTime1.timeIntervalCb.SelectedItem == Enumerations.TimeInterval.Day_of_the_month)
-                    {
-                        cronExp.Seconds = extendedCronURIEveryDMYAtSpecTime1.secondsCb.SelectedItem.ToString();
-                        cronExp.Minutes = extendedCronURIEveryDMYAtSpecTime1.minutesCb.SelectedItem.ToString();
-                        cronExp.Hours = extendedCronURIEveryDMYAtSpecTime1.hoursCb.SelectedItem.ToString();
-                        cronExp.DayOfMonth = String.Format("1/{0}", extendedCronURIEveryDMYAtSpecTime1.timeIntervalValueCb.SelectedItem);
-                        cronExp.DayOfWeek = "?";
-                        cronExp.Month = "*";
-                        cronExp.Year = "*";
-                    }
-                    else if ((Enumerations.TimeInterval)extendedCronURIEveryDMYAtSpecTime1.timeIntervalCb.SelectedItem == Enumerations.TimeInterval.Day_of_the_week)
-                    {
-                        cronExp.Seconds = extendedCronURIEveryDMYAtSpecTime1.secondsCb.SelectedItem.ToString();
-                        cronExp.Minutes = extendedCronURIEveryDMYAtSpecTime1.minutesCb.SelectedItem.ToString();
-                        cronExp.Hours = extendedCronURIEveryDMYAtSpecTime1.hoursCb.SelectedItem.ToString();
-                        cronExp.DayOfMonth = "?";
-                        cronExp.Month = "*";
-                        cronExp.DayOfWeek = extendedCronURIEveryDMYAtSpecTime1.timeIntervalValueCb.SelectedItem.ToString();
-                        cronExp.Year = "*";
-                    }
-                    else if ((Enumerations.TimeInterval)extendedCronURI_1.timeIntervalCb.SelectedItem == Enumerations.TimeInterval.Month)
-                    {
-                        cronExp.Seconds = extendedCronURIEveryDMYAtSpecTime1.secondsCb.SelectedItem.ToString();
-                        cronExp.Minutes = extendedCronURIEveryDMYAtSpecTime1.minutesCb.SelectedItem.ToString();
-                        cronExp.Hours = extendedCronURIEveryDMYAtSpecTime1.hoursCb.SelectedItem.ToString();
-                        cronExp.DayOfMonth = "?";
-                        cronExp.Month = String.Format("1/{0}", extendedCronURIEveryDMYAtSpecTime1.timeIntervalValueCb.SelectedItem.ToString());
-                        cronExp.DayOfWeek = "*";
-                        cronExp.Year = "*";
-                    }
-                }
-                else
-                {
-                    cronExp.SetCronExpression();
-                }
-            }
-        }
-
-        private void extendedCronURI_1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ExtendedCronURI_1_SelectedDateTimeIndexChanged()
         {
             if (everySMHRbtn.Checked == true)
             {
-                if ((Enumerations.TimeInterval)extendedCronURI_1.timeIntervalCb.SelectedItem == Enumerations.TimeInterval.Second)
+                if (extendedCronURI_1.SelectedTimeInterval == Enumerations.TimeInterval.Second)
                 {
-                    cronExp.Seconds = String.Format("0/{0}", extendedCronURI_1.timeIntervalValueCb.SelectedItem);
+                    cronExp.Seconds = String.Format("0/{0}", extendedCronURI_1.SelectedTimeInterval);
                     cronExp.Minutes = "*";
                     cronExp.Hours = "*";
                     cronExp.DayOfMonth = "1/1";
@@ -125,21 +63,21 @@ namespace MaintenanceSchedulerControlLibrary
                     cronExp.Month = "*";
                     cronExp.Year = "*";
                 }
-                else if ((Enumerations.TimeInterval)extendedCronURI_1.timeIntervalCb.SelectedItem == Enumerations.TimeInterval.Minute)
+                else if (extendedCronURI_1.SelectedTimeInterval == Enumerations.TimeInterval.Minute)
                 {
                     cronExp.Seconds = "0";
-                    cronExp.Minutes = String.Format("0/{0}", extendedCronURI_1.timeIntervalValueCb.SelectedItem);
+                    cronExp.Minutes = String.Format("0/{0}", extendedCronURI_1.SelectedTimeIntervalValue);
                     cronExp.Hours = "*";
                     cronExp.DayOfMonth = "1/1";
                     cronExp.DayOfWeek = "?";
                     cronExp.Month = "*";
                     cronExp.Year = "*";
                 }
-                else if ((Enumerations.TimeInterval)extendedCronURI_1.timeIntervalCb.SelectedItem == Enumerations.TimeInterval.Hour)
+                else if (extendedCronURI_1.SelectedTimeInterval == Enumerations.TimeInterval.Hour)
                 {
                     cronExp.Seconds = "0";
                     cronExp.Minutes = "0";
-                    cronExp.Hours = String.Format("0/{0}", extendedCronURI_1.timeIntervalValueCb.SelectedItem);
+                    cronExp.Hours = String.Format("0/{0}", extendedCronURI_1.SelectedTimeIntervalValue);
                     cronExp.DayOfMonth = "1/1";
                     cronExp.DayOfWeek = "?";
                     cronExp.Month = "*";
@@ -153,16 +91,77 @@ namespace MaintenanceSchedulerControlLibrary
             }
         }
 
+        private void ExtendedCronURIEveryDMYAtSpecTime1_SelectedDateTimeIndexChanged()
+        {
+            if (specificTimeRbtn.Checked == true)
+            {
+                if (extendedCronURIEveryDMYAtSpecTime1.SelectedTimeInterval == Enumerations.TimeInterval.Day_of_the_month)
+                {
+                    cronExp.Seconds = extendedCronURIEveryDMYAtSpecTime1.SelectedSecond.ToString();
+                    cronExp.Minutes = extendedCronURIEveryDMYAtSpecTime1.SelectedMinute.ToString();
+                    cronExp.Hours = extendedCronURIEveryDMYAtSpecTime1.SelectedHour.ToString();
+                    cronExp.DayOfMonth = String.Format("1/{0}", extendedCronURIEveryDMYAtSpecTime1.SelectedTimeInterval);
+                    cronExp.DayOfWeek = "?";
+                    cronExp.Month = "*";
+                    cronExp.Year = "*";
+                }
+                else if (extendedCronURIEveryDMYAtSpecTime1.SelectedTimeInterval == Enumerations.TimeInterval.Day_of_the_week)
+                {
+                    cronExp.Seconds = extendedCronURIEveryDMYAtSpecTime1.SelectedSecond.ToString();
+                    cronExp.Minutes = extendedCronURIEveryDMYAtSpecTime1.SelectedMinute.ToString();
+                    cronExp.Hours = extendedCronURIEveryDMYAtSpecTime1.SelectedHour.ToString();
+                    cronExp.DayOfMonth = "?";
+                    cronExp.Month = "*";
+                    cronExp.DayOfWeek = extendedCronURIEveryDMYAtSpecTime1.SelectedTimeIntervalValue.ToString();
+                    cronExp.Year = "*";
+                }
+                else if (extendedCronURI_1.SelectedTimeInterval == Enumerations.TimeInterval.Month)
+                {
+                    cronExp.Seconds = extendedCronURIEveryDMYAtSpecTime1.SelectedSecond.ToString();
+                    cronExp.Minutes = extendedCronURIEveryDMYAtSpecTime1.SelectedMinute.ToString();
+                    cronExp.Hours = extendedCronURIEveryDMYAtSpecTime1.SelectedHour.ToString();
+                    cronExp.DayOfMonth = "?";
+                    cronExp.Month = String.Format("1/{0}", extendedCronURIEveryDMYAtSpecTime1.SelectedTimeIntervalValue.ToString());
+                    cronExp.DayOfWeek = "*";
+                    cronExp.Year = "*";
+                }
+            }
+            else
+            {
+                cronExp.SetCronExpression();
+            }
+        }
+
+        private void ExtendedCronURIEveryYearsOnSpecifiedDateTime1_SelectedDateTimeIndexChanged()
+        {
+            if (everyNYearsOnAtStartingRb.Checked == true)
+            {
+                cronExp.Seconds = extendedCronURIEveryYearsOnSpecifiedDateTime1.SelectedSecond.ToString();
+                cronExp.Minutes = extendedCronURIEveryYearsOnSpecifiedDateTime1.SelectedMinute.ToString();
+                cronExp.Hours = extendedCronURIEveryYearsOnSpecifiedDateTime1.SelectedHour.ToString();
+                cronExp.DayOfMonth = extendedCronURIEveryYearsOnSpecifiedDateTime1.SelectedDay.ToString();
+                cronExp.DayOfWeek = "?";
+                cronExp.Month = extendedCronURIEveryYearsOnSpecifiedDateTime1.SelectedMonth.ToString();
+                cronExp.Year = extendedCronURIEveryYearsOnSpecifiedDateTime1.SelectedYear.ToString() + "/"
+                    + extendedCronURIEveryYearsOnSpecifiedDateTime1.SelectedYearStep.ToString();
+            }
+            else
+            {
+                cronExp.SetCronExpression();
+            }
+        }
+
         private void SetStartDate()
         {
-            DateTime startDate = new DateTime((int)extendedCronURI_1.yearCb.SelectedItem,
-                (int)extendedCronURI_1.monthCb.SelectedItem, (int)extendedCronURI_1.dayCb.SelectedItem,
-                (int)extendedCronURI_1.hoursCb.SelectedItem, (int)extendedCronURI_1.minutesCb.SelectedItem,
-                (int)extendedCronURI_1.secondsCb.SelectedItem);
+            DateTime startDate = new DateTime(extendedCronURI_1.SelectedYear,
+                (int)extendedCronURI_1.SelectedMonth, extendedCronURI_1.SelectedDayOfMonth,
+                extendedCronURI_1.SelectedHour, extendedCronURI_1.SelectedMinute,
+                extendedCronURI_1.SelectedSecond);
             cronExp.StartDate = DateTime.SpecifyKind(startDate, DateTimeKind.Local);
         }
         private void everySMHRbtn_CheckedChanged(object sender, EventArgs e)
         {
+            cronExp.SetCronExpression();
             EnableDisableExtendedCronURI();
         }
     }

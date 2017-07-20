@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\MaintenanceTypeNotFoundException.cs" />
     <Compile Include="MaintenanceScheduler.cs" />
     <Compile Include="Models\TriggerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

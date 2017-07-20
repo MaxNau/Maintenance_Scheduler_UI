@@ -74,7 +74,7 @@ namespace Maintenance_Scheduler_BAL
         #region Scheduler Specification
 
         /// <summary>
-        /// Creates job
+        /// Creates local job
         /// </summary>
         /// <param name="jobName"> Name of the job </param>
         /// <param name="jobMessage"> Message that will be sent to notify 
@@ -82,7 +82,12 @@ namespace Maintenance_Scheduler_BAL
         /// <returns> Returns created job </returns>
         private static IJobDetail CreateLocalNotifierJob(string jobName, string jobMessage)
         {
+            log.Info("Creating local job");
+
             IJobDetail job = JobBuilder.Create<MaintenanceJob>().WithIdentity(jobName).Build();
+
+            log.Info("Local job created successfuly");
+
             job.JobDataMap["Message"] = jobMessage;
             return job;
         }
@@ -97,49 +102,16 @@ namespace Maintenance_Scheduler_BAL
         /// <returns></returns>
         private static IJobDetail CreateMailingNotifierJob(string jobName, string jobMessage, string jobMailSubject, string jobMailBody)
         {
+            log.Info("Creating mailing job");
+
             IJobDetail job = JobBuilder.Create<MailingJob>().WithIdentity(jobName).Build();
+
+            log.Info("Mailing job created successfuly");
+
             job.JobDataMap["Message"] = jobMessage;
             job.JobDataMap["MailSubject"] = jobMailSubject;
             job.JobDataMap["MailBody"] = jobMailBody;
             return job;
-        }
-
-        /// <summary>
-        /// Creates trigger 
-        /// </summary>
-        /// <param name="triggerName"> Name of the trigger </param>
-        /// <returns> Returns created trigger </returns>
-        private static ITrigger CreateTrigger(string triggerName)
-        {
-            return TriggerBuilder.Create()
-                .WithIdentity(triggerName)
-                .StartNow()
-                .WithSimpleSchedule(x => x
-                .WithIntervalInSeconds(10)
-                .RepeatForever())
-                .Build();
-        }
-
-        /// <summary>
-        /// Schedules the created job and it's created trigger to be executed
-        /// </summary>
-        /// <param name="jobName"> Name of the job </param>
-        /// <param name="jobMessage"> Message that will be sent to notify
-        /// all interested users</param>
-        /// <param name="triggerName"> Name of the trigger </param>
-        /// <param name="jobMailSubject"> email subject </param>
-        /// <param name="jobMailBody"> html body </param>
-        public static void ScheduleJob(string jobName, string jobMessage, Enumerations.MaintenanceJobType jobType, string triggerName, string jobMailSubject = "", string jobMailBody = "")
-        {
-            if (jobType == Enumerations.MaintenanceJobType.Local)
-                scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateTrigger(triggerName));
-            else if (jobType == Enumerations.MaintenanceJobType.Mailing)
-                scheduler.ScheduleJob(CreateMailingNotifierJob(jobName, jobMessage, jobMailSubject, jobMailBody), CreateTrigger(triggerName));
-        }
-
-        public static void ScheduleDailyJob(string jobName, string jobMessage, string triggerName, DateTime startDate, int daysInterval)
-        {
-            scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateDailyBasedtrigger(triggerName, startDate, daysInterval));
         }
 
         /// <summary>
@@ -149,21 +121,38 @@ namespace Maintenance_Scheduler_BAL
         /// <param name="jobMessage"></param>
         /// <param name="triggerName"></param>
         /// <param name="cronExpression"></param>
-        public static void ScheduleJobWithCronTrigger(string jobName, string jobMessage, StringsConstantsAndEnumerations.Enumerations.MaintenanceJobType jobType, string triggerName, string cronExpression, DateTimeOffset startDate, string jobMailSubject = "", string jobMailBody = "")
+        public static bool ScheduleJobWithCronTrigger(string jobName, string jobMessage, Enumerations.MaintenanceJobType jobType, string triggerName, string cronExpression, DateTimeOffset startDate, string jobMailSubject = "", string jobMailBody = "")
         {
             if (jobType == Enumerations.MaintenanceJobType.Local)
-                scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression, startDate));
+            {
+                log.Info("Prepering to schedule local job...");
+                try
+                {
+                    scheduler.ScheduleJob(CreateLocalNotifierJob(jobName, jobMessage), CreateCronTrigger(triggerName, cronExpression, startDate));
+                }
+                catch (SchedulerException SchEx)
+                {
+                    log.Error(SchEx.Message, SchEx);
+                }
+                log.Info("Local job successfuly scheduled");
+                return true;
+            }
             else if (jobType == Enumerations.MaintenanceJobType.Mailing)
-                scheduler.ScheduleJob(CreateMailingNotifierJob(jobName, jobMessage, jobMailSubject, jobMailBody), CreateCronTrigger(triggerName, cronExpression, startDate));
-        }
+            {
+                log.Info("Prepering to schedule mailing job...");
+                try
+                {
+                    scheduler.ScheduleJob(CreateMailingNotifierJob(jobName, jobMessage, jobMailSubject, jobMailBody), CreateCronTrigger(triggerName, cronExpression, startDate));
+                }
+                catch (SchedulerException SchEx)
+                {
+                    log.Error(SchEx.Message, SchEx);
+                }
+                log.Info("Mailing job successfuly scheduled");
+                return true;
+            }
 
-        private static ITrigger CreateDailyBasedtrigger(string triggerName, DateTime startDate, int daysInteval)
-        {
-            return TriggerBuilder.Create()
-                .WithIdentity(triggerName)
-                .WithCalendarIntervalSchedule(x => x.WithIntervalInDays(daysInteval))
-                .StartAt(startDate)
-                .Build();
+            return false;
         }
 
         /// <summary>
@@ -191,17 +180,25 @@ namespace Maintenance_Scheduler_BAL
             }
         }
 
-        public static BindingList<ITrigger> getAllTriggers()
+        /// <summary>
+        /// Gets all triggers
+        /// </summary>
+        /// <returns></returns>
+        public static ICollection<ITrigger> getAllTriggers()
         {
-            BindingList<ITrigger> triggers = new BindingList<ITrigger>();
+            log.Info("About to get all triggers...");
+            ICollection<ITrigger> triggers = new BindingList<ITrigger>();
+            log.Info("Finding trigger keys...");
             var allTriggerKeys = scheduler.GetTriggerKeys(GroupMatcher<TriggerKey>.AnyGroup());
             if (allTriggerKeys != null)
             {
+                log.Info("At list one trigger key was found... Getting triggers");
                 foreach (var triggerKey in allTriggerKeys)
                 {
                     ITrigger trigger = scheduler.GetTrigger(triggerKey);
                     triggers.Add(scheduler.GetTrigger(triggerKey));
                 }
+                log.Info("Successfuly got all triggers");
             }
             return triggers;
         }
@@ -217,15 +214,18 @@ namespace Maintenance_Scheduler_BAL
         }
 
         /// <summary>
-        /// Gets all triggers 
+        /// Gets all triggers converted to trigger model
         /// </summary>
         /// <returns></returns>
         public static ICollection<TriggerModel> GetAllTriggers()
         {
-            List<TriggerModel> triggers = new List<TriggerModel>();
+            log.Info("About to get all triggers...");
+            ICollection<TriggerModel> triggers = new List<TriggerModel>();
+            log.Info("Finding trigger keys...");
             var triggerKeys = scheduler.GetTriggerKeys(GroupMatcher<TriggerKey>.AnyGroup());
             if (triggerKeys != null)
             {
+                log.Info("At list one trigger key was found... Getting triggers");
                 foreach (TriggerKey key in triggerKeys)
                 {
                     ITrigger trigger = scheduler.GetTrigger(key);
@@ -235,8 +235,8 @@ namespace Maintenance_Scheduler_BAL
                         triggers.Add(new TriggerModel()
                         {
                             JobName = trigger.JobKey.Name,
-                            Name = trigger.Key.Name,
-                            Type = trigger.GetType().Name,
+                            TriggerName = trigger.Key.Name,
+                            TriggerType = trigger.GetType().Name,
                             StartTimeDate = trigger.StartTimeUtc,
                             EndTimeDate = trigger.EndTimeUtc,
                             PreviousFireTimeDate = trigger.GetPreviousFireTimeUtc(),
@@ -244,15 +244,22 @@ namespace Maintenance_Scheduler_BAL
                             Message = scheduler.GetJobDetail(trigger.JobKey).JobDataMap.GetString("Message"),
                             MailSubject = scheduler.GetJobDetail(trigger.JobKey).JobDataMap.GetString("MailSubject"),
                             MailBody = scheduler.GetJobDetail(trigger.JobKey).JobDataMap.GetString("MailBody"),
+                            JobType = scheduler.GetJobDetail(trigger.JobKey).JobType.Name,
                             CronExpression = ((ICronTrigger)trigger).CronExpressionString
                         });
                     }
                 }
+                log.Info("Successfuly got all triggers");
             }
 
             return triggers;
         }
 
+        /// <summary>
+        /// Gets trigger by its name
+        /// </summary>
+        /// <param name="triggerName"></param>
+        /// <returns></returns>
         private static ITrigger GetCronTriggerByName(string triggerName)
         {
             log.Info("Geting all trigger keys");
@@ -281,6 +288,14 @@ namespace Maintenance_Scheduler_BAL
             }
         }
 
+        /// <summary>
+        /// Updates the trigger
+        /// </summary>
+        /// <param name="oldTriggerName"></param>
+        /// <param name="newTriggerName"></param>
+        /// <param name="cronExpression"></param>
+        /// <param name="startDate"></param>
+        /// <returns></returns>
         public static bool UpdateTrigger(string oldTriggerName, string newTriggerName, string cronExpression, DateTimeOffset startDate)
         {
             ITrigger oldTrigger = GetCronTriggerByName(oldTriggerName);
@@ -308,17 +323,26 @@ namespace Maintenance_Scheduler_BAL
             }
         }
 
-        public static void UpdateLocalJob(string jobName, string message)
+        /// <summary>
+        /// Updates job
+        /// </summary>
+        /// <param name="jobName"></param>
+        /// <param name="message"></param>
+        public static void UpdateJob(string jobName, string message, Enumerations.MaintenanceJobType jobType, string jobMailSubject = "", string jobMailBody = "")
         {
+            log.Info("About to update local job");
+            log.Info("Getting related trigger");
             ICronTrigger realtedTrigger = GetCronTriggerForJob(GetAllJobs().FirstOrDefault(jd => jd.Key.Name == jobName).Key);
+            log.Info("Trigger retrived successfuly");
+            log.Info("Creating new job instance");
 
-            IJobDetail newJob = JobBuilder.Create<MaintenanceJob>()
-                .WithIdentity(jobName)
-                .Build();
+            IJobDetail newJob = CreateJobBasedOnItsType(jobName, message, jobType, jobMailSubject, jobMailBody);
 
+            log.Info("Job instance created");
             Quartz.Collection.ISet<ITrigger> trigger = new Quartz.Collection.HashSet<ITrigger>();
             try
             {
+                log.Info("Creating trigger for a newJob");
                 trigger.Add(TriggerBuilder.Create()
                 .ForJob(newJob)
                 .WithIdentity(realtedTrigger.Key.Name)
@@ -331,8 +355,34 @@ namespace Maintenance_Scheduler_BAL
                 log.Error(ex.Message, ex);
             }
 
-            newJob.JobDataMap["Message"] = message;
-            scheduler.ScheduleJob(newJob, trigger, true);
+            log.Info("Replacing job and trigger");
+            try
+            {
+                scheduler.ScheduleJob(newJob, trigger, true);
+            }
+            catch(SchedulerException SchEx)
+            {
+                log.Error(SchEx.Message, SchEx);
+            }
+            log.Info("Job and trigger successfuly replaced");
+        }
+
+        private static IJobDetail CreateJobBasedOnItsType(string jobName, string jobMessage, Enumerations.MaintenanceJobType jobType, string jobMailSubject = "", string jobMailBody = "")
+        {
+            log.Info("Checking job type");
+            if (jobType == Enumerations.MaintenanceJobType.Local)
+            {
+                return CreateLocalNotifierJob(jobName, jobMessage);
+            }
+            else if (jobType == Enumerations.MaintenanceJobType.Mailing)
+            {
+                return CreateMailingNotifierJob(jobName, jobMessage, jobMailSubject, jobMailBody);
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         private static ICollection<IJobDetail> GetAllJobs()
